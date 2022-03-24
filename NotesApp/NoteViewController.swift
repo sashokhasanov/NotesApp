@@ -18,6 +18,17 @@ class NoteViewController: UIViewController {
         super.viewDidLoad()
         setupViewController()
     }
+    
+    // MARK: - IBActions
+    @IBAction func predefinedColorTapped(_ sender: UITapGestureRecognizer) {
+        guard let color = sender.view?.backgroundColor else {
+            return
+        }
+        
+        UIView.animate(withDuration: 0.3) {
+            self.noteMarkerView.backgroundColor = color
+        }
+    }
 }
 
 // MARK: - Private methods

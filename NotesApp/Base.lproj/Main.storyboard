@@ -51,6 +51,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KFE-YG-RyF">
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                         <color key="backgroundColor" systemColor="systemPinkColor"/>
+                                        <gestureRecognizers/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="2ri-QE-B40"/>
                                             <constraint firstAttribute="width" constant="50" id="hAk-6f-Uv4"/>
@@ -60,10 +61,14 @@
                                                 <integer key="value" value="25"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="6bR-Lp-4a0" appends="YES" id="iol-cn-4ja"/>
+                                        </connections>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DGB-Yv-zof">
+                                    <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DGB-Yv-zof">
                                         <rect key="frame" x="80" y="0.0" width="50" height="50"/>
                                         <color key="backgroundColor" systemColor="systemYellowColor"/>
+                                        <gestureRecognizers/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="50" id="05z-Ey-Ks1"/>
                                             <constraint firstAttribute="height" constant="50" id="b4A-HX-W7n"/>
@@ -73,10 +78,14 @@
                                                 <integer key="value" value="25"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="YI2-T3-FAH" appends="YES" id="DBd-lR-Kr6"/>
+                                        </connections>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eJi-yp-6Lt">
+                                    <view tag="2" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eJi-yp-6Lt">
                                         <rect key="frame" x="160" y="0.0" width="50" height="50"/>
                                         <color key="backgroundColor" systemColor="systemPurpleColor"/>
+                                        <gestureRecognizers/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="50" id="asV-pU-taL"/>
                                             <constraint firstAttribute="height" constant="50" id="dSp-23-H1p"/>
@@ -86,6 +95,9 @@
                                                 <integer key="value" value="25"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="hVc-Kw-L6T" appends="YES" id="VKk-qE-xog"/>
+                                        </connections>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="41E-SH-zYC">
                                         <rect key="frame" x="240" y="0.0" width="50" height="50"/>
@@ -124,6 +136,21 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="6bR-Lp-4a0">
+                    <connections>
+                        <action selector="predefinedColorTapped:" destination="BYZ-38-t0r" id="6AT-lk-iQu"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="YI2-T3-FAH">
+                    <connections>
+                        <action selector="predefinedColorTapped:" destination="BYZ-38-t0r" id="rTV-Fh-8Lp"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="hVc-Kw-L6T">
+                    <connections>
+                        <action selector="predefinedColorTapped:" destination="BYZ-38-t0r" id="oiI-R2-wM9"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="132" y="114.69265367316342"/>
         </scene>
