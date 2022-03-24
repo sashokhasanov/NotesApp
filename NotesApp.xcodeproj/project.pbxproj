@@ -13,6 +13,7 @@
 		2D864D1227EC6C910001B06B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D864D1027EC6C910001B06B /* Main.storyboard */; };
 		2D864D1427EC6C980001B06B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2D864D1327EC6C980001B06B /* Assets.xcassets */; };
 		2D864D1727EC6C980001B06B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D864D1527EC6C980001B06B /* LaunchScreen.storyboard */; };
+		2DE478E227EC9FE70088C0E5 /* SpectrumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE478E127EC9FE70088C0E5 /* SpectrumView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		2D864D1327EC6C980001B06B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2D864D1627EC6C980001B06B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2D864D1827EC6C980001B06B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2DE478E127EC9FE70088C0E5 /* SpectrumView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpectrumView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +61,7 @@
 				2D864D0A27EC6C900001B06B /* AppDelegate.swift */,
 				2D864D0C27EC6C900001B06B /* SceneDelegate.swift */,
 				2D864D0E27EC6C910001B06B /* NoteViewController.swift */,
+				2DE478E127EC9FE70088C0E5 /* SpectrumView.swift */,
 				2D864D1027EC6C910001B06B /* Main.storyboard */,
 				2D864D1327EC6C980001B06B /* Assets.xcassets */,
 				2D864D1527EC6C980001B06B /* LaunchScreen.storyboard */,
@@ -141,6 +144,7 @@
 				2D864D0F27EC6C910001B06B /* NoteViewController.swift in Sources */,
 				2D864D0B27EC6C900001B06B /* AppDelegate.swift in Sources */,
 				2D864D0D27EC6C900001B06B /* SceneDelegate.swift in Sources */,
+				2DE478E227EC9FE70088C0E5 /* SpectrumView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
