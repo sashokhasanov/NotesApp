@@ -13,6 +13,9 @@ class NoteViewController: UIViewController {
     @IBOutlet weak var noteTitleTextField: UITextField!
     @IBOutlet weak var noteContentTextView: UITextView!
     
+    @IBOutlet var colorViews: [CircleMarkerView]!
+    @IBOutlet weak var customColorView: GradientMarkerView!
+    
     // MARK: - Override methods
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,13 +24,41 @@ class NoteViewController: UIViewController {
     
     // MARK: - IBActions
     @IBAction func predefinedColorTapped(_ sender: UITapGestureRecognizer) {
-        guard let color = sender.view?.backgroundColor else {
+        guard let currentView = sender.view else {
             return
         }
         
+        for view in colorViews {
+            view.showMarker = view === currentView as? CircleMarkerView
+        }
+        
+        if let color = currentView.backgroundColor {
+            updateNoteMarker(with: color)
+        } else if currentView is GradientMarkerView {
+            showColorPicker(with: nil)
+        }
+    }
+    
+    @IBAction func customColorLongPressed(_ sender: UILongPressGestureRecognizer) {
+        guard sender.state == .began else {
+            return
+        }
+        showColorPicker(with: customColorView.backgroundColor)
+    }
+    
+    private func updateNoteMarker(with color: UIColor) {
         UIView.animate(withDuration: 0.3) {
             self.noteMarkerView.backgroundColor = color
         }
+    }
+    
+    private func showColorPicker(with selectedColor: UIColor?) {
+        let colorPickerController = UIColorPickerViewController()
+        if let selectedColor = selectedColor {
+            colorPickerController.selectedColor = selectedColor
+        }
+        colorPickerController.delegate = self
+        present(colorPickerController, animated: true)
     }
 }
 
@@ -65,5 +96,13 @@ extension NoteViewController: UITextFieldDelegate {
             noteContentTextView.becomeFirstResponder()
         }
         return true
+    }
+}
+
+// MARK: Color picker view controller delegate
+extension NoteViewController: UIColorPickerViewControllerDelegate {
+    func colorPickerViewControllerDidFinish(_ viewController: UIColorPickerViewController) {
+        updateNoteMarker(with: viewController.selectedColor)
+        customColorView.backgroundColor = viewController.selectedColor
     }
 }

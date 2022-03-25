@@ -48,7 +48,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="dYD-n4-LZb">
                                 <rect key="frame" x="42.5" y="597" width="290" height="50"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KFE-YG-RyF">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KFE-YG-RyF" customClass="CircleMarkerView" customModule="NotesApp" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                         <color key="backgroundColor" systemColor="systemPinkColor"/>
                                         <gestureRecognizers/>
@@ -65,7 +65,7 @@
                                             <outletCollection property="gestureRecognizers" destination="6bR-Lp-4a0" appends="YES" id="iol-cn-4ja"/>
                                         </connections>
                                     </view>
-                                    <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DGB-Yv-zof">
+                                    <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DGB-Yv-zof" customClass="CircleMarkerView" customModule="NotesApp" customModuleProvider="target">
                                         <rect key="frame" x="80" y="0.0" width="50" height="50"/>
                                         <color key="backgroundColor" systemColor="systemYellowColor"/>
                                         <gestureRecognizers/>
@@ -82,7 +82,7 @@
                                             <outletCollection property="gestureRecognizers" destination="YI2-T3-FAH" appends="YES" id="DBd-lR-Kr6"/>
                                         </connections>
                                     </view>
-                                    <view tag="2" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eJi-yp-6Lt">
+                                    <view tag="2" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eJi-yp-6Lt" customClass="CircleMarkerView" customModule="NotesApp" customModuleProvider="target">
                                         <rect key="frame" x="160" y="0.0" width="50" height="50"/>
                                         <color key="backgroundColor" systemColor="systemPurpleColor"/>
                                         <gestureRecognizers/>
@@ -99,9 +99,9 @@
                                             <outletCollection property="gestureRecognizers" destination="hVc-Kw-L6T" appends="YES" id="VKk-qE-xog"/>
                                         </connections>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="41E-SH-zYC">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="41E-SH-zYC" customClass="GradientMarkerView" customModule="NotesApp" customModuleProvider="target">
                                         <rect key="frame" x="240" y="0.0" width="50" height="50"/>
-                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <gestureRecognizers/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="EQb-ch-M4P"/>
                                             <constraint firstAttribute="width" constant="50" id="Qxi-TO-QC0"/>
@@ -111,6 +111,10 @@
                                                 <integer key="value" value="25"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="zlT-o3-K99" appends="YES" id="qdk-33-uOA"/>
+                                            <outletCollection property="gestureRecognizers" destination="oa6-Ka-yCH" appends="YES" id="Mfr-u7-wpT"/>
+                                        </connections>
                                     </view>
                                 </subviews>
                             </stackView>
@@ -129,10 +133,16 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="5Hc-23-zXf" secondAttribute="trailing" constant="20" id="lqO-ih-gdS"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="Jo2-jX-nhJ"/>
                     <connections>
+                        <outlet property="customColorView" destination="41E-SH-zYC" id="1n0-Za-wXW"/>
                         <outlet property="noteContentTextView" destination="5Hc-23-zXf" id="cF4-yt-UJB"/>
                         <outlet property="noteMarkerView" destination="P7m-8s-hXE" id="aZ5-cb-fln"/>
                         <outlet property="noteTitleTextField" destination="5t4-ZR-NVn" id="It6-KC-W8D"/>
+                        <outletCollection property="colorViews" destination="KFE-YG-RyF" collectionClass="NSMutableArray" id="MdH-m5-qeu"/>
+                        <outletCollection property="colorViews" destination="DGB-Yv-zof" collectionClass="NSMutableArray" id="d9y-EE-uaL"/>
+                        <outletCollection property="colorViews" destination="eJi-yp-6Lt" collectionClass="NSMutableArray" id="KUp-xj-dE1"/>
+                        <outletCollection property="colorViews" destination="41E-SH-zYC" collectionClass="NSMutableArray" id="QyD-B8-eui"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -151,8 +161,18 @@
                         <action selector="predefinedColorTapped:" destination="BYZ-38-t0r" id="oiI-R2-wM9"/>
                     </connections>
                 </tapGestureRecognizer>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="zlT-o3-K99">
+                    <connections>
+                        <action selector="customColorLongPressed:" destination="BYZ-38-t0r" id="rfY-kQ-La6"/>
+                    </connections>
+                </pongPressGestureRecognizer>
+                <tapGestureRecognizer id="oa6-Ka-yCH">
+                    <connections>
+                        <action selector="predefinedColorTapped:" destination="BYZ-38-t0r" id="VMp-Tk-qWJ"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="132" y="114.69265367316342"/>
+            <point key="canvasLocation" x="1042.0289855072465" y="114.50892857142857"/>
         </scene>
     </scenes>
     <resources>
