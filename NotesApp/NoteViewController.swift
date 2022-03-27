@@ -23,6 +23,8 @@ class NoteViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViewController()
+        
+        setDataToControls()
     }
     
     // MARK: - IBActions
@@ -46,78 +48,23 @@ class NoteViewController: UIViewController {
         }
         showColorPicker(with: customColorView.backgroundColor)
     }
-    
-    private func selectColorView(colorView: CircleMarkerView) {
-        for view in colorViews {
-            view.showMarker = view === colorView
-        }
-    }
-    
-    private func updateNoteMarker(with color: UIColor) {
-        UIView.animate(withDuration: 0.3) {
-            self.noteMarkerView.backgroundColor = color
-        }
-    }
-    
-    private func showColorPicker(with selectedColor: UIColor?) {
-        let colorPickerController = UIColorPickerViewController()
-        if let selectedColor = selectedColor {
-            colorPickerController.selectedColor = selectedColor
-        }
-        colorPickerController.delegate = self
-        present(colorPickerController, animated: true)
-    }
-    
-    private func setDataToControls() {
-        guard let note = note else { return }
-        
-        noteTitleTextField.text = note.title
-        noteContentTextView.text = note.content
-        setupNoteColor()
-    }
-    
-    private func setupNoteColor() {
-        guard let note = note else { return }
-        
-        for colorView in colorViews {
-            if colorView is GradientMarkerView {
-                customColorView.backgroundColor = getColor(from: note.color)
-            }
+}
 
-            if checkNeedSelectColorView(view: colorView) {
-                selectColorView(colorView: colorView)
-                if let color = colorView.backgroundColor {
-                    updateNoteMarker(with: color)
-                }
-            }
+// MARK: - Text field delegate
+extension NoteViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField === noteTitleTextField {
+            noteContentTextView.becomeFirstResponder()
         }
+        return true
     }
-    
-    private func checkNeedSelectColorView(view: CircleMarkerView) -> Bool {
-        guard !(view is GradientMarkerView) else { return true }
-        guard let color = view.backgroundColor, let note = note else { return false }
-        
-        return note.color == getColorValue(from: color)
-    }
-    
-    private func getColor(from value: Int32) -> UIColor {
-        let alpha = CGFloat((value >> 24) & 0xFF) / 255.0
-        let red = CGFloat((value >> 16) & 0xFF) / 255.0
-        let green = CGFloat((value >> 8) & 0xFF) / 255.0
-        let blue = CGFloat(value & 0xFF) / 255.0
-        
-        return UIColor(red: red, green: green, blue: blue, alpha: alpha)
-    }
-    
-    private func getColorValue(from color: UIColor) -> Int32 {
-        let currentColor = color.ciColor
-        
-        let red = Int32(currentColor.red * 255.0)
-        let green = Int32(currentColor.green * 255.0)
-        let blue = Int32(currentColor.blue * 255.0)
-        let alpha = Int32(currentColor.alpha * 255.0)
-        
-        return Int32((alpha << 24) + (red << 16) + (green << 8) + blue)
+}
+
+// MARK: Color picker view controller delegate
+extension NoteViewController: UIColorPickerViewControllerDelegate {
+    func colorPickerViewControllerDidFinish(_ viewController: UIColorPickerViewController) {
+        customColorView.backgroundColor = viewController.selectedColor
+        updateNoteMarker(with: viewController.selectedColor)
     }
 }
 
@@ -147,21 +94,58 @@ extension NoteViewController {
     @objc private func hideKeyboard() {
         noteContentTextView.endEditing(true)
     }
-}
-// MARK: - Text field delegate
-extension NoteViewController: UITextFieldDelegate {
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if textField === noteTitleTextField {
-            noteContentTextView.becomeFirstResponder()
-        }
-        return true
+    
+    private func setDataToControls() {
+        guard let note = note else { return }
+        
+        noteTitleTextField.text = note.title
+        noteContentTextView.text = note.content
+        setupNoteColor()
     }
-}
+    
+    private func setupNoteColor() {
+        guard let note = note else { return }
+        
+        for colorView in colorViews {
+            if colorView is GradientMarkerView {
+                customColorView.backgroundColor = UIColor(hexValue: note.color)
+            }
 
-// MARK: Color picker view controller delegate
-extension NoteViewController: UIColorPickerViewControllerDelegate {
-    func colorPickerViewControllerDidFinish(_ viewController: UIColorPickerViewController) {
-        customColorView.backgroundColor = viewController.selectedColor
-        updateNoteMarker(with: viewController.selectedColor)
+            if checkNeedSelectColorView(view: colorView) {
+                selectColorView(colorView: colorView)
+                if let color = colorView.backgroundColor {
+                    updateNoteMarker(with: color)
+                }
+                break
+            }
+        }
+    }
+    
+    private func checkNeedSelectColorView(view: CircleMarkerView) -> Bool {
+        guard !(view is GradientMarkerView) else { return true }
+        guard let color = view.backgroundColor, let note = note else { return false }
+        
+        return note.color == color.hexValue
+    }
+    
+    private func selectColorView(colorView: CircleMarkerView) {
+        for view in colorViews {
+            view.showMarker = view === colorView
+        }
+    }
+    
+    private func updateNoteMarker(with color: UIColor) {
+        UIView.animate(withDuration: 0.3) {
+            self.noteMarkerView.backgroundColor = color
+        }
+    }
+    
+    private func showColorPicker(with selectedColor: UIColor?) {
+        let colorPickerController = UIColorPickerViewController()
+        if let selectedColor = selectedColor {
+            colorPickerController.selectedColor = selectedColor
+        }
+        colorPickerController.delegate = self
+        present(colorPickerController, animated: true)
     }
 }

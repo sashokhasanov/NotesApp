@@ -11,6 +11,15 @@ struct Note {
     let id: UUID
     let title: String
     let content: String
-    let color: Int32
+    let color: UInt32
     let date: Date
+    
+    static func getMockData() -> [Note] {
+        [
+            Note(id: UUID(), title: "Первая заметка", content: "Тест тест тест тест тест", color: 0xfefefefe, date: Date()),
+            Note(id: UUID(), title: "Вторая заметка", content: "Тест тест тест тест тест", color: 0xff00ff00, date: Date()),
+            Note(id: UUID(), title: "Третья заметка", content: "Тест тест тест тест тест", color: 0xffff0000, date: Date()),
+            Note(id: UUID(), title: "Четвертая заметка", content: "Тест тест тест тест тест", color: 0x0f0000ff, date: Date())
+        ]
+    }
 }
