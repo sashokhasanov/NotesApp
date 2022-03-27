@@ -21,7 +21,7 @@
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P7m-8s-hXE">
                                         <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
-                                        <color key="backgroundColor" systemColor="systemGray3Color"/>
+                                        <color key="backgroundColor" systemColor="systemPinkColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="HsG-Oo-LYs"/>
                                             <constraint firstAttribute="width" constant="40" id="mxF-de-9cV"/>
@@ -60,6 +60,7 @@
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                 <integer key="value" value="25"/>
                                             </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="showMarker" value="YES"/>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
                                             <outletCollection property="gestureRecognizers" destination="6bR-Lp-4a0" appends="YES" id="iol-cn-4ja"/>
@@ -181,9 +182,6 @@
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemGray3Color">
-            <color red="0.7803921568627451" green="0.7803921568627451" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemPinkColor">
             <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
