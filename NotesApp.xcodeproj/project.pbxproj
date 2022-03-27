@@ -15,8 +15,6 @@
 		2D864D1727EC6C980001B06B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D864D1527EC6C980001B06B /* LaunchScreen.storyboard */; };
 		2DE478E427ECBDF60088C0E5 /* CircleMarkerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE478E327ECBDF50088C0E5 /* CircleMarkerView.swift */; };
 		2DE478E627ED0DEB0088C0E5 /* GradientMarkerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE478E527ED0DEB0088C0E5 /* GradientMarkerView.swift */; };
-		2DF8AB1727F07577009D7A21 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2DF8AB1527F07577009D7A21 /* DataModel.xcdatamodeld */; };
-		2DF8AB1927F07712009D7A21 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF8AB1827F07712009D7A21 /* StorageManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,8 +28,6 @@
 		2D864D1827EC6C980001B06B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2DE478E327ECBDF50088C0E5 /* CircleMarkerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleMarkerView.swift; sourceTree = "<group>"; };
 		2DE478E527ED0DEB0088C0E5 /* GradientMarkerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientMarkerView.swift; sourceTree = "<group>"; };
-		2DF8AB1627F07577009D7A21 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
-		2DF8AB1827F07712009D7A21 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,8 +64,6 @@
 				2D864D0C27EC6C900001B06B /* SceneDelegate.swift */,
 				2D864D0E27EC6C910001B06B /* NoteViewController.swift */,
 				2DE478E327ECBDF50088C0E5 /* CircleMarkerView.swift */,
-				2DF8AB1527F07577009D7A21 /* DataModel.xcdatamodeld */,
-				2DF8AB1827F07712009D7A21 /* StorageManager.swift */,
 				2D864D1027EC6C910001B06B /* Main.storyboard */,
 				2DE478E527ED0DEB0088C0E5 /* GradientMarkerView.swift */,
 				2D864D1327EC6C980001B06B /* Assets.xcassets */,
@@ -153,8 +147,6 @@
 				2D864D0F27EC6C910001B06B /* NoteViewController.swift in Sources */,
 				2D864D0B27EC6C900001B06B /* AppDelegate.swift in Sources */,
 				2D864D0D27EC6C900001B06B /* SceneDelegate.swift in Sources */,
-				2DF8AB1927F07712009D7A21 /* StorageManager.swift in Sources */,
-				2DF8AB1727F07577009D7A21 /* DataModel.xcdatamodeld in Sources */,
 				2DE478E427ECBDF60088C0E5 /* CircleMarkerView.swift in Sources */,
 				2DE478E627ED0DEB0088C0E5 /* GradientMarkerView.swift in Sources */,
 			);
@@ -380,19 +372,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		2DF8AB1527F07577009D7A21 /* DataModel.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				2DF8AB1627F07577009D7A21 /* DataModel.xcdatamodel */,
-			);
-			currentVersion = 2DF8AB1627F07577009D7A21 /* DataModel.xcdatamodel */;
-			path = DataModel.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 2D864CFF27EC6C900001B06B /* Project object */;
 }
