@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol NoteViewControllerDelegate {
+    func updateNote(with newNote: Note)
+}
+
 class NoteViewController: UIViewController {
     // MARK: - IBOutlets
     @IBOutlet weak var noteMarkerView: UIView!
@@ -18,13 +22,25 @@ class NoteViewController: UIViewController {
     
     // MARK: - Internal properties
     var note: Note?
+    var delegate: NoteViewControllerDelegate?
     
     // MARK: - Override methods
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViewController()
-        
         setDataToControls()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        let id = note?.id ?? UUID()
+        let title = noteTitleTextField.text ?? ""
+        let content = noteContentTextView.text ?? ""
+        let color = (noteMarkerView.backgroundColor ?? UIColor.systemPink).hexValue
+        let date = Date()
+        
+        let newNote = Note(id: id, title: title, content: content, color: color, date: date)
+        
+        delegate?.updateNote(with: newNote)
     }
     
     // MARK: - IBActions

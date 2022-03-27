@@ -9,12 +9,16 @@ import UIKit
 
 class NoteTableViewController: UITableViewController {
     // MARK: - Model data
-    let notes = Note.getMockData()
+    var notes = Note.getMockData()
     
     // MARK: - Override methods
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.register(NoteTableViewCell.nib(), forCellReuseIdentifier: NoteTableViewCell.reuseId)
+    }
+    
+    @IBAction func addButtonPressed(_ sender: Any) {
+        performSegue(withIdentifier: "showNote", sender: self)
     }
 }
 
@@ -55,9 +59,22 @@ extension NoteTableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard segue.identifier == "showNote" else { return }
         guard let noteViewController = segue.destination as? NoteViewController else { return }
-        
+        noteViewController.delegate = self
         if let noteIndex = tableView.indexPathsForSelectedRows?.first?.row {
             noteViewController.note = notes[noteIndex]
+        }
+    }
+}
+
+// MARK: - NoteViewControllerDelegate
+extension NoteTableViewController: NoteViewControllerDelegate {
+    func updateNote(with newNote: Note) {
+        if let index = notes.firstIndex(where: { note in newNote.id == note.id }) {
+            notes[index] = newNote
+            tableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .automatic)
+        } else {
+            notes.append(newNote)
+            tableView.insertRows(at: [IndexPath(row: notes.count - 1, section: 0)], with: .automatic)
         }
     }
 }

@@ -188,7 +188,13 @@
                             <outlet property="delegate" destination="Fq8-kS-NT5" id="1BW-xk-VJ7"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Заметки" id="jYL-rv-5eF"/>
+                    <navigationItem key="navigationItem" title="Заметки" id="jYL-rv-5eF">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="cyc-KJ-gtP">
+                            <connections>
+                                <action selector="addButtonPressed:" destination="Fq8-kS-NT5" id="E6U-5z-IIm"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="showNote" id="hkd-g0-7mP"/>
                     </connections>

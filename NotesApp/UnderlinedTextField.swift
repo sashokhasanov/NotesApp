@@ -22,12 +22,6 @@ import UIKit
         }
     }
     
-    @IBInspectable var lineGap: CGFloat = 10 {
-        didSet {
-            setNeedsLayout()
-        }
-    }
-    
     // MARK: - Override properties
     override var intrinsicContentSize: CGSize {
         CGSize(width: super.intrinsicContentSize.width,
@@ -36,6 +30,7 @@ import UIKit
     
     // MARK: - Private properties
     private let underlineLayer = CALayer()
+    private let lineGap: CGFloat = 10
     
     // MARK: - Initializers
     override init(frame: CGRect) {
