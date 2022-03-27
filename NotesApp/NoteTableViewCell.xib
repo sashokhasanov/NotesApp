@@ -17,29 +17,28 @@
                 <rect key="frame" x="0.0" y="0.0" width="366" height="92"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B5W-tL-PVK" customClass="CircleMarkerView" customModule="NotesApp" customModuleProvider="target">
-                        <rect key="frame" x="16" y="16" width="32" height="32"/>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B5W-tL-PVK">
+                        <rect key="frame" x="16" y="16" width="24" height="24"/>
                         <color key="backgroundColor" systemColor="systemPinkColor"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="32" id="0i0-CS-ua5"/>
-                            <constraint firstAttribute="height" constant="32" id="p7c-qh-210"/>
+                            <constraint firstAttribute="width" constant="24" id="0i0-CS-ua5"/>
+                            <constraint firstAttribute="height" constant="24" id="p7c-qh-210"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="boolean" keyPath="showMarker" value="YES"/>
                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                <integer key="value" value="16"/>
+                                <integer key="value" value="12"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Text" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Xf-NM-GnP">
-                        <rect key="frame" x="16" y="58" width="334" height="18"/>
+                        <rect key="frame" x="16" y="50" width="334" height="26"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bLR-ng-s6F">
-                        <rect key="frame" x="64" y="18" width="286" height="30"/>
-                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="25"/>
+                        <rect key="frame" x="56" y="12.5" width="294" height="31.5"/>
+                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="26"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -50,7 +49,7 @@
                     <constraint firstItem="1Xf-NM-GnP" firstAttribute="leading" secondItem="B5W-tL-PVK" secondAttribute="leading" id="Cpm-4W-jPt"/>
                     <constraint firstItem="1Xf-NM-GnP" firstAttribute="trailing" secondItem="bLR-ng-s6F" secondAttribute="trailing" id="HjU-gI-dVf"/>
                     <constraint firstAttribute="bottom" secondItem="1Xf-NM-GnP" secondAttribute="bottom" constant="16" id="JXa-JF-Syh"/>
-                    <constraint firstItem="bLR-ng-s6F" firstAttribute="bottom" secondItem="B5W-tL-PVK" secondAttribute="bottom" id="QOg-0g-hdO"/>
+                    <constraint firstItem="bLR-ng-s6F" firstAttribute="centerY" secondItem="B5W-tL-PVK" secondAttribute="centerY" id="QOg-0g-hdO"/>
                     <constraint firstItem="bLR-ng-s6F" firstAttribute="leading" secondItem="B5W-tL-PVK" secondAttribute="trailing" constant="16" id="fYv-w8-WF1"/>
                     <constraint firstAttribute="trailing" secondItem="bLR-ng-s6F" secondAttribute="trailing" constant="16" id="kWj-N4-Sve"/>
                     <constraint firstItem="B5W-tL-PVK" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="zqL-eD-9Fe"/>
