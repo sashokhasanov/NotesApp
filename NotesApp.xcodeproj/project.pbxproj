@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2D484FB927F0DA1E004DA032 /* UnderlinedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D484FB827F0DA1E004DA032 /* UnderlinedTextField.swift */; };
 		2D864D0B27EC6C900001B06B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D864D0A27EC6C900001B06B /* AppDelegate.swift */; };
 		2D864D0D27EC6C900001B06B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D864D0C27EC6C900001B06B /* SceneDelegate.swift */; };
 		2D864D0F27EC6C910001B06B /* NoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D864D0E27EC6C910001B06B /* NoteViewController.swift */; };
@@ -23,6 +24,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2D484FB827F0DA1E004DA032 /* UnderlinedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderlinedTextField.swift; sourceTree = "<group>"; };
 		2D864D0727EC6C900001B06B /* NotesApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NotesApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D864D0A27EC6C900001B06B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2D864D0C27EC6C900001B06B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -77,6 +79,7 @@
 				2DE478E327ECBDF50088C0E5 /* CircleMarkerView.swift */,
 				2DF8AB1A27F09021009D7A21 /* Note.swift */,
 				2D864D1027EC6C910001B06B /* Main.storyboard */,
+				2D484FB827F0DA1E004DA032 /* UnderlinedTextField.swift */,
 				2DF8AB1C27F0AFAE009D7A21 /* NoteTableViewCell.swift */,
 				2DF8AB1D27F0AFAE009D7A21 /* NoteTableViewCell.xib */,
 				2DE478E527ED0DEB0088C0E5 /* GradientMarkerView.swift */,
@@ -165,6 +168,7 @@
 				2DF8AB2127F0B96D009D7A21 /* NoteTableViewController.swift in Sources */,
 				2D864D0B27EC6C900001B06B /* AppDelegate.swift in Sources */,
 				2D864D0D27EC6C900001B06B /* SceneDelegate.swift in Sources */,
+				2D484FB927F0DA1E004DA032 /* UnderlinedTextField.swift in Sources */,
 				2DE478E427ECBDF60088C0E5 /* CircleMarkerView.swift in Sources */,
 				2DE478E627ED0DEB0088C0E5 /* GradientMarkerView.swift in Sources */,
 				2DF8AB1E27F0AFAE009D7A21 /* NoteTableViewCell.swift in Sources */,

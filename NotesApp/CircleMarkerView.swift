@@ -55,7 +55,7 @@ import UIKit
     // MARK: - Override methods
     override func layoutSubviews() {
         super.layoutSubviews()
-        updateMArker()
+        updateMarker()
     }
     
     // MARK: - Private methods
@@ -63,7 +63,7 @@ import UIKit
         layer.insertSublayer(markerLayer, at: 0)
     }
     
-    private func updateMArker() {
+    private func updateMarker() {
         markerLayer.isHidden = !showMarker
         
         markerLayer.frame = bounds

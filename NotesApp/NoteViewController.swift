@@ -73,6 +73,7 @@ extension NoteViewController {
     private func setupViewController() {
         noteTitleTextField.delegate = self
         setupNoteContentAccessoryView()
+        setupNavigationBar()
     }
     
     private func setupNoteContentAccessoryView() {
@@ -93,6 +94,18 @@ extension NoteViewController {
     
     @objc private func hideKeyboard() {
         noteContentTextView.endEditing(true)
+    }
+    
+    private func setupNavigationBar() {
+        if let topItem = navigationController?.navigationBar.topItem {
+            topItem.backButtonTitle = ""
+        }
+        
+        if note == nil {
+            navigationItem.title = "Новая заметка"
+        } else {
+            navigationItem.title = "Редактирование"
+        }
     }
     
     private func setDataToControls() {
