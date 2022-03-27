@@ -60,13 +60,13 @@ class GradientMarkerView: CircleMarkerView {
     private func setupMarkerLayer() {
         gradientLayer.type = .conic
         gradientLayer.startPoint = CGPoint(x: 0.5, y: 0.5)
-        gradientLayer.endPoint = CGPoint(x: 1, y: 0.5)
+        gradientLayer.endPoint = CGPoint(x: 0.5, y: 1)
         gradientLayer.colors = [UIColor.red,
                                 UIColor.orange,
                                 UIColor.yellow,
                                 UIColor.green,
                                 UIColor.blue,
-                                UIColor.purple].map { $0.cgColor }
+                                UIColor.magenta].map { $0.cgColor }
         
         layer.insertSublayer(gradientLayer, at: 1)
     }
