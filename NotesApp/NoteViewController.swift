@@ -71,8 +71,9 @@ extension NoteViewController {
     
     private func setupNoteContentAccessoryView() {
         let toolbar = UIToolbar()
+        toolbar.sizeToFit()
         
-        let flexibleSpaceItem = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let flexibleSpaceItem = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
         
         let hideKeyboardIcon =
             UIImage(systemName: "keyboard.chevron.compact.down")?.withTintColor(.gray, renderingMode: .alwaysOriginal)
@@ -80,7 +81,6 @@ extension NoteViewController {
             UIBarButtonItem(image: hideKeyboardIcon, style: .plain, target: self, action: #selector(hideKeyboard))
         
         toolbar.items = [flexibleSpaceItem, hideKeyboardItem]
-        toolbar.sizeToFit()
         
         noteContentTextView.inputAccessoryView = toolbar
     }
