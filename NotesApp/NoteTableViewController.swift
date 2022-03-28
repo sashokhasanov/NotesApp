@@ -22,6 +22,7 @@ class NoteTableViewController: UITableViewController {
     // MARK: - Override methods
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.leftBarButtonItem = self.editButtonItem
         tableView.register(NoteTableViewCell.nib(), forCellReuseIdentifier: NoteTableViewCell.reuseId)
     }
     

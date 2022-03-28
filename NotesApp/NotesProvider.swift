@@ -14,7 +14,7 @@ class NotesProvider {
     
     private(set) lazy var fetchedResultsController: NSFetchedResultsController<Note> = {
         let fetchRequest = Note.fetchRequest()
-        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "date", ascending: true)]
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "date", ascending: false)]
         
         let controller = NSFetchedResultsController(fetchRequest: fetchRequest,
                                                     managedObjectContext: persistentContainer.viewContext,
