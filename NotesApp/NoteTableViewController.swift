@@ -76,6 +76,15 @@ extension NoteTableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         performSegue(withIdentifier: "showNote", sender: self)
     }
+    
+    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let deleteAction = UIContextualAction(style: .destructive, title: "Удалить") { _, _, _ in
+            let note = self.dataProvider.fetchedResultsController.object(at: indexPath)
+            self.dataProvider.delete(note: note)
+        }
+        
+        return UISwipeActionsConfiguration(actions: [deleteAction])
+    }
 }
 
 // MARK: - Navigation
@@ -91,7 +100,17 @@ extension NoteTableViewController {
 
 // MARK: - NoteViewControllerDelegate
 extension NoteTableViewController: NoteViewControllerDelegate {
-    func updateNote(with newNote: NoteTemp) {
+    func updateNote(with newNote: Note) {
+        
+        let isNoteEmpty = newNote.title?.isEmpty ?? true && newNote.content?.isEmpty ?? true
+        
+        if isNoteEmpty {
+            dataProvider.delete(note: newNote)
+        } else {
+            try! newNote.managedObjectContext?.save()
+        }
+        
+        
 //        if let index = notes.firstIndex(where: { note in newNote.id == note.id }) {
 //            notes[index] = newNote
 //            tableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .automatic)

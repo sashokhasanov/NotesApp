@@ -8,7 +8,7 @@
 import UIKit
 
 protocol NoteViewControllerDelegate {
-    func updateNote(with newNote: NoteTemp)
+    func updateNote(with newNote: Note)
 }
 
 class NoteViewController: UIViewController {
@@ -31,17 +31,15 @@ class NoteViewController: UIViewController {
         setDataToControls()
     }
     
-//    override func viewDidDisappear(_ animated: Bool) {
-//        let id = note?.id ?? UUID()
-//        let title = noteTitleTextField.text ?? ""
-//        let content = noteContentTextView.text ?? ""
-//        let color = (noteMarkerView.backgroundColor ?? UIColor.systemPink).hexValue
-//        let date = Date()
-//
-//        let newNote = NoteTemp(id: id, title: title, content: content, color: color, date: date)
-//
-//        delegate?.updateNote(with: newNote)
-//    }
+    override func viewWillDisappear(_ animated: Bool) {
+
+        note.title = noteTitleTextField.text ?? ""
+        note.content = noteContentTextView.text ?? ""
+        note.color = (noteMarkerView.backgroundColor ?? UIColor.systemPink)
+        note.date = Date()
+
+        delegate?.updateNote(with: note)
+    }
     
     // MARK: - IBActions
     @IBAction func predefinedColorTapped(_ sender: UITapGestureRecognizer) {

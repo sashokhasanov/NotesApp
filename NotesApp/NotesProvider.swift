@@ -5,7 +5,6 @@
 //  Created by Сашок on 28.03.2022.
 //
 
-import Foundation
 import CoreData
 import UIKit
 
@@ -40,12 +39,7 @@ class NotesProvider {
     
     func addNote(in context: NSManagedObjectContext, completionHandler: ((_ newNote: Note) -> Void)? = nil) {
         context.perform {
-            let note = Note(context: context)
-            note.color = UIColor.systemPink
-            note.id = UUID()
-            note.date = Date()
-            note.title = ""
-            note.content = ""
+            let note = self.createEmptyNote(in: context)
             self.saveContext(context)
             completionHandler?(note)
         }
@@ -70,5 +64,16 @@ class NotesProvider {
             guard let error = error as NSError? else { return }
             fatalError("\(#function): Failed to save context:\(error)")
         }
+    }
+    
+    private func createEmptyNote(in context: NSManagedObjectContext) -> Note {
+        let note = Note(context: context)
+        note.title = ""
+        note.content = ""
+        note.id = UUID()
+        note.date = Date()
+        note.color = UIColor.systemPink
+        
+        return note
     }
 }
