@@ -7,8 +7,8 @@
 
 import UIKit
 
-protocol NoteViewControllerDelegate {
-    func updateNote(with newNote: Note)
+protocol NoteViewControllerDelegate: AnyObject {
+    func updateNote(_ note: Note)
 }
 
 class NoteViewController: UIViewController {
@@ -22,7 +22,7 @@ class NoteViewController: UIViewController {
     
     // MARK: - Internal properties
     var note: Note!
-    var delegate: NoteViewControllerDelegate?
+    weak var delegate: NoteViewControllerDelegate?
     
     // MARK: - Override methods
     override func viewDidLoad() {
@@ -38,7 +38,7 @@ class NoteViewController: UIViewController {
         note.color = (noteMarkerView.backgroundColor ?? UIColor.systemPink)
         note.date = Date()
 
-        delegate?.updateNote(with: note)
+        delegate?.updateNote(note)
     }
     
     // MARK: - IBActions

@@ -27,14 +27,12 @@ class NoteTableViewController: UITableViewController {
     }
     
     @IBAction func addButtonPressed(_ sender: Any) {
-//        performSegue(withIdentifier: "showNote", sender: self)
         dataProvider.addNote(in: dataProvider.persistentContainer.viewContext) { newNote in
             let indexPath =
                 self.dataProvider.fetchedResultsController.indexPath(forObject: newNote)
             self.tableView.selectRow(at: indexPath, animated: false, scrollPosition: .top)
             self.performSegue(withIdentifier: "showNote", sender: self)
         }
-        
     }
 }
 
@@ -52,7 +50,7 @@ extension NoteTableViewController {
         guard let sections = dataProvider.fetchedResultsController.sections else {
             return 0
         }
-    
+        
         return sections[section].numberOfObjects
     }
 
@@ -94,31 +92,21 @@ extension NoteTableViewController {
         guard segue.identifier == "showNote" else { return }
         guard let noteViewController = segue.destination as? NoteViewController else { return }
         guard let indexPath = tableView.indexPathsForSelectedRows?.first else { return }
-        noteViewController.delegate = self
         noteViewController.note = dataProvider.fetchedResultsController.object(at: indexPath)
+        noteViewController.delegate = self
     }
 }
 
 // MARK: - NoteViewControllerDelegate
 extension NoteTableViewController: NoteViewControllerDelegate {
-    func updateNote(with newNote: Note) {
+    func updateNote(_ note: Note) {
+        let noteIsEmpty = (note.title?.isEmpty ?? true) && (note.content?.isEmpty ?? true)
         
-        let isNoteEmpty = newNote.title?.isEmpty ?? true && newNote.content?.isEmpty ?? true
-        
-        if isNoteEmpty {
-            dataProvider.delete(note: newNote)
+        if noteIsEmpty {
+            dataProvider.delete(note: note)
         } else {
-            try! newNote.managedObjectContext?.save()
+            try! note.managedObjectContext?.save()
         }
-        
-        
-//        if let index = notes.firstIndex(where: { note in newNote.id == note.id }) {
-//            notes[index] = newNote
-//            tableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .automatic)
-//        } else {
-//            notes.append(newNote)
-//            tableView.insertRows(at: [IndexPath(row: notes.count - 1, section: 0)], with: .automatic)
-//        }
     }
 }
 
