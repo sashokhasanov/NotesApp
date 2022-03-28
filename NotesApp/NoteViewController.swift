@@ -8,7 +8,7 @@
 import UIKit
 
 protocol NoteViewControllerDelegate {
-    func updateNote(with newNote: Note)
+    func updateNote(with newNote: NoteTemp)
 }
 
 class NoteViewController: UIViewController {
@@ -21,7 +21,7 @@ class NoteViewController: UIViewController {
     @IBOutlet weak var customColorView: GradientMarkerView!
     
     // MARK: - Internal properties
-    var note: Note?
+    var note: Note!
     var delegate: NoteViewControllerDelegate?
     
     // MARK: - Override methods
@@ -31,17 +31,17 @@ class NoteViewController: UIViewController {
         setDataToControls()
     }
     
-    override func viewDidDisappear(_ animated: Bool) {
-        let id = note?.id ?? UUID()
-        let title = noteTitleTextField.text ?? ""
-        let content = noteContentTextView.text ?? ""
-        let color = (noteMarkerView.backgroundColor ?? UIColor.systemPink).hexValue
-        let date = Date()
-        
-        let newNote = Note(id: id, title: title, content: content, color: color, date: date)
-        
-        delegate?.updateNote(with: newNote)
-    }
+//    override func viewDidDisappear(_ animated: Bool) {
+//        let id = note?.id ?? UUID()
+//        let title = noteTitleTextField.text ?? ""
+//        let content = noteContentTextView.text ?? ""
+//        let color = (noteMarkerView.backgroundColor ?? UIColor.systemPink).hexValue
+//        let date = Date()
+//
+//        let newNote = NoteTemp(id: id, title: title, content: content, color: color, date: date)
+//
+//        delegate?.updateNote(with: newNote)
+//    }
     
     // MARK: - IBActions
     @IBAction func predefinedColorTapped(_ sender: UITapGestureRecognizer) {
@@ -137,7 +137,7 @@ extension NoteViewController {
         
         for colorView in colorViews {
             if colorView is GradientMarkerView {
-                customColorView.backgroundColor = UIColor(hexValue: note.color)
+                customColorView.backgroundColor = (note.color as? UIColor) ?? UIColor.systemPink
             }
 
             if checkNeedSelectColorView(view: colorView) {
@@ -152,9 +152,9 @@ extension NoteViewController {
     
     private func checkNeedSelectColorView(view: CircleMarkerView) -> Bool {
         guard !(view is GradientMarkerView) else { return true }
-        guard let color = view.backgroundColor, let note = note else { return false }
+        guard let color = view.backgroundColor else { return false }
         
-        return note.color == color.hexValue
+        return (note.color as? UIColor)?.hexValue ?? 0 == color.hexValue
     }
     
     private func selectColorView(colorView: CircleMarkerView) {
