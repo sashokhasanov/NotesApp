@@ -32,7 +32,6 @@ class NoteViewController: UIViewController {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-
         note.title = noteTitleTextField.text ?? ""
         note.content = noteContentTextView.text ?? ""
         note.color = (noteMarkerView.backgroundColor ?? UIColor.systemPink).hexValue
@@ -115,7 +114,7 @@ extension NoteViewController {
             topItem.backButtonTitle = ""
         }
         
-        if note == nil {
+        if (note.title?.isEmpty ?? true) && (note.content?.isEmpty ?? true) {
             navigationItem.title = "Новая заметка"
         } else {
             navigationItem.title = "Редактирование"
