@@ -9,9 +9,7 @@ import UIKit
 import CoreData
 
 class NoteTableViewController: UITableViewController {
-    // MARK: - Model data
-//    var notes = NoteTemp.getMockData()
-    
+    // MARK: - Data provider
     private lazy var dataProvider: NotesProvider = {
         let persistentContainer = CoreDataStackHolder.shared.persistentContainer
         let provider =
@@ -105,7 +103,7 @@ extension NoteTableViewController: NoteViewControllerDelegate {
         if noteIsEmpty {
             dataProvider.delete(note: note)
         } else {
-            try! note.managedObjectContext?.save()
+           note.managedObjectContext?.trySave()
         }
     }
 }

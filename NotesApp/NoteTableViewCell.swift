@@ -18,15 +18,9 @@ class NoteTableViewCell: UITableViewCell {
         UINib(nibName: reuseId, bundle: nil)
     }
     
-    func configure(with note: NoteTemp) {
-        titleLabel.text = note.title
-        contentLabel.text = note.content
-        markerView.backgroundColor = UIColor(hexValue: note.color)
-    }
-    
     func configure(with note: Note) {
         titleLabel.text = note.title
         contentLabel.text = note.content
-        markerView.backgroundColor = (note.color as? UIColor) ?? UIColor.systemPink
+        markerView.backgroundColor = UIColor(hexValue: note.color)
     }
 }

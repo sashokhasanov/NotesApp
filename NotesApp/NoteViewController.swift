@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  NoteViewController.swift
 //  NotesApp
 //
 //  Created by Сашок on 24.03.2022.
@@ -35,7 +35,7 @@ class NoteViewController: UIViewController {
 
         note.title = noteTitleTextField.text ?? ""
         note.content = noteContentTextView.text ?? ""
-        note.color = (noteMarkerView.backgroundColor ?? UIColor.systemPink)
+        note.color = (noteMarkerView.backgroundColor ?? UIColor.systemPink).hexValue
         note.date = Date()
 
         delegate?.updateNote(note)
@@ -127,15 +127,13 @@ extension NoteViewController {
         
         noteTitleTextField.text = note.title
         noteContentTextView.text = note.content
-        setupNoteColor()
+        setupNoteMarkerColor()
     }
     
-    private func setupNoteColor() {
-        guard let note = note else { return }
-        
+    private func setupNoteMarkerColor() {
         for colorView in colorViews {
             if colorView is GradientMarkerView {
-                customColorView.backgroundColor = (note.color as? UIColor) ?? UIColor.systemPink
+                customColorView.backgroundColor = UIColor(hexValue: note.color)
             }
 
             if checkNeedSelectColorView(view: colorView) {
@@ -152,7 +150,7 @@ extension NoteViewController {
         guard !(view is GradientMarkerView) else { return true }
         guard let color = view.backgroundColor else { return false }
         
-        return (note.color as? UIColor)?.hexValue ?? 0 == color.hexValue
+        return note.color == color.hexValue
     }
     
     private func selectColorView(colorView: CircleMarkerView) {

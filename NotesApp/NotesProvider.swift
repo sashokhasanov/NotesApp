@@ -5,8 +5,8 @@
 //  Created by Сашок on 28.03.2022.
 //
 
+import Foundation
 import CoreData
-import UIKit
 
 class NotesProvider {
     private(set) var persistentContainer: NSPersistentContainer
@@ -40,7 +40,7 @@ class NotesProvider {
     func addNote(in context: NSManagedObjectContext, completionHandler: ((_ newNote: Note) -> Void)? = nil) {
         context.perform {
             let note = self.createEmptyNote(in: context)
-            self.saveContext(context)
+            context.trySave()
             completionHandler?(note)
         }
     }
@@ -51,28 +51,16 @@ class NotesProvider {
         }
         context.perform {
             context.delete(note)
-            self.saveContext(context)
+            context.trySave()
             completionHandler?()
-        }
-    }
-    
-    private func saveContext(_ context: NSManagedObjectContext) {
-        guard context.hasChanges else { return }
-        do {
-            try context.save()
-        } catch {
-            guard let error = error as NSError? else { return }
-            fatalError("\(#function): Failed to save context:\(error)")
         }
     }
     
     private func createEmptyNote(in context: NSManagedObjectContext) -> Note {
         let note = Note(context: context)
-        note.title = ""
-        note.content = ""
+        
         note.id = UUID()
         note.date = Date()
-        note.color = UIColor.systemPink
         
         return note
     }

@@ -1,5 +1,5 @@
 //
-//  CustomColorView.swift
+//  GradientMarkerView.swift
 //  NotesApp
 //
 //  Created by Сашок on 24.03.2022.
