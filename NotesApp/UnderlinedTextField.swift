@@ -5,7 +5,6 @@
 //  Created by Сашок on 27.03.2022.
 //
 
-import Foundation
 import UIKit
 
 @IBDesignable class UnderlinedTextField: UITextField {

@@ -5,7 +5,6 @@
 //  Created by Сашок on 28.03.2022.
 //
 
-import Foundation
 import CoreData
 
 class NotesProvider {
