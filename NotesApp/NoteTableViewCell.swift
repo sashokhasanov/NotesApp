@@ -13,7 +13,7 @@ class NoteTableViewCell: UITableViewCell {
     @IBOutlet weak var markerView: CircleMarkerView!
     
     static let reuseId = "NoteTableViewCell"
-    static let height: CGFloat = 90
+    static let height: CGFloat = 65
     
     static func nib() -> UINib {
         UINib(nibName: reuseId, bundle: nil)
