@@ -14,11 +14,11 @@ class NotesProvider {
     
     private(set) lazy var fetchedResultsController: NSFetchedResultsController<Note> = {
         let fetchRequest = Note.fetchRequest()
-        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "date", ascending: false)]
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "pinned", ascending: false), NSSortDescriptor(key: "date", ascending: false)]
         
         let controller = NSFetchedResultsController(fetchRequest: fetchRequest,
                                                     managedObjectContext: persistentContainer.viewContext,
-                                                    sectionNameKeyPath: nil,
+                                                    sectionNameKeyPath: "pinned",
                                                     cacheName: nil)
         controller.delegate = fetchedResultsControllerDelegate
         

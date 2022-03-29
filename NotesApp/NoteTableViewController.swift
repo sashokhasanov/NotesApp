@@ -20,8 +20,8 @@ class NoteTableViewController: UITableViewController {
     // MARK: - Override methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.leftBarButtonItem = self.editButtonItem
         tableView.register(NoteTableViewCell.nib(), forCellReuseIdentifier: NoteTableViewCell.reuseId)
+        tableView.register(NotesSectionHeaderView.nib(), forHeaderFooterViewReuseIdentifier: NotesSectionHeaderView.reuseId)
     }
     
     @IBAction func addButtonPressed(_ sender: Any) {
@@ -38,9 +38,9 @@ class NoteTableViewController: UITableViewController {
 extension NoteTableViewController {
     override func numberOfSections(in tableView: UITableView) -> Int {
         guard let sections = dataProvider.fetchedResultsController.sections else {
-            return 1
+            return 0
         }
-        
+
         return sections.count
     }
 
@@ -62,25 +62,88 @@ extension NoteTableViewController {
 
         return cell
     }
+
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        guard let sections = dataProvider.fetchedResultsController.sections else {
+            return nil
+        }
+        
+        let section = sections[section]
+        guard section.name != "0" || sections.count > 1 else {
+            return nil
+        }
+        
+        
+        let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: NotesSectionHeaderView.reuseId)
+        
+        if let sectionheaderView = view as? NotesSectionHeaderView {
+            switch section.name {
+            case "0":
+                sectionheaderView.titleLabel.text = "Заметки"
+            case "1":
+                sectionheaderView.titleLabel.text = "Закрепленные"
+            default:
+                sectionheaderView.titleLabel.text = ""
+            }
+        }
+        
+        return view
+    }
+    
+    
 }
 
 // MARK: - Table view delegate
 extension NoteTableViewController {
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableView.automaticDimension
+        NoteTableViewCell.height
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        guard let sections = dataProvider.fetchedResultsController.sections else {
+            return 0
+        }
+        
+        let section = sections[section]
+        guard section.name != "0" || sections.count > 1 else {
+            return 0
+        }
+        
+        return NotesSectionHeaderView.headerHeight
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         performSegue(withIdentifier: "showNote", sender: self)
     }
     
-    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let deleteAction = UIContextualAction(style: .destructive, title: "Удалить") { _, _, _ in
-            let note = self.dataProvider.fetchedResultsController.object(at: indexPath)
+    override func tableView(_ tableView: UITableView,
+                            trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let note = self.dataProvider.fetchedResultsController.object(at: indexPath)
+        
+        let deleteAction = UIContextualAction(style: .destructive, title: nil) { _, _, _ in
             self.dataProvider.delete(note: note)
         }
+        deleteAction.image = UIImage(systemName: "trash.fill")
+        
         
         return UISwipeActionsConfiguration(actions: [deleteAction])
+    }
+    
+    override func tableView(_ tableView: UITableView,
+                            leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let note = self.dataProvider.fetchedResultsController.object(at: indexPath)
+        
+        let pinAction = UIContextualAction(style: .normal, title: nil) { _, _, completion in
+            note.managedObjectContext?.perform {
+                note.pinned.toggle()
+                note.managedObjectContext?.trySave()
+            }
+            completion(true)
+        }
+        pinAction.backgroundColor = UIColor.systemYellow
+        pinAction.image = UIImage(systemName: note.pinned ? "pin.slash.fill" : "pin.fill")
+        
+        return UISwipeActionsConfiguration(actions: [pinAction])
     }
 }
 
@@ -118,19 +181,36 @@ extension NoteTableViewController: NSFetchedResultsControllerDelegate {
                     didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
         switch type {
         case .insert:
-            tableView.insertRows(at: [newIndexPath!], with: .automatic)
+            tableView.insertRows(at: [newIndexPath!], with: .fade)
         case .update:
-            tableView.reloadRows(at: [indexPath!], with: .automatic)
+            tableView.reloadRows(at: [indexPath!], with: .fade)
         case .move:
-            tableView.deleteRows(at: [indexPath!], with: .automatic)
-            tableView.insertRows(at: [newIndexPath!], with: .automatic)
+            // not using moveRow(at:to:) as it doesn't actually realod row content
+            tableView.deleteRows(at: [indexPath!], with: .fade)
+            tableView.insertRows(at: [newIndexPath!], with: .fade)
         case .delete:
-            tableView.deleteRows(at: [indexPath!], with: .automatic)
+            tableView.deleteRows(at: [indexPath!], with: .fade)
         @unknown default:
-            fatalError()
+            break
         }
     }
     
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>,
+                    didChange sectionInfo: NSFetchedResultsSectionInfo, atSectionIndex sectionIndex: Int, for type: NSFetchedResultsChangeType) {
+        switch type {
+        case .insert:
+            tableView.insertSections([sectionIndex], with: .fade)
+        case .delete:
+            tableView.deleteSections([sectionIndex], with: .fade)
+        case .update:
+            tableView.reloadSections([sectionIndex], with: .fade)
+        case .move:
+            break
+        @unknown default:
+            break
+        }
+    }
+
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         tableView.endUpdates()
     }

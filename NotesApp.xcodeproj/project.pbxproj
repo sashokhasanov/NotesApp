@@ -12,6 +12,8 @@
 		2D484FBE27F1B331004DA032 /* CoreDataStackHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D484FBD27F1B331004DA032 /* CoreDataStackHolder.swift */; };
 		2D484FC027F1DA9E004DA032 /* NotesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D484FBF27F1DA9E004DA032 /* NotesProvider.swift */; };
 		2D484FC427F24EE8004DA032 /* CoreData+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D484FC327F24EE7004DA032 /* CoreData+Extension.swift */; };
+		2D484FCC27F36D7F004DA032 /* NotesSectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D484FCB27F36D7F004DA032 /* NotesSectionHeaderView.xib */; };
+		2D484FCE27F36D9E004DA032 /* NotesSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D484FCD27F36D9E004DA032 /* NotesSectionHeaderView.swift */; };
 		2D864D0B27EC6C900001B06B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D864D0A27EC6C900001B06B /* AppDelegate.swift */; };
 		2D864D0D27EC6C900001B06B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D864D0C27EC6C900001B06B /* SceneDelegate.swift */; };
 		2D864D0F27EC6C910001B06B /* NoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D864D0E27EC6C910001B06B /* NoteViewController.swift */; };
@@ -32,6 +34,8 @@
 		2D484FBD27F1B331004DA032 /* CoreDataStackHolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStackHolder.swift; sourceTree = "<group>"; };
 		2D484FBF27F1DA9E004DA032 /* NotesProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesProvider.swift; sourceTree = "<group>"; };
 		2D484FC327F24EE7004DA032 /* CoreData+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CoreData+Extension.swift"; sourceTree = "<group>"; };
+		2D484FCB27F36D7F004DA032 /* NotesSectionHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotesSectionHeaderView.xib; sourceTree = "<group>"; };
+		2D484FCD27F36D9E004DA032 /* NotesSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesSectionHeaderView.swift; sourceTree = "<group>"; };
 		2D864D0727EC6C900001B06B /* NotesApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NotesApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D864D0A27EC6C900001B06B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2D864D0C27EC6C900001B06B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -95,6 +99,8 @@
 				2D864D1527EC6C980001B06B /* LaunchScreen.storyboard */,
 				2D864D1827EC6C980001B06B /* Info.plist */,
 				2DF8AB2027F0B96D009D7A21 /* NoteTableViewController.swift */,
+				2D484FCB27F36D7F004DA032 /* NotesSectionHeaderView.xib */,
+				2D484FCD27F36D9E004DA032 /* NotesSectionHeaderView.swift */,
 				2D484FC327F24EE7004DA032 /* CoreData+Extension.swift */,
 			);
 			path = NotesApp;
@@ -160,6 +166,7 @@
 			files = (
 				2D864D1727EC6C980001B06B /* LaunchScreen.storyboard in Resources */,
 				2D864D1427EC6C980001B06B /* Assets.xcassets in Resources */,
+				2D484FCC27F36D7F004DA032 /* NotesSectionHeaderView.xib in Resources */,
 				2D864D1227EC6C910001B06B /* Main.storyboard in Resources */,
 				2DF8AB1F27F0AFAE009D7A21 /* NoteTableViewCell.xib in Resources */,
 			);
@@ -183,6 +190,7 @@
 				2D484FC027F1DA9E004DA032 /* NotesProvider.swift in Sources */,
 				2DE478E627ED0DEB0088C0E5 /* GradientMarkerView.swift in Sources */,
 				2DF8AB1E27F0AFAE009D7A21 /* NoteTableViewCell.swift in Sources */,
+				2D484FCE27F36D9E004DA032 /* NotesSectionHeaderView.swift in Sources */,
 				2D484FBC27F1B181004DA032 /* Model.xcdatamodeld in Sources */,
 				2D484FC427F24EE8004DA032 /* CoreData+Extension.swift in Sources */,
 			);
