@@ -61,6 +61,7 @@ class NotesProvider {
         
         note.id = UUID()
         note.date = Date()
+        note.pinned = false
         
         return note
     }
