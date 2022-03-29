@@ -213,32 +213,5 @@ extension NoteTableViewController: NSFetchedResultsControllerDelegate {
 
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         tableView.endUpdates()
-        
-//        if let sections = dataProvider.fetchedResultsController.sections {
-//            for section in 0..<sections.count {
-//                let sec = sections[section]
-//                let header = tableView.headerView(forSection: section)
-//                
-//                if sec.name == "0" && sections.count == 1 {
-//                    
-//                    UIView.animate(withDuration: 0.2) {
-//                        header?.alpha = 0
-//                    }
-//                    
-//                    header?.isHidden = true
-//                } else {
-//                    
-//                    
-//                    
-//                    header?.isHidden = false
-//                    
-//                    UIView.animate(withDuration: 0.2) {
-//                        header?.alpha = 1
-//                    }
-//                }
-//            }
-//        }
-
-        
     }
 }
