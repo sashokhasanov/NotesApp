@@ -103,12 +103,12 @@ extension NoteTableViewController {
         guard let sections = dataProvider.fetchedResultsController.sections else {
             return 0
         }
-        
+
         let section = sections[section]
         guard section.name != "0" || sections.count > 1 else {
             return 0
         }
-        
+
         return NotesSectionHeaderView.headerHeight
     }
 
@@ -181,15 +181,15 @@ extension NoteTableViewController: NSFetchedResultsControllerDelegate {
                     didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
         switch type {
         case .insert:
-            tableView.insertRows(at: [newIndexPath!], with: .fade)
+            tableView.insertRows(at: [newIndexPath!], with: .automatic)
         case .update:
-            tableView.reloadRows(at: [indexPath!], with: .fade)
+            tableView.reloadRows(at: [indexPath!], with: .automatic)
         case .move:
             // not using moveRow(at:to:) as it doesn't actually realod row content
-            tableView.deleteRows(at: [indexPath!], with: .fade)
-            tableView.insertRows(at: [newIndexPath!], with: .fade)
+            tableView.deleteRows(at: [indexPath!], with: .automatic)
+            tableView.insertRows(at: [newIndexPath!], with: .automatic)
         case .delete:
-            tableView.deleteRows(at: [indexPath!], with: .fade)
+            tableView.deleteRows(at: [indexPath!], with: .automatic)
         @unknown default:
             break
         }
@@ -199,11 +199,11 @@ extension NoteTableViewController: NSFetchedResultsControllerDelegate {
                     didChange sectionInfo: NSFetchedResultsSectionInfo, atSectionIndex sectionIndex: Int, for type: NSFetchedResultsChangeType) {
         switch type {
         case .insert:
-            tableView.insertSections([sectionIndex], with: .fade)
+            tableView.insertSections([sectionIndex], with: .automatic)
         case .delete:
-            tableView.deleteSections([sectionIndex], with: .fade)
+            tableView.deleteSections([sectionIndex], with: .automatic)
         case .update:
-            tableView.reloadSections([sectionIndex], with: .fade)
+            tableView.reloadSections([sectionIndex], with: .automatic)
         case .move:
             break
         @unknown default:
@@ -213,5 +213,32 @@ extension NoteTableViewController: NSFetchedResultsControllerDelegate {
 
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         tableView.endUpdates()
+        
+//        if let sections = dataProvider.fetchedResultsController.sections {
+//            for section in 0..<sections.count {
+//                let sec = sections[section]
+//                let header = tableView.headerView(forSection: section)
+//                
+//                if sec.name == "0" && sections.count == 1 {
+//                    
+//                    UIView.animate(withDuration: 0.2) {
+//                        header?.alpha = 0
+//                    }
+//                    
+//                    header?.isHidden = true
+//                } else {
+//                    
+//                    
+//                    
+//                    header?.isHidden = false
+//                    
+//                    UIView.animate(withDuration: 0.2) {
+//                        header?.alpha = 1
+//                    }
+//                }
+//            }
+//        }
+
+        
     }
 }
