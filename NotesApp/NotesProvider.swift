@@ -44,6 +44,17 @@ class NotesProvider {
         }
     }
     
+    func save(note: Note, completionHandler: (() -> Void)? = nil) {
+        guard let context = note.managedObjectContext else {
+            fatalError("\(#function): Failed to retrieve the context from: \(note)")
+        }
+        
+        context.perform {
+            context.trySave()
+            completionHandler?()
+        }
+    }
+    
     func delete(note: Note, completionHandler: (() -> Void)? = nil) {
         guard let context = note.managedObjectContext else {
             fatalError("\(#function): Failed to retrieve the context from: \(note)")

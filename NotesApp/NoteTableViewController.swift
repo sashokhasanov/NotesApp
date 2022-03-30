@@ -17,13 +17,18 @@ class NoteTableViewController: UITableViewController {
         return provider
     }()
     
+    private let searchController = UISearchController()
+    
     // MARK: - Override methods
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.register(NoteTableViewCell.nib(), forCellReuseIdentifier: NoteTableViewCell.reuseId)
         tableView.register(NotesSectionHeaderView.nib(), forHeaderFooterViewReuseIdentifier: NotesSectionHeaderView.reuseId)
+        
+        setupSearchController()
     }
     
+    // MARK: - IBActions
     @IBAction func addButtonPressed(_ sender: Any) {
         dataProvider.addNote(in: dataProvider.persistentContainer.viewContext) { newNote in
             let indexPath =
@@ -31,6 +36,16 @@ class NoteTableViewController: UITableViewController {
             self.tableView.selectRow(at: indexPath, animated: false, scrollPosition: .top)
             self.performSegue(withIdentifier: "showNote", sender: self)
         }
+    }
+    
+    // MARK: - Private methods
+    private func setupSearchController() {
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Поиск"
+
+        navigationItem.searchController = searchController
+        definesPresentationContext = true
     }
 }
 
@@ -73,7 +88,6 @@ extension NoteTableViewController {
             return nil
         }
         
-        
         let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: NotesSectionHeaderView.reuseId)
         
         if let sectionheaderView = view as? NotesSectionHeaderView {
@@ -89,8 +103,6 @@ extension NoteTableViewController {
         
         return view
     }
-    
-    
 }
 
 // MARK: - Table view delegate
@@ -124,8 +136,7 @@ extension NoteTableViewController {
             self.dataProvider.delete(note: note)
         }
         deleteAction.image = UIImage(systemName: "trash.fill")
-        
-        
+
         return UISwipeActionsConfiguration(actions: [deleteAction])
     }
     
@@ -134,10 +145,8 @@ extension NoteTableViewController {
         let note = self.dataProvider.fetchedResultsController.object(at: indexPath)
         
         let pinAction = UIContextualAction(style: .normal, title: nil) { _, _, completion in
-            note.managedObjectContext?.perform {
-                note.pinned.toggle()
-                note.managedObjectContext?.trySave()
-            }
+            note.pinned.toggle()
+            self.dataProvider.save(note: note)
             completion(true)
         }
         pinAction.backgroundColor = UIColor.systemYellow
@@ -166,7 +175,7 @@ extension NoteTableViewController: NoteViewControllerDelegate {
         if noteIsEmpty {
             dataProvider.delete(note: note)
         } else {
-           note.managedObjectContext?.trySave()
+            dataProvider.save(note: note)
         }
     }
 }
@@ -213,5 +222,27 @@ extension NoteTableViewController: NSFetchedResultsControllerDelegate {
 
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         tableView.endUpdates()
+    }
+}
+
+// MARK: - UISearchResultsUpdating
+extension NoteTableViewController: UISearchResultsUpdating {
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        let searchText = searchController.searchBar.text ?? ""
+        
+        var searchPredicate: NSPredicate?
+        if !searchText.isEmpty {
+            searchPredicate =
+                NSPredicate(format: "(title contains[cd] %@) || (content contains[cd] %@)", searchText, searchText)
+        }
+
+        dataProvider.fetchedResultsController.fetchRequest.predicate = searchPredicate
+        do {
+            try dataProvider.fetchedResultsController.performFetch()
+            tableView.reloadData()
+        } catch {
+            print(error)
+        }
     }
 }
