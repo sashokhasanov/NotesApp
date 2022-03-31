@@ -22,10 +22,8 @@ class NoteTableViewController: UITableViewController {
     // MARK: - Override methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.register(NoteTableViewCell.nib(), forCellReuseIdentifier: NoteTableViewCell.reuseId)
-        tableView.register(NotesSectionHeaderView.nib(), forHeaderFooterViewReuseIdentifier: NotesSectionHeaderView.reuseId)
-        
         setupSearchController()
+        tableView.register(NoteTableViewCell.nib(), forCellReuseIdentifier: NoteTableViewCell.reuseId)
     }
     
     // MARK: - IBActions
@@ -77,32 +75,6 @@ extension NoteTableViewController {
 
         return cell
     }
-
-    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        guard let sections = dataProvider.fetchedResultsController.sections else {
-            return nil
-        }
-        
-        let section = sections[section]
-        guard section.name != "0" || sections.count > 1 else {
-            return nil
-        }
-        
-        let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: NotesSectionHeaderView.reuseId)
-        
-        if let sectionheaderView = view as? NotesSectionHeaderView {
-            switch section.name {
-            case "0":
-                sectionheaderView.titleLabel.text = "Заметки"
-            case "1":
-                sectionheaderView.titleLabel.text = "Закрепленные"
-            default:
-                sectionheaderView.titleLabel.text = ""
-            }
-        }
-        
-        return view
-    }
 }
 
 // MARK: - Table view delegate
@@ -112,16 +84,7 @@ extension NoteTableViewController {
     }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        guard let sections = dataProvider.fetchedResultsController.sections else {
-            return 0
-        }
-
-        let section = sections[section]
-        guard section.name != "0" || sections.count > 1 else {
-            return 0
-        }
-
-        return NotesSectionHeaderView.headerHeight
+        30
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -199,22 +162,6 @@ extension NoteTableViewController: NSFetchedResultsControllerDelegate {
             tableView.insertRows(at: [newIndexPath!], with: .automatic)
         case .delete:
             tableView.deleteRows(at: [indexPath!], with: .automatic)
-        @unknown default:
-            break
-        }
-    }
-    
-    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>,
-                    didChange sectionInfo: NSFetchedResultsSectionInfo, atSectionIndex sectionIndex: Int, for type: NSFetchedResultsChangeType) {
-        switch type {
-        case .insert:
-            tableView.insertSections([sectionIndex], with: .automatic)
-        case .delete:
-            tableView.deleteSections([sectionIndex], with: .automatic)
-        case .update:
-            tableView.reloadSections([sectionIndex], with: .automatic)
-        case .move:
-            break
         @unknown default:
             break
         }

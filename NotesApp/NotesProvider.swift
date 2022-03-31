@@ -17,7 +17,7 @@ class NotesProvider {
         
         let controller = NSFetchedResultsController(fetchRequest: fetchRequest,
                                                     managedObjectContext: persistentContainer.viewContext,
-                                                    sectionNameKeyPath: "pinned",
+                                                    sectionNameKeyPath: nil,
                                                     cacheName: nil)
         controller.delegate = fetchedResultsControllerDelegate
         

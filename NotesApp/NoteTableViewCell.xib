@@ -32,17 +32,24 @@
                         </userDefinedRuntimeAttributes>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Text" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Xf-NM-GnP">
-                        <rect key="frame" x="13" y="43" width="337" height="12"/>
+                        <rect key="frame" x="13" y="43" width="321.5" height="12"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" systemColor="systemGrayColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bLR-ng-s6F">
-                        <rect key="frame" x="49" y="11" width="301" height="24"/>
+                        <rect key="frame" x="49" y="11" width="285.5" height="24"/>
                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pin.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="b3Y-Zz-xhx">
+                        <rect key="frame" x="339.5" y="12.5" width="13.5" height="15"/>
+                        <color key="tintColor" systemColor="systemGrayColor"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="b3Y-Zz-xhx" secondAttribute="height" multiplier="1:1" id="diT-io-Y0i"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
                 <color key="backgroundColor" name="CellColor"/>
                 <constraints>
@@ -52,8 +59,11 @@
                     <constraint firstItem="1Xf-NM-GnP" firstAttribute="trailing" secondItem="bLR-ng-s6F" secondAttribute="trailing" id="HjU-gI-dVf"/>
                     <constraint firstAttribute="bottom" secondItem="1Xf-NM-GnP" secondAttribute="bottom" constant="10" id="JXa-JF-Syh"/>
                     <constraint firstItem="bLR-ng-s6F" firstAttribute="centerY" secondItem="B5W-tL-PVK" secondAttribute="centerY" id="QOg-0g-hdO"/>
+                    <constraint firstItem="b3Y-Zz-xhx" firstAttribute="height" secondItem="B5W-tL-PVK" secondAttribute="height" multiplier="2:3" id="f6r-Vk-BZn"/>
                     <constraint firstItem="bLR-ng-s6F" firstAttribute="leading" secondItem="B5W-tL-PVK" secondAttribute="trailing" constant="16" id="fYv-w8-WF1"/>
-                    <constraint firstAttribute="trailing" secondItem="bLR-ng-s6F" secondAttribute="trailing" constant="16" id="kWj-N4-Sve"/>
+                    <constraint firstItem="b3Y-Zz-xhx" firstAttribute="leading" secondItem="bLR-ng-s6F" secondAttribute="trailing" constant="5" id="rna-Pb-6wt"/>
+                    <constraint firstAttribute="trailing" secondItem="b3Y-Zz-xhx" secondAttribute="trailing" constant="13" id="uBO-EQ-OWi"/>
+                    <constraint firstItem="b3Y-Zz-xhx" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="13" id="xbk-cj-Dma"/>
                     <constraint firstItem="B5W-tL-PVK" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="13" id="zqL-eD-9Fe"/>
                 </constraints>
             </tableViewCellContentView>
@@ -61,12 +71,14 @@
             <connections>
                 <outlet property="contentLabel" destination="1Xf-NM-GnP" id="QLN-GC-ess"/>
                 <outlet property="markerView" destination="B5W-tL-PVK" id="sr3-CI-G5f"/>
+                <outlet property="pinImageView" destination="b3Y-Zz-xhx" id="IGZ-Uk-CYD"/>
                 <outlet property="titleLabel" destination="bLR-ng-s6F" id="Gfe-fq-EKY"/>
             </connections>
             <point key="canvasLocation" x="144.92753623188406" y="84.040178571428569"/>
         </tableViewCell>
     </objects>
     <resources>
+        <image name="pin.fill" catalog="system" width="119" height="128"/>
         <namedColor name="CellColor">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
