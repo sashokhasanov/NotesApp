@@ -25,5 +25,6 @@ class NoteTableViewCell: UITableViewCell {
         contentLabel.text = note.content
         markerView.backgroundColor = UIColor(hexValue: note.color)
         pinImageView.isHidden = !note.pinned
+        pinImageView.transform = CGAffineTransform(rotationAngle: .pi / 4)
     }
 }
