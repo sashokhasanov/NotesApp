@@ -24,6 +24,9 @@ class NoteTableViewController: UITableViewController {
         super.viewDidLoad()
         setupSearchController()
         tableView.register(NoteTableViewCell.nib(), forCellReuseIdentifier: NoteTableViewCell.reuseId)
+        
+        
+//        navigationItem.leftBarButtonItem?.image = UIImage(systemName: "trash")
     }
     
     // MARK: - IBActions

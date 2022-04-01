@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="6UC-QP-1kt">
-    <device id="retina4_7" orientation="portrait" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="RZH-cp-8AM">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -13,11 +14,11 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="NoteViewController" customModule="NotesApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" alignment="bottom" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="AQD-lB-J9U">
-                                <rect key="frame" x="20" y="69" width="335" height="40"/>
+                                <rect key="frame" x="20" y="113" width="374" height="40"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P7m-8s-hXE">
                                         <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
@@ -33,20 +34,20 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Название заметки" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="5t4-ZR-NVn" customClass="UnderlinedTextField" customModule="NotesApp" customModuleProvider="target">
-                                        <rect key="frame" x="65" y="0.0" width="270" height="40"/>
+                                        <rect key="frame" x="65" y="12" width="309" height="28"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
                                         <textInputTraits key="textInputTraits" returnKeyType="next"/>
                                     </textField>
                                 </subviews>
                             </stackView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="5Hc-23-zXf">
-                                <rect key="frame" x="20" y="134" width="335" height="443"/>
+                                <rect key="frame" x="20" y="178" width="374" height="545"/>
                                 <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="dYD-n4-LZb">
-                                <rect key="frame" x="42.5" y="597" width="290" height="50"/>
+                                <rect key="frame" x="62" y="743" width="290" height="50"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KFE-YG-RyF" customClass="CircleMarkerView" customModule="NotesApp" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
@@ -173,14 +174,14 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1980" y="113.79310344827587"/>
+            <point key="canvasLocation" x="2919.1999999999998" y="113.79310344827587"/>
         </scene>
         <!--Заметки-->
         <scene sceneID="6D0-Dp-Bc6">
             <objects>
                 <tableViewController id="Fq8-kS-NT5" customClass="NoteTableViewController" customModule="NotesApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" id="3z2-HY-uG6">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemGray6Color"/>
                         <connections>
@@ -201,15 +202,16 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YMH-bC-hWR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1176.8" y="113.79310344827587"/>
+            <point key="canvasLocation" x="2116" y="113.79310344827587"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Заметки-->
         <scene sceneID="G6o-XR-3Tx">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="6UC-QP-1kt" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Заметки" image="note.text" catalog="system" id="pYE-at-jQC"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="3QP-R0-hTT">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="96"/>
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -219,15 +221,117 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zoS-LY-cDg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="237.59999999999999" y="113.79310344827587"/>
+            <point key="canvasLocation" x="1176.8" y="113.79310344827587"/>
+        </scene>
+        <!--Синхронизация-->
+        <scene sceneID="5NN-qk-Z5X">
+            <objects>
+                <viewController id="2f6-yb-XR9" customClass="LoginViewController" customModule="NotesApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Nxj-gK-Hmn">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="8og-oA-QM3">
+                                <rect key="frame" x="71" y="121" width="272" height="206"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="xmark.icloud" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="dsb-Nx-lrS">
+                                        <rect key="frame" x="46.5" y="1" width="179" height="176"/>
+                                        <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="dsb-Nx-lrS" secondAttribute="height" multiplier="1:1" id="GRr-IA-4Ry"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Синхронизация отключена" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WNx-Qp-0ck">
+                                        <rect key="frame" x="0.0" y="179.5" width="272" height="26.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="EV8-gy-9sr">
+                                <rect key="frame" x="42.5" y="613" width="329" height="118.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Включите синхронизацию:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="La3-gB-bNT">
+                                        <rect key="frame" x="0.0" y="0.0" width="329" height="32.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="27"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Yo-Wg-wnc">
+                                        <rect key="frame" x="32" y="50.5" width="265.5" height="68"/>
+                                        <color key="backgroundColor" name="CellColor"/>
+                                        <color key="tintColor" systemColor="labelColor"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" image="YandexDisk" title="Яндекс.Диск" imagePadding="10">
+                                            <fontDescription key="titleFontDescription" type="system" pointSize="25"/>
+                                            <directionalEdgeInsets key="contentInsets" top="10" leading="30" bottom="10" trailing="30"/>
+                                        </buttonConfiguration>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <integer key="value" value="34"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="syncButtonPressed:" destination="2f6-yb-XR9" eventType="touchUpInside" id="ntP-sq-I0R"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="2Cl-rC-LzI"/>
+                        <color key="backgroundColor" systemColor="systemGray6Color"/>
+                        <constraints>
+                            <constraint firstItem="EV8-gy-9sr" firstAttribute="centerY" secondItem="Nxj-gK-Hmn" secondAttribute="centerY" multiplier="1.5" id="3MH-AR-Sj1"/>
+                            <constraint firstItem="EV8-gy-9sr" firstAttribute="centerX" secondItem="Nxj-gK-Hmn" secondAttribute="centerX" id="I0p-2N-Lq8"/>
+                            <constraint firstItem="dsb-Nx-lrS" firstAttribute="width" secondItem="Nxj-gK-Hmn" secondAttribute="height" multiplier="1:5" id="K2L-KB-nYs"/>
+                            <constraint firstItem="8og-oA-QM3" firstAttribute="centerX" secondItem="Nxj-gK-Hmn" secondAttribute="centerX" id="QrB-rh-A9R"/>
+                            <constraint firstItem="8og-oA-QM3" firstAttribute="centerY" secondItem="Nxj-gK-Hmn" secondAttribute="centerY" multiplier="0.5" id="aWM-iw-Q3L"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Синхронизация" image="arrow.triangle.2.circlepath" catalog="system" id="8LU-VQ-QYP"/>
+                    <connections>
+                        <outlet property="loginStatusImageView" destination="dsb-Nx-lrS" id="UhS-N8-VP2"/>
+                        <outlet property="loginStatusLabel" destination="WNx-Qp-0ck" id="l2d-Zj-ZJr"/>
+                        <outlet property="syncButton" destination="1Yo-Wg-wnc" id="spA-gT-auA"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IhZ-1U-5iX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1177" y="913"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="BFT-AP-Coe">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="RZH-cp-8AM" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="mt8-HS-79A">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="6UC-QP-1kt" kind="relationship" relationship="viewControllers" id="Pf3-XY-udL"/>
+                        <segue destination="2f6-yb-XR9" kind="relationship" relationship="viewControllers" id="l3e-6H-AQ9"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Cbn-xx-pkQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-63" y="493"/>
         </scene>
     </scenes>
     <designables>
         <designable name="5t4-ZR-NVn">
-            <size key="intrinsicContentSize" width="200" height="40"/>
+            <size key="intrinsicContentSize" width="200" height="28"/>
         </designable>
     </designables>
     <resources>
+        <image name="YandexDisk" width="48" height="48"/>
+        <image name="arrow.triangle.2.circlepath" catalog="system" width="128" height="101"/>
+        <image name="note.text" catalog="system" width="128" height="106"/>
+        <image name="xmark.icloud" catalog="system" width="128" height="88"/>
+        <namedColor name="CellColor">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
