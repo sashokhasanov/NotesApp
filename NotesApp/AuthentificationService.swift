@@ -14,7 +14,7 @@ class AuthentificationService {
     
     private let authorizationUrl = "https://oauth.yandex.ru/authorize"
     private let clientId = "25e2a8a4c06141abbff41d2ce258343d"
-    private let callbackURLScheme = "awesomeNotes://token"
+    private let callbackURLScheme = "awesomenotes"
     
     private let presentationContextProvider = PresentationContextProvider()
     

@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "icons8-яндекс-драйв-48(@1x).png",
+      "filename" : "icons8-яндекс-драйв-36.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "icons8-яндекс-драйв-96(@2x).png",
+      "filename" : "icons8-яндекс-драйв-72.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "icons8-яндекс-драйв-144(@3x).png",
+      "filename" : "icons8-яндекс-драйв-108.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

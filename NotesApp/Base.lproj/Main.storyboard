@@ -34,7 +34,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Название заметки" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="5t4-ZR-NVn" customClass="UnderlinedTextField" customModule="NotesApp" customModuleProvider="target">
-                                        <rect key="frame" x="65" y="12" width="309" height="28"/>
+                                        <rect key="frame" x="65" y="0.0" width="309" height="40"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
                                         <textInputTraits key="textInputTraits" returnKeyType="next"/>
                                     </textField>
@@ -232,44 +232,73 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="8og-oA-QM3">
-                                <rect key="frame" x="71" y="121" width="272" height="206"/>
+                                <rect key="frame" x="69" y="211" width="276" height="205.5"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="xmark.icloud" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="dsb-Nx-lrS">
-                                        <rect key="frame" x="46.5" y="1" width="179" height="176"/>
+                                        <rect key="frame" x="48.5" y="1" width="179" height="175.5"/>
                                         <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="dsb-Nx-lrS" secondAttribute="height" multiplier="1:1" id="GRr-IA-4Ry"/>
                                         </constraints>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Синхронизация отключена" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WNx-Qp-0ck">
-                                        <rect key="frame" x="0.0" y="179.5" width="272" height="26.5"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Синхронизация выключена" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WNx-Qp-0ck">
+                                        <rect key="frame" x="0.0" y="179" width="276" height="26.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
                             </stackView>
+                            <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="iR1-Zo-W2t">
+                                <rect key="frame" x="60.5" y="581.5" width="293.5" height="91.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Отключить синхронизацию:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="akT-ky-RIa">
+                                        <rect key="frame" x="0.0" y="0.0" width="293.5" height="27.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KxC-gM-poz">
+                                        <rect key="frame" x="30.5" y="45.5" width="232" height="46"/>
+                                        <color key="backgroundColor" name="CellColor"/>
+                                        <color key="tintColor" systemColor="labelColor"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" image="YandexDisk" title="Отключить" imagePadding="10">
+                                            <fontDescription key="titleFontDescription" type="system" pointSize="25"/>
+                                            <directionalEdgeInsets key="contentInsets" top="5" leading="30" bottom="5" trailing="30"/>
+                                        </buttonConfiguration>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <integer key="value" value="23"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="logoffButtonPressed:" destination="2f6-yb-XR9" eventType="touchUpInside" id="ujd-oS-vap"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="EV8-gy-9sr">
-                                <rect key="frame" x="42.5" y="613" width="329" height="118.5"/>
+                                <rect key="frame" x="66.5" y="581.5" width="281" height="91.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Включите синхронизацию:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="La3-gB-bNT">
-                                        <rect key="frame" x="0.0" y="0.0" width="329" height="32.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="27"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="281" height="27.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="23"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Yo-Wg-wnc">
-                                        <rect key="frame" x="32" y="50.5" width="265.5" height="68"/>
+                                        <rect key="frame" x="14" y="45.5" width="253.5" height="46"/>
                                         <color key="backgroundColor" name="CellColor"/>
                                         <color key="tintColor" systemColor="labelColor"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" image="YandexDisk" title="Яндекс.Диск" imagePadding="10">
                                             <fontDescription key="titleFontDescription" type="system" pointSize="25"/>
-                                            <directionalEdgeInsets key="contentInsets" top="10" leading="30" bottom="10" trailing="30"/>
+                                            <directionalEdgeInsets key="contentInsets" top="5" leading="30" bottom="5" trailing="30"/>
                                         </buttonConfiguration>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                <integer key="value" value="34"/>
+                                                <integer key="value" value="23"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
@@ -282,18 +311,21 @@
                         <viewLayoutGuide key="safeArea" id="2Cl-rC-LzI"/>
                         <color key="backgroundColor" systemColor="systemGray6Color"/>
                         <constraints>
-                            <constraint firstItem="EV8-gy-9sr" firstAttribute="centerY" secondItem="Nxj-gK-Hmn" secondAttribute="centerY" multiplier="1.5" id="3MH-AR-Sj1"/>
+                            <constraint firstItem="iR1-Zo-W2t" firstAttribute="centerX" secondItem="Nxj-gK-Hmn" secondAttribute="centerX" id="2CX-Ag-Oil"/>
+                            <constraint firstItem="EV8-gy-9sr" firstAttribute="centerY" secondItem="Nxj-gK-Hmn" secondAttribute="centerY" multiplier="1.4" id="3MH-AR-Sj1"/>
                             <constraint firstItem="EV8-gy-9sr" firstAttribute="centerX" secondItem="Nxj-gK-Hmn" secondAttribute="centerX" id="I0p-2N-Lq8"/>
                             <constraint firstItem="dsb-Nx-lrS" firstAttribute="width" secondItem="Nxj-gK-Hmn" secondAttribute="height" multiplier="1:5" id="K2L-KB-nYs"/>
                             <constraint firstItem="8og-oA-QM3" firstAttribute="centerX" secondItem="Nxj-gK-Hmn" secondAttribute="centerX" id="QrB-rh-A9R"/>
-                            <constraint firstItem="8og-oA-QM3" firstAttribute="centerY" secondItem="Nxj-gK-Hmn" secondAttribute="centerY" multiplier="0.5" id="aWM-iw-Q3L"/>
+                            <constraint firstItem="8og-oA-QM3" firstAttribute="centerY" secondItem="Nxj-gK-Hmn" secondAttribute="centerY" multiplier="0.7" id="aWM-iw-Q3L"/>
+                            <constraint firstItem="iR1-Zo-W2t" firstAttribute="centerY" secondItem="Nxj-gK-Hmn" secondAttribute="centerY" multiplier="1.4" id="oVp-Ot-PoD"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Синхронизация" image="arrow.triangle.2.circlepath" catalog="system" id="8LU-VQ-QYP"/>
                     <connections>
+                        <outlet property="loginElementsStackView" destination="EV8-gy-9sr" id="Bdq-H5-TJT"/>
                         <outlet property="loginStatusImageView" destination="dsb-Nx-lrS" id="UhS-N8-VP2"/>
                         <outlet property="loginStatusLabel" destination="WNx-Qp-0ck" id="l2d-Zj-ZJr"/>
-                        <outlet property="syncButton" destination="1Yo-Wg-wnc" id="spA-gT-auA"/>
+                        <outlet property="logoffElementsStackView" destination="iR1-Zo-W2t" id="kgq-TO-Nuz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IhZ-1U-5iX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -306,6 +338,7 @@
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="RZH-cp-8AM" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="mt8-HS-79A">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </tabBar>
@@ -321,11 +354,11 @@
     </scenes>
     <designables>
         <designable name="5t4-ZR-NVn">
-            <size key="intrinsicContentSize" width="200" height="28"/>
+            <size key="intrinsicContentSize" width="200" height="40"/>
         </designable>
     </designables>
     <resources>
-        <image name="YandexDisk" width="48" height="48"/>
+        <image name="YandexDisk" width="36" height="36"/>
         <image name="arrow.triangle.2.circlepath" catalog="system" width="128" height="101"/>
         <image name="note.text" catalog="system" width="128" height="106"/>
         <image name="xmark.icloud" catalog="system" width="128" height="88"/>
