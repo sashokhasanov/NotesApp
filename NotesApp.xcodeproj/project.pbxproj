@@ -14,6 +14,7 @@
 		2D484FC427F24EE8004DA032 /* CoreData+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D484FC327F24EE7004DA032 /* CoreData+Extension.swift */; };
 		2D48501427F7092D004DA032 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D48501327F7092C004DA032 /* LoginViewController.swift */; };
 		2D48501627F71D84004DA032 /* AuthentificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D48501527F71D83004DA032 /* AuthentificationService.swift */; };
+		2D48501827F73820004DA032 /* KeyChainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D48501727F7381F004DA032 /* KeyChainService.swift */; };
 		2D864D0B27EC6C900001B06B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D864D0A27EC6C900001B06B /* AppDelegate.swift */; };
 		2D864D0D27EC6C900001B06B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D864D0C27EC6C900001B06B /* SceneDelegate.swift */; };
 		2D864D0F27EC6C910001B06B /* NoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D864D0E27EC6C910001B06B /* NoteViewController.swift */; };
@@ -36,6 +37,7 @@
 		2D484FC327F24EE7004DA032 /* CoreData+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CoreData+Extension.swift"; sourceTree = "<group>"; };
 		2D48501327F7092C004DA032 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		2D48501527F71D83004DA032 /* AuthentificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthentificationService.swift; sourceTree = "<group>"; };
+		2D48501727F7381F004DA032 /* KeyChainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyChainService.swift; sourceTree = "<group>"; };
 		2D864D0727EC6C900001B06B /* NotesApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NotesApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D864D0A27EC6C900001B06B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2D864D0C27EC6C900001B06B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -93,6 +95,7 @@
 				2D864D1027EC6C910001B06B /* Main.storyboard */,
 				2D48501527F71D83004DA032 /* AuthentificationService.swift */,
 				2D48501327F7092C004DA032 /* LoginViewController.swift */,
+				2D48501727F7381F004DA032 /* KeyChainService.swift */,
 				2D484FB827F0DA1E004DA032 /* UnderlinedTextField.swift */,
 				2DF8AB1C27F0AFAE009D7A21 /* NoteTableViewCell.swift */,
 				2DF8AB1D27F0AFAE009D7A21 /* NoteTableViewCell.xib */,
@@ -189,6 +192,7 @@
 				2D48501627F71D84004DA032 /* AuthentificationService.swift in Sources */,
 				2DE478E427ECBDF60088C0E5 /* CircleMarkerView.swift in Sources */,
 				2D484FC027F1DA9E004DA032 /* NotesProvider.swift in Sources */,
+				2D48501827F73820004DA032 /* KeyChainService.swift in Sources */,
 				2DE478E627ED0DEB0088C0E5 /* GradientMarkerView.swift in Sources */,
 				2DF8AB1E27F0AFAE009D7A21 /* NoteTableViewCell.swift in Sources */,
 				2D484FBC27F1B181004DA032 /* Model.xcdatamodeld in Sources */,
