@@ -5,7 +5,6 @@
 //  Created by Сашок on 04.04.2022.
 //
 
-import Foundation
 import AuthenticationServices
 
 class WebAuthenticationPresentationContextProvider: NSObject, ASWebAuthenticationPresentationContextProviding {
