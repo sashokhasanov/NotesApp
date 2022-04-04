@@ -22,7 +22,7 @@ class LoginViewController: UIViewController {
     
     @IBAction func syncButtonPressed(_ sender: UIButton) {
         sender.pressAnimation {
-            YandexDiskAuthentificationService.shared.processAuthorization { result in
+            YandexDiskAuthenticationService.shared.processAuthentication { result in
                 switch result {
                 case .success(let token):
                     YandexDiskTokenProvider.shared.setAuthToken(token: token)
@@ -41,7 +41,7 @@ class LoginViewController: UIViewController {
         }
     }
     
-    func updateUI() {
+    private func updateUI() {
         if YandexDiskTokenProvider.shared.getAuthToken() != nil {
             syncStatusImageView.image = UIImage(systemName: "checkmark.icloud")
             syncStatusLabel.text = "Синхронизация включена"

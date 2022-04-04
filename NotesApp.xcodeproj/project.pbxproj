@@ -13,7 +13,7 @@
 		2D484FC027F1DA9E004DA032 /* NotesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D484FBF27F1DA9E004DA032 /* NotesProvider.swift */; };
 		2D484FC427F24EE8004DA032 /* CoreData+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D484FC327F24EE7004DA032 /* CoreData+Extension.swift */; };
 		2D48501427F7092D004DA032 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D48501327F7092C004DA032 /* LoginViewController.swift */; };
-		2D48501627F71D84004DA032 /* AuthentificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D48501527F71D83004DA032 /* AuthentificationService.swift */; };
+		2D48501627F71D84004DA032 /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D48501527F71D83004DA032 /* AuthenticationService.swift */; };
 		2D48501827F73820004DA032 /* KeyChainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D48501727F7381F004DA032 /* KeyChainService.swift */; };
 		2D864D0B27EC6C900001B06B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D864D0A27EC6C900001B06B /* AppDelegate.swift */; };
 		2D864D0D27EC6C900001B06B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D864D0C27EC6C900001B06B /* SceneDelegate.swift */; };
@@ -22,7 +22,7 @@
 		2D864D1427EC6C980001B06B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2D864D1327EC6C980001B06B /* Assets.xcassets */; };
 		2D864D1727EC6C980001B06B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D864D1527EC6C980001B06B /* LaunchScreen.storyboard */; };
 		2DDD10DC27F7B09E00B8DF98 /* YandexDiskTokenProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDD10DB27F7B09E00B8DF98 /* YandexDiskTokenProvider.swift */; };
-		2DDD10DE27FAE20700B8DF98 /* YandexDiskAuthentificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDD10DD27FAE20700B8DF98 /* YandexDiskAuthentificationService.swift */; };
+		2DDD10DE27FAE20700B8DF98 /* YandexDiskAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDD10DD27FAE20700B8DF98 /* YandexDiskAuthenticationService.swift */; };
 		2DDD10E027FAE76200B8DF98 /* WebAuthenticationPresentationContextProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDD10DF27FAE76200B8DF98 /* WebAuthenticationPresentationContextProvider.swift */; };
 		2DE478E427ECBDF60088C0E5 /* CircleMarkerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE478E327ECBDF50088C0E5 /* CircleMarkerView.swift */; };
 		2DE478E627ED0DEB0088C0E5 /* GradientMarkerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE478E527ED0DEB0088C0E5 /* GradientMarkerView.swift */; };
@@ -39,7 +39,7 @@
 		2D484FBF27F1DA9E004DA032 /* NotesProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesProvider.swift; sourceTree = "<group>"; };
 		2D484FC327F24EE7004DA032 /* CoreData+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CoreData+Extension.swift"; sourceTree = "<group>"; };
 		2D48501327F7092C004DA032 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		2D48501527F71D83004DA032 /* AuthentificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthentificationService.swift; sourceTree = "<group>"; };
+		2D48501527F71D83004DA032 /* AuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationService.swift; sourceTree = "<group>"; };
 		2D48501727F7381F004DA032 /* KeyChainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyChainService.swift; sourceTree = "<group>"; };
 		2D864D0727EC6C900001B06B /* NotesApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NotesApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D864D0A27EC6C900001B06B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -50,7 +50,7 @@
 		2D864D1627EC6C980001B06B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2D864D1827EC6C980001B06B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2DDD10DB27F7B09E00B8DF98 /* YandexDiskTokenProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YandexDiskTokenProvider.swift; sourceTree = "<group>"; };
-		2DDD10DD27FAE20700B8DF98 /* YandexDiskAuthentificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YandexDiskAuthentificationService.swift; sourceTree = "<group>"; };
+		2DDD10DD27FAE20700B8DF98 /* YandexDiskAuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YandexDiskAuthenticationService.swift; sourceTree = "<group>"; };
 		2DDD10DF27FAE76200B8DF98 /* WebAuthenticationPresentationContextProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebAuthenticationPresentationContextProvider.swift; sourceTree = "<group>"; };
 		2DE478E327ECBDF50088C0E5 /* CircleMarkerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleMarkerView.swift; sourceTree = "<group>"; };
 		2DE478E527ED0DEB0088C0E5 /* GradientMarkerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientMarkerView.swift; sourceTree = "<group>"; };
@@ -99,9 +99,9 @@
 				2D484FBD27F1B331004DA032 /* CoreDataStackHolder.swift */,
 				2D484FBF27F1DA9E004DA032 /* NotesProvider.swift */,
 				2D864D1027EC6C910001B06B /* Main.storyboard */,
-				2D48501527F71D83004DA032 /* AuthentificationService.swift */,
+				2D48501527F71D83004DA032 /* AuthenticationService.swift */,
 				2DDD10DF27FAE76200B8DF98 /* WebAuthenticationPresentationContextProvider.swift */,
-				2DDD10DD27FAE20700B8DF98 /* YandexDiskAuthentificationService.swift */,
+				2DDD10DD27FAE20700B8DF98 /* YandexDiskAuthenticationService.swift */,
 				2D48501327F7092C004DA032 /* LoginViewController.swift */,
 				2DDD10DB27F7B09E00B8DF98 /* YandexDiskTokenProvider.swift */,
 				2D48501727F7381F004DA032 /* KeyChainService.swift */,
@@ -195,13 +195,13 @@
 				2DDD10E027FAE76200B8DF98 /* WebAuthenticationPresentationContextProvider.swift in Sources */,
 				2DF8AB2327F0C313009D7A21 /* UIColor+Extension.swift in Sources */,
 				2D484FBE27F1B331004DA032 /* CoreDataStackHolder.swift in Sources */,
-				2DDD10DE27FAE20700B8DF98 /* YandexDiskAuthentificationService.swift in Sources */,
+				2DDD10DE27FAE20700B8DF98 /* YandexDiskAuthenticationService.swift in Sources */,
 				2D864D0F27EC6C910001B06B /* NoteViewController.swift in Sources */,
 				2DF8AB2127F0B96D009D7A21 /* NoteTableViewController.swift in Sources */,
 				2D864D0B27EC6C900001B06B /* AppDelegate.swift in Sources */,
 				2D864D0D27EC6C900001B06B /* SceneDelegate.swift in Sources */,
 				2D484FB927F0DA1E004DA032 /* UnderlinedTextField.swift in Sources */,
-				2D48501627F71D84004DA032 /* AuthentificationService.swift in Sources */,
+				2D48501627F71D84004DA032 /* AuthenticationService.swift in Sources */,
 				2DE478E427ECBDF60088C0E5 /* CircleMarkerView.swift in Sources */,
 				2D484FC027F1DA9E004DA032 /* NotesProvider.swift in Sources */,
 				2D48501827F73820004DA032 /* KeyChainService.swift in Sources */,

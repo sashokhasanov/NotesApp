@@ -1,25 +1,19 @@
 //
-//  AuthentificationService.swift
+//  AuthenticationService.swift
 //  NotesApp
 //
 //  Created by Сашок on 01.04.2022.
 //
 
-import Foundation
 import AuthenticationServices
 
-class AuthentificationService {
+class AuthenticationService {
+    static let shared = AuthenticationService()
     
-    static let shared = AuthentificationService()
-    
-
     private let callbackURLScheme = "awesomenotes"
-    
     private let presentationContextProvider = WebAuthenticationPresentationContextProvider()
     
-    
-    
-    func processAuthentification(url tokenRequestUrl: URL, completion: @escaping (Result<URL, Error>) -> Void) {
+    func processAuthentication(url tokenRequestUrl: URL, completion: @escaping (Result<URL, Error>) -> Void) {
         let authenticationSession =
             ASWebAuthenticationSession(url: tokenRequestUrl, callbackURLScheme: callbackURLScheme) { callbackURL, error in
             if let error = error {

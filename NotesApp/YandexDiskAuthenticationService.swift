@@ -1,5 +1,5 @@
 //
-//  YandexDiskAuthentificationService.swift
+//  YandexDiskAuthenticationService.swift
 //  NotesApp
 //
 //  Created by Сашок on 04.04.2022.
@@ -7,8 +7,8 @@
 
 import Foundation
 
-class YandexDiskAuthentificationService {
-    static let shared = YandexDiskAuthentificationService()
+class YandexDiskAuthenticationService {
+    static let shared = YandexDiskAuthenticationService()
     
     private let authorizationUrl = "https://oauth.yandex.ru/authorize"
     private let clientId = "25e2a8a4c06141abbff41d2ce258343d"
@@ -28,12 +28,12 @@ class YandexDiskAuthentificationService {
     
     private init() {}
     
-    func processAuthorization(completion: @escaping (Result<String, Error>) -> Void) {
+    func processAuthentication(completion: @escaping (Result<String, Error>) -> Void) {
         guard let tokenRequestUrl = tokenRequestUrl else {
             return
         }
 
-        AuthentificationService.shared.processAuthentification(url: tokenRequestUrl) { result in
+        AuthenticationService.shared.processAuthentication(url: tokenRequestUrl) { result in
             switch result {
             case .success(let url):
                 completion(self.parseCallbackUrl(url: url))
@@ -62,11 +62,11 @@ class YandexDiskAuthentificationService {
     }
 }
 
-extension YandexDiskAuthentificationService {
+extension YandexDiskAuthenticationService {
     enum YandexAuthError: String, Error {
         case noToken
         case accessDenied = "access_denied"
-        case unauthirizedClient = "unauthorized_client"
+        case unauthorizedClient = "unauthorized_client"
         case unknownError
     }
 }
