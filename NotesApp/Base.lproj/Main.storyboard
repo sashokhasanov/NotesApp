@@ -323,9 +323,9 @@
                     <tabBarItem key="tabBarItem" title="Синхронизация" image="arrow.triangle.2.circlepath" catalog="system" id="8LU-VQ-QYP"/>
                     <connections>
                         <outlet property="loginElementsStackView" destination="EV8-gy-9sr" id="Bdq-H5-TJT"/>
-                        <outlet property="loginStatusImageView" destination="dsb-Nx-lrS" id="UhS-N8-VP2"/>
-                        <outlet property="loginStatusLabel" destination="WNx-Qp-0ck" id="l2d-Zj-ZJr"/>
                         <outlet property="logoffElementsStackView" destination="iR1-Zo-W2t" id="kgq-TO-Nuz"/>
+                        <outlet property="syncStatusImageView" destination="dsb-Nx-lrS" id="UhS-N8-VP2"/>
+                        <outlet property="syncStatusLabel" destination="WNx-Qp-0ck" id="l2d-Zj-ZJr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IhZ-1U-5iX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

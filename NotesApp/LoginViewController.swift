@@ -9,8 +9,8 @@ import UIKit
 
 class LoginViewController: UIViewController {
 
-    @IBOutlet weak var loginStatusImageView: UIImageView!
-    @IBOutlet weak var loginStatusLabel: UILabel!
+    @IBOutlet weak var syncStatusImageView: UIImageView!
+    @IBOutlet weak var syncStatusLabel: UILabel!
     
     @IBOutlet weak var loginElementsStackView: UIStackView!
     @IBOutlet weak var logoffElementsStackView: UIStackView!
@@ -22,10 +22,11 @@ class LoginViewController: UIViewController {
     
     @IBAction func syncButtonPressed(_ sender: UIButton) {
         sender.pressAnimation {
-            AuthentificationService.shared.processAuthentification { result in
+            YandexDiskAuthentificationService.shared.processAuthorization { result in
                 switch result {
-                case .success(let url):
-                    self.processUrl(url: url)
+                case .success(let token):
+                    YandexDiskTokenProvider.shared.setAuthToken(token: token)
+                    self.updateUI()
                 case .failure(let error):
                     print(error)
                 }
@@ -34,41 +35,25 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func logoffButtonPressed(_ sender: UIButton) {
-        
         sender.pressAnimation {
-            KeyChainService.shared.delete(account: "YandexDisk")
+            YandexDiskTokenProvider.shared.deleteAuthToken()
             self.updateUI()
         }
-        
     }
     
-    func processUrl(url: URL) {
-        guard let fragment = url.fragment,
-              let dummyURL = URL(string: "http://dummyurl.com?\(fragment)"),
-              let components = URLComponents(url: dummyURL, resolvingAgainstBaseURL: true),
-              let queryItems = components.queryItems else { return }
-
-        if let token = queryItems.first(where: { $0.name == "access_token" })?.value, let tokenData = token.data(using: .utf8) {
-            KeyChainService.shared.set(value: tokenData, account: "YandexDisk")
-        }
-
-        updateUI()
-    }
-
     func updateUI() {
-        if KeyChainService.shared.get(account: "YandexDisk") != nil {
-            loginStatusImageView.image = UIImage(systemName: "checkmark.icloud")
-            loginStatusLabel.text = "Синхронизация включена"
+        if YandexDiskTokenProvider.shared.getAuthToken() != nil {
+            syncStatusImageView.image = UIImage(systemName: "checkmark.icloud")
+            syncStatusLabel.text = "Синхронизация включена"
             loginElementsStackView.isHidden = true
             logoffElementsStackView.isHidden = false
         } else {
-            loginStatusImageView.image = UIImage(systemName: "xmark.icloud")
-            loginStatusLabel.text = "Синхронизация выключена"
+            syncStatusImageView.image = UIImage(systemName: "xmark.icloud")
+            syncStatusLabel.text = "Синхронизация выключена"
             loginElementsStackView.isHidden = false
             logoffElementsStackView.isHidden = true
         }
     }
-    
 }
 
 extension UIButton {
@@ -81,8 +66,6 @@ extension UIButton {
             } completion: { _ in
                 completion()
             }
-
         }
-
     }
 }

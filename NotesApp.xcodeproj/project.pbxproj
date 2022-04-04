@@ -21,6 +21,9 @@
 		2D864D1227EC6C910001B06B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D864D1027EC6C910001B06B /* Main.storyboard */; };
 		2D864D1427EC6C980001B06B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2D864D1327EC6C980001B06B /* Assets.xcassets */; };
 		2D864D1727EC6C980001B06B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D864D1527EC6C980001B06B /* LaunchScreen.storyboard */; };
+		2DDD10DC27F7B09E00B8DF98 /* YandexDiskTokenProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDD10DB27F7B09E00B8DF98 /* YandexDiskTokenProvider.swift */; };
+		2DDD10DE27FAE20700B8DF98 /* YandexDiskAuthentificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDD10DD27FAE20700B8DF98 /* YandexDiskAuthentificationService.swift */; };
+		2DDD10E027FAE76200B8DF98 /* WebAuthenticationPresentationContextProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDD10DF27FAE76200B8DF98 /* WebAuthenticationPresentationContextProvider.swift */; };
 		2DE478E427ECBDF60088C0E5 /* CircleMarkerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE478E327ECBDF50088C0E5 /* CircleMarkerView.swift */; };
 		2DE478E627ED0DEB0088C0E5 /* GradientMarkerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE478E527ED0DEB0088C0E5 /* GradientMarkerView.swift */; };
 		2DF8AB1E27F0AFAE009D7A21 /* NoteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF8AB1C27F0AFAE009D7A21 /* NoteTableViewCell.swift */; };
@@ -46,6 +49,9 @@
 		2D864D1327EC6C980001B06B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2D864D1627EC6C980001B06B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2D864D1827EC6C980001B06B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2DDD10DB27F7B09E00B8DF98 /* YandexDiskTokenProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YandexDiskTokenProvider.swift; sourceTree = "<group>"; };
+		2DDD10DD27FAE20700B8DF98 /* YandexDiskAuthentificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YandexDiskAuthentificationService.swift; sourceTree = "<group>"; };
+		2DDD10DF27FAE76200B8DF98 /* WebAuthenticationPresentationContextProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebAuthenticationPresentationContextProvider.swift; sourceTree = "<group>"; };
 		2DE478E327ECBDF50088C0E5 /* CircleMarkerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleMarkerView.swift; sourceTree = "<group>"; };
 		2DE478E527ED0DEB0088C0E5 /* GradientMarkerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientMarkerView.swift; sourceTree = "<group>"; };
 		2DF8AB1C27F0AFAE009D7A21 /* NoteTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteTableViewCell.swift; sourceTree = "<group>"; };
@@ -94,7 +100,10 @@
 				2D484FBF27F1DA9E004DA032 /* NotesProvider.swift */,
 				2D864D1027EC6C910001B06B /* Main.storyboard */,
 				2D48501527F71D83004DA032 /* AuthentificationService.swift */,
+				2DDD10DF27FAE76200B8DF98 /* WebAuthenticationPresentationContextProvider.swift */,
+				2DDD10DD27FAE20700B8DF98 /* YandexDiskAuthentificationService.swift */,
 				2D48501327F7092C004DA032 /* LoginViewController.swift */,
+				2DDD10DB27F7B09E00B8DF98 /* YandexDiskTokenProvider.swift */,
 				2D48501727F7381F004DA032 /* KeyChainService.swift */,
 				2D484FB827F0DA1E004DA032 /* UnderlinedTextField.swift */,
 				2DF8AB1C27F0AFAE009D7A21 /* NoteTableViewCell.swift */,
@@ -182,8 +191,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				2D48501427F7092D004DA032 /* LoginViewController.swift in Sources */,
+				2DDD10DC27F7B09E00B8DF98 /* YandexDiskTokenProvider.swift in Sources */,
+				2DDD10E027FAE76200B8DF98 /* WebAuthenticationPresentationContextProvider.swift in Sources */,
 				2DF8AB2327F0C313009D7A21 /* UIColor+Extension.swift in Sources */,
 				2D484FBE27F1B331004DA032 /* CoreDataStackHolder.swift in Sources */,
+				2DDD10DE27FAE20700B8DF98 /* YandexDiskAuthentificationService.swift in Sources */,
 				2D864D0F27EC6C910001B06B /* NoteViewController.swift in Sources */,
 				2DF8AB2127F0B96D009D7A21 /* NoteTableViewController.swift in Sources */,
 				2D864D0B27EC6C900001B06B /* AppDelegate.swift in Sources */,
