@@ -29,6 +29,8 @@ class NoteTableViewController: UITableViewController {
     // MARK: - IBActions
     @IBAction func addButtonPressed(_ sender: Any) {
         dataProvider.addNote(in: dataProvider.persistentContainer.viewContext) { newNote in
+            YandexDiskSyncManager.shared.saveNote(newNote)
+            
             let indexPath =
                 self.dataProvider.fetchedResultsController.indexPath(forObject: newNote)
             self.tableView.selectRow(at: indexPath, animated: false, scrollPosition: .top)
@@ -96,9 +98,8 @@ extension NoteTableViewController {
         let note = self.dataProvider.fetchedResultsController.object(at: indexPath)
         
         let deleteAction = UIContextualAction(style: .destructive, title: nil) { _, _, _ in
+            YandexDiskSyncManager.shared.deleteNote(note)
             self.dataProvider.delete(note: note)
-            
-            // DELETE
         }
         deleteAction.image = UIImage(systemName: "trash.fill")
 
@@ -111,10 +112,10 @@ extension NoteTableViewController {
         
         let pinAction = UIContextualAction(style: .normal, title: nil) { _, _, completion in
             note.pinned.toggle()
+            
+            YandexDiskSyncManager.shared.saveNote(note)
             self.dataProvider.save(note: note)
             completion(true)
-            
-            // UPLOAD
         }
         pinAction.backgroundColor = UIColor.systemYellow
         pinAction.image = UIImage(systemName: note.pinned ? "pin.slash.fill" : "pin.fill")
@@ -140,11 +141,11 @@ extension NoteTableViewController: NoteViewControllerDelegate {
         let noteIsEmpty = (note.title?.isEmpty ?? true) && (note.content?.isEmpty ?? true)
         
         if noteIsEmpty {
+            YandexDiskSyncManager.shared.deleteNote(note)
             dataProvider.delete(note: note)
         } else {
+            YandexDiskSyncManager.shared.saveNote(note)
             dataProvider.save(note: note)
-            
-            // UPLOAD
         }
     }
 }
