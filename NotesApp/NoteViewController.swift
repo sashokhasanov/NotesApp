@@ -8,7 +8,7 @@
 import UIKit
 
 protocol NoteViewControllerDelegate: AnyObject {
-    func updateNote(_ note: Note)
+    func updateNote(_ note: NoteMO)
 }
 
 class NoteViewController: UIViewController {
@@ -21,7 +21,7 @@ class NoteViewController: UIViewController {
     @IBOutlet weak var customColorView: GradientMarkerView!
     
     // MARK: - Internal properties
-    var note: Note!
+    var note: NoteMO!
     weak var delegate: NoteViewControllerDelegate?
     
     // MARK: - Override methods

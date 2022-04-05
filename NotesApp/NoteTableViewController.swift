@@ -24,9 +24,6 @@ class NoteTableViewController: UITableViewController {
         super.viewDidLoad()
         setupSearchController()
         tableView.register(NoteTableViewCell.nib(), forCellReuseIdentifier: NoteTableViewCell.reuseId)
-        
-        
-//        navigationItem.leftBarButtonItem?.image = UIImage(systemName: "trash")
     }
     
     // MARK: - IBActions
@@ -100,6 +97,8 @@ extension NoteTableViewController {
         
         let deleteAction = UIContextualAction(style: .destructive, title: nil) { _, _, _ in
             self.dataProvider.delete(note: note)
+            
+            // DELETE
         }
         deleteAction.image = UIImage(systemName: "trash.fill")
 
@@ -114,6 +113,8 @@ extension NoteTableViewController {
             note.pinned.toggle()
             self.dataProvider.save(note: note)
             completion(true)
+            
+            // UPLOAD
         }
         pinAction.backgroundColor = UIColor.systemYellow
         pinAction.image = UIImage(systemName: note.pinned ? "pin.slash.fill" : "pin.fill")
@@ -135,13 +136,15 @@ extension NoteTableViewController {
 
 // MARK: - NoteViewControllerDelegate
 extension NoteTableViewController: NoteViewControllerDelegate {
-    func updateNote(_ note: Note) {
+    func updateNote(_ note: NoteMO) {
         let noteIsEmpty = (note.title?.isEmpty ?? true) && (note.content?.isEmpty ?? true)
         
         if noteIsEmpty {
             dataProvider.delete(note: note)
         } else {
             dataProvider.save(note: note)
+            
+            // UPLOAD
         }
     }
 }

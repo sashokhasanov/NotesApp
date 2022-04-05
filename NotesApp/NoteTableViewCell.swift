@@ -20,7 +20,7 @@ class NoteTableViewCell: UITableViewCell {
         UINib(nibName: reuseId, bundle: nil)
     }
     
-    func configure(with note: Note) {
+    func configure(with note: NoteMO) {
         titleLabel.text = note.title
         contentLabel.text = note.content
         markerView.backgroundColor = UIColor(hexValue: note.color)
