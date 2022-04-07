@@ -5,223 +5,27 @@
 //  Created by Сашок on 05.04.2022.
 //
 
-import Foundation
 import CoreData
 import Alamofire
 
-class YandexDiskManager {
-    static let shared = YandexDiskManager()
-    
-    private lazy var backedSerialQueue: OperationQueue = {
-        let queue = OperationQueue()
-        queue.qualityOfService = .utility
-        queue.maxConcurrentOperationCount = 1
-        
-        return queue
-    }()
-    
-    private lazy var backednConcurrentQueue: OperationQueue = {
-        let queue = OperationQueue()
-        queue.qualityOfService = .utility
-        
-        return queue
-    }()
-    
-    var accessToken: String? {
-        YandexDiskTokenProvider.shared.getAuthToken()
-    }
-    
-    private init() {}
-    
-    func saveNote(_ noteMO: NoteMO) {
-        guard accessToken != nil, let note = noteMO.toModel() else {
-            return
-        }
-        backedSerialQueue.addOperation(SaveNoteOperation(note: note))
-    }
-    
-    func saveNotes(_ notes: [NoteMO]) {
-        guard accessToken != nil else {
-            return
-        }
-        
-        for note in notes {
-            saveNote(note)
-        }
-    }
-    
-    func deleteNote(_ noteMO: NoteMO) {
-        guard accessToken != nil, let id = noteMO.id else {
-            return
-        }
-        backedSerialQueue.addOperation(DeleteNoteOperation(id: id))
-    }
-    
-    func deleteNotes(_ notes: [NoteMO]) {
-        guard accessToken != nil else {
-            return
-        }
-        
-        for note in notes {
-            deleteNote(note)
-        }
-    }
-    
-    func performSync() {
-        guard accessToken != nil else {
-            return
-        }
-        
-        let loadNotesListOperation = LoadNotesListOperation()
-        let uploadOperation = UploadMissingNotesOperation()
-        
-        let adapterOperation = BlockOperation { [unowned loadNotesListOperation, unowned uploadOperation] in
-            uploadOperation.result = loadNotesListOperation.result
-        }
-        
-        let finishOperation = BlockOperation { }
-        
-        let schedulerOperation = BlockOperation { [unowned loadNotesListOperation, unowned finishOperation] in
-            guard let notesList = loadNotesListOperation.result else {
-                return
-            }
-            
-            let ids = notesList.map { UUID(uuidString: ($0.name as NSString).deletingPathExtension) }.compactMap { $0 }
-            
-            for id in ids {
-                let downloadOperation = BlockOperation() { }
-                finishOperation.addDependency(downloadOperation)
-                
-                self.backednConcurrentQueue.addOperation(downloadOperation)
-            }
-        }
-        
-        adapterOperation.addDependency(loadNotesListOperation)
-        uploadOperation.addDependency(adapterOperation)
-        
-        schedulerOperation.addDependency(loadNotesListOperation)
-        finishOperation.addDependency(schedulerOperation)
-        
-//        let syncOperation = BlockOperation { [unowned loadNotesListOperation] in
-//
-//            guard let notesList = loadNotesListOperation.result else {
-//                return
-//            }
-//
-//
-//            var ids = [UUID]()
-//
-//            for resource in notesList {
-//                let name = (resource.name as NSString).deletingPathExtension
-//                if let id = UUID(uuidString: name) {
-//                    ids.append(id)
-//                }
-//            }
-//
-//            let backgroundContext =
-//                CoreDataStackHolder.shared.persistentContainer.newBackgroundContext()
-//            backgroundContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
-//
-//            backgroundContext.performAndWait {
-//                let fetchRequest = NoteMO.fetchRequest()
-//                fetchRequest.predicate = NSPredicate(format: "NOT(id IN %@)", ids)
-//
-//                if let notes = try? backgroundContext.fetch(fetchRequest) {
-//                    for note in notes {
-//                        YandexDiskManager.shared.saveNote(note)
-//                    }
-//                }
-//            }
-//
-//
-//
-//
-//
-//
-//
-//            for id in ids {
-//                let downloadOperation = BlockOperation() {
-//                    // completion block
-//                    let note = NoteMO(context: backgroundContext)
-//                    backgroundContext.trySave()
-//                }
-//
-//            }
-//
-//            let downloadNotesOperation = BlockOperation {}
-//
-//
-//            backgroundContext.performAndWait {
-//                let fetchRequest = NoteMO.fetchRequest()
-//                fetchRequest.predicate = NSPredicate(format: "id IN %@", ids)
-//            }
-//
-//        }
-//        syncOperation.addDependency(loadNotesListOperation)
-//
-//
-//
-//
-//
-//        backednConcurrentQueue.addOperations([loadNotesListOperation, syncOperation], waitUntilFinished: false)
-//
-//
-//
-////        let backgroundContext =
-////            CoreDataStackHolder.shared.persistentContainer.newBackgroundContext()
-////        backgroundContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
-////
-////        backgroundContext.performAndWait {
-////            let fetchRequest = NoteMO.fetchRequest()
-////            let notes = try? backgroundContext.fetch(fetchRequest)
-////
-////            let newNote = NoteMO(context: backgroundContext)
-////            newNote.id = UUID(uuidString: "84208F50-F135-4855-8621-B3BF5EA87AAE")
-////            newNote.title = "Fixed title"
-////            newNote.content = ""
-////            newNote.date = Date()
-////
-////            backgroundContext.trySave()
-////
-////            print(notes?.count)
-////        }
-    }
-
+struct UrlResponse: Decodable {
+    let href: String
+    let method: String
 }
 
-class UploadMissingNotesOperation: AsyncOperation {
-    var result: [Resource]?
-    
-    lazy var backgroundContext: NSManagedObjectContext = {
-        let backgroundContext =
-            CoreDataStackHolder.shared.persistentContainer.newBackgroundContext()
-        backgroundContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
-        
-        return backgroundContext
-    }()
-    
-
-    override func main() {
-        guard let notesList = result else {
-            finish()
-            return
-        }
-        
-        let ids = notesList.map { UUID(uuidString: ($0.name as NSString).deletingPathExtension) }.compactMap { $0 }
-        
-        backgroundContext.performAndWait {
-            let fetchRequest = NoteMO.fetchRequest()
-            fetchRequest.predicate = NSPredicate(format: "NOT(id IN %@)", ids)
-            
-            if let notes = try? backgroundContext.fetch(fetchRequest) {
-                YandexDiskManager.shared.saveNotes(notes)
-            }
-        }
-        
-        finish()
-    }
+struct GetCatlogMetaInfoResponse: Decodable {
+    let name: String
+    let _embedded: ResourceList
 }
 
+struct ResourceList: Decodable {
+    let items: [Resource]
+}
+
+struct Resource: Decodable {
+    let name: String
+    let path: String
+}
 
 class YandexDiskManagerGCD {
     static let shared = YandexDiskManagerGCD()
