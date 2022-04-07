@@ -24,18 +24,32 @@ class NoteTableViewController: UITableViewController {
         super.viewDidLoad()
         setupSearchController()
         tableView.register(NoteTableViewCell.nib(), forCellReuseIdentifier: NoteTableViewCell.reuseId)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(managedObjectContextDidSave(notification:)), name: NSNotification.Name.NSManagedObjectContextDidSave, object: nil)
+    }
+    
+    @objc func managedObjectContextDidSave(notification: Notification)
+    {
+        dataProvider.persistentContainer.viewContext.perform {
+            self.dataProvider.persistentContainer.viewContext.mergeChanges(fromContextDidSave: notification)
+        }
     }
     
     // MARK: - IBActions
     @IBAction func addButtonPressed(_ sender: Any) {
         dataProvider.addNote(in: dataProvider.persistentContainer.viewContext) { newNote in
-            YandexDiskSyncManager.shared.saveNote(newNote)
+//            YandexDiskManager.shared.saveNote(newNote)
+            YandexDiskManagerGCD.shared.saveNote(newNote)
             
             let indexPath =
                 self.dataProvider.fetchedResultsController.indexPath(forObject: newNote)
             self.tableView.selectRow(at: indexPath, animated: false, scrollPosition: .top)
             self.performSegue(withIdentifier: "showNote", sender: self)
         }
+    }
+    
+    @IBAction func performSync(_ sender: Any) {
+        YandexDiskManagerGCD.shared.syncData()
     }
     
     // MARK: - Private methods
@@ -98,7 +112,8 @@ extension NoteTableViewController {
         let note = self.dataProvider.fetchedResultsController.object(at: indexPath)
         
         let deleteAction = UIContextualAction(style: .destructive, title: nil) { _, _, _ in
-            YandexDiskSyncManager.shared.deleteNote(note)
+//            YandexDiskManager.shared.deleteNote(note)
+            YandexDiskManagerGCD.shared.saveNote(note)
             self.dataProvider.delete(note: note)
         }
         deleteAction.image = UIImage(systemName: "trash.fill")
@@ -113,7 +128,8 @@ extension NoteTableViewController {
         let pinAction = UIContextualAction(style: .normal, title: nil) { _, _, completion in
             note.pinned.toggle()
             
-            YandexDiskSyncManager.shared.saveNote(note)
+//            YandexDiskManager.shared.saveNote(note)
+            YandexDiskManagerGCD.shared.saveNote(note)
             self.dataProvider.save(note: note)
             completion(true)
         }
@@ -141,10 +157,12 @@ extension NoteTableViewController: NoteViewControllerDelegate {
         let noteIsEmpty = (note.title?.isEmpty ?? true) && (note.content?.isEmpty ?? true)
         
         if noteIsEmpty {
-            YandexDiskSyncManager.shared.deleteNote(note)
+//            YandexDiskManager.shared.deleteNote(note)
+            YandexDiskManagerGCD.shared.deleteNote(note)
             dataProvider.delete(note: note)
         } else {
-            YandexDiskSyncManager.shared.saveNote(note)
+//            YandexDiskManager.shared.saveNote(note)
+            YandexDiskManagerGCD.shared.saveNote(note)
             dataProvider.save(note: note)
         }
     }

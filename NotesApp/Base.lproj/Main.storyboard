@@ -190,6 +190,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Заметки" id="jYL-rv-5eF">
+                        <barButtonItem key="leftBarButtonItem" title="Item" image="arrow.up.arrow.down.circle" catalog="system" id="Hat-ay-eH9">
+                            <connections>
+                                <action selector="performSync:" destination="Fq8-kS-NT5" id="7HU-C1-4x0"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="cyc-KJ-gtP">
                             <connections>
                                 <action selector="addButtonPressed:" destination="Fq8-kS-NT5" id="E6U-5z-IIm"/>
@@ -360,6 +365,7 @@
     <resources>
         <image name="YandexDisk" width="36" height="36"/>
         <image name="arrow.triangle.2.circlepath" catalog="system" width="128" height="101"/>
+        <image name="arrow.up.arrow.down.circle" catalog="system" width="128" height="121"/>
         <image name="note.text" catalog="system" width="128" height="106"/>
         <image name="xmark.icloud" catalog="system" width="128" height="88"/>
         <namedColor name="CellColor">

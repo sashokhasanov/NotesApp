@@ -37,7 +37,7 @@ class SaveNoteOperation: YandexDiskBasicOperation {
         
         AF.request("\(baseUrl)/upload", parameters: parameters, headers: headers)
             .validate()
-            .responseDecodable(of: UploadUrlResponse.self, queue: DispatchQueue.global()) { dataResponse in
+            .responseDecodable(of: UrlResponse.self, queue: DispatchQueue.global()) { dataResponse in
                 let result = dataResponse.result
                 
                 switch result {
@@ -62,9 +62,8 @@ class SaveNoteOperation: YandexDiskBasicOperation {
     }
 }
 
-extension SaveNoteOperation {
-    private struct UploadUrlResponse: Decodable {
+
+    struct UrlResponse: Decodable {
         let href: String
         let method: String
     }
-}
