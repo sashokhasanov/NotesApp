@@ -24,12 +24,7 @@
 		2D971D8327FC4EF800EFC6E9 /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D971D8227FC4EF800EFC6E9 /* Note.swift */; };
 		2D971D8527FC4FCC00EFC6E9 /* ModelConversion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D971D8427FC4FCC00EFC6E9 /* ModelConversion.swift */; };
 		2D971D8727FC519500EFC6E9 /* NoteMO+ModelConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D971D8627FC519500EFC6E9 /* NoteMO+ModelConvertible.swift */; };
-		2D971D8D27FC613600EFC6E9 /* AsyncOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D971D8827FC613500EFC6E9 /* AsyncOperation.swift */; };
-		2D971D9027FC613600EFC6E9 /* SaveNoteOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D971D8B27FC613500EFC6E9 /* SaveNoteOperation.swift */; };
-		2D971D9327FC63EC00EFC6E9 /* DeleteNoteOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D971D9227FC63EC00EFC6E9 /* DeleteNoteOperation.swift */; };
 		2D971D9527FC6E2700EFC6E9 /* YandexDiskManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D971D9427FC6E2700EFC6E9 /* YandexDiskManager.swift */; };
-		2D971D9727FCA70C00EFC6E9 /* YandexDiskBasicOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D971D9627FCA70C00EFC6E9 /* YandexDiskBasicOperation.swift */; };
-		2D971D9927FCE99500EFC6E9 /* LoadNotesListOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D971D9827FCE99500EFC6E9 /* LoadNotesListOperation.swift */; };
 		2DDD10DC27F7B09E00B8DF98 /* YandexDiskTokenProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDD10DB27F7B09E00B8DF98 /* YandexDiskTokenProvider.swift */; };
 		2DDD10DE27FAE20700B8DF98 /* YandexDiskAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDD10DD27FAE20700B8DF98 /* YandexDiskAuthenticationService.swift */; };
 		2DDD10E027FAE76200B8DF98 /* WebAuthenticationPresentationContextProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDD10DF27FAE76200B8DF98 /* WebAuthenticationPresentationContextProvider.swift */; };
@@ -62,12 +57,7 @@
 		2D971D8227FC4EF800EFC6E9 /* Note.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
 		2D971D8427FC4FCC00EFC6E9 /* ModelConversion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelConversion.swift; sourceTree = "<group>"; };
 		2D971D8627FC519500EFC6E9 /* NoteMO+ModelConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NoteMO+ModelConvertible.swift"; sourceTree = "<group>"; };
-		2D971D8827FC613500EFC6E9 /* AsyncOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsyncOperation.swift; sourceTree = "<group>"; };
-		2D971D8B27FC613500EFC6E9 /* SaveNoteOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveNoteOperation.swift; sourceTree = "<group>"; };
-		2D971D9227FC63EC00EFC6E9 /* DeleteNoteOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteNoteOperation.swift; sourceTree = "<group>"; };
 		2D971D9427FC6E2700EFC6E9 /* YandexDiskManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YandexDiskManager.swift; sourceTree = "<group>"; };
-		2D971D9627FCA70C00EFC6E9 /* YandexDiskBasicOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YandexDiskBasicOperation.swift; sourceTree = "<group>"; };
-		2D971D9827FCE99500EFC6E9 /* LoadNotesListOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadNotesListOperation.swift; sourceTree = "<group>"; };
 		2DDD10DB27F7B09E00B8DF98 /* YandexDiskTokenProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YandexDiskTokenProvider.swift; sourceTree = "<group>"; };
 		2DDD10DD27FAE20700B8DF98 /* YandexDiskAuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YandexDiskAuthenticationService.swift; sourceTree = "<group>"; };
 		2DDD10DF27FAE76200B8DF98 /* WebAuthenticationPresentationContextProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebAuthenticationPresentationContextProvider.swift; sourceTree = "<group>"; };
@@ -123,12 +113,7 @@
 				2D484FBA27F1B181004DA032 /* Model.xcdatamodeld */,
 				2D484FBD27F1B331004DA032 /* CoreDataStackHolder.swift */,
 				2D484FBF27F1DA9E004DA032 /* NotesProvider.swift */,
-				2D971D8827FC613500EFC6E9 /* AsyncOperation.swift */,
-				2D971D8B27FC613500EFC6E9 /* SaveNoteOperation.swift */,
-				2D971D9227FC63EC00EFC6E9 /* DeleteNoteOperation.swift */,
-				2D971D9627FCA70C00EFC6E9 /* YandexDiskBasicOperation.swift */,
 				2D971D9427FC6E2700EFC6E9 /* YandexDiskManager.swift */,
-				2D971D9827FCE99500EFC6E9 /* LoadNotesListOperation.swift */,
 				2D864D1027EC6C910001B06B /* Main.storyboard */,
 				2D48501527F71D83004DA032 /* AuthenticationService.swift */,
 				2DDD10DF27FAE76200B8DF98 /* WebAuthenticationPresentationContextProvider.swift */,
@@ -285,7 +270,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2D971D9927FCE99500EFC6E9 /* LoadNotesListOperation.swift in Sources */,
 				2D48501427F7092D004DA032 /* LoginViewController.swift in Sources */,
 				2D971D8727FC519500EFC6E9 /* NoteMO+ModelConvertible.swift in Sources */,
 				2DDD10DC27F7B09E00B8DF98 /* YandexDiskTokenProvider.swift in Sources */,
@@ -297,22 +281,18 @@
 				2DF8AB2127F0B96D009D7A21 /* NoteTableViewController.swift in Sources */,
 				2D971D8527FC4FCC00EFC6E9 /* ModelConversion.swift in Sources */,
 				2D971D8327FC4EF800EFC6E9 /* Note.swift in Sources */,
-				2D971D8D27FC613600EFC6E9 /* AsyncOperation.swift in Sources */,
 				2D864D0B27EC6C900001B06B /* AppDelegate.swift in Sources */,
 				2D864D0D27EC6C900001B06B /* SceneDelegate.swift in Sources */,
 				2D484FB927F0DA1E004DA032 /* UnderlinedTextField.swift in Sources */,
 				2D48501627F71D84004DA032 /* AuthenticationService.swift in Sources */,
-				2D971D9327FC63EC00EFC6E9 /* DeleteNoteOperation.swift in Sources */,
 				2DE478E427ECBDF60088C0E5 /* CircleMarkerView.swift in Sources */,
 				2D484FC027F1DA9E004DA032 /* NotesProvider.swift in Sources */,
 				2D971D9527FC6E2700EFC6E9 /* YandexDiskManager.swift in Sources */,
 				2D48501827F73820004DA032 /* KeyChainService.swift in Sources */,
-				2D971D9727FCA70C00EFC6E9 /* YandexDiskBasicOperation.swift in Sources */,
 				2DE478E627ED0DEB0088C0E5 /* GradientMarkerView.swift in Sources */,
 				2DF8AB1E27F0AFAE009D7A21 /* NoteTableViewCell.swift in Sources */,
 				2D484FBC27F1B181004DA032 /* Model.xcdatamodeld in Sources */,
 				2D484FC427F24EE8004DA032 /* CoreData+Extension.swift in Sources */,
-				2D971D9027FC613600EFC6E9 /* SaveNoteOperation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
