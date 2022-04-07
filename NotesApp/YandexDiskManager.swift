@@ -238,7 +238,7 @@ class YandexDiskManagerGCD {
     
     
     private let backendSerialQueue = DispatchQueue(label: "myquwue", qos: .utility)
-    private let backendConcurrentQueue = DispatchQueue(label: "concurrentQueue", qos: .utility, attributes: [.concurrent])
+//    private let backendConcurrentQueue = DispatchQueue(label: "concurrentQueue", qos: .utility, attributes: [.concurrent])
     private let semaphore = DispatchSemaphore(value: 1)
     
     var accessToken: String? {
@@ -417,18 +417,18 @@ extension YandexDiskManagerGCD {
                                completion: (() -> Void)? = nil) {
         
         let group = DispatchGroup()
-        group.notify(queue: backendConcurrentQueue) {
-            completion?()
-        }
+        
         
         for id in ids {
-            backendConcurrentQueue.async(group: group) {
-                group.enter()
-                self.downloadNote(id: id) { result in
-                    noteDownloadConmpletion(result)
-                    group.leave()
-                }
+            group.enter()
+            self.downloadNote(id: id) { result in
+                noteDownloadConmpletion(result)
+                group.leave()
             }
+        }
+        
+        group.notify(queue: DispatchQueue.global()) {
+            completion?()
         }
     }
 }
@@ -436,7 +436,10 @@ extension YandexDiskManagerGCD {
 
 extension YandexDiskManagerGCD {
     func syncData(completion: (() -> Void)? = nil) {
-        
+        guard accessToken != nil else {
+            completion?()
+            return
+        }
         
         getAppCatalogInfo { result in
             switch result {
@@ -449,8 +452,11 @@ extension YandexDiskManagerGCD {
                 self.uploadMissingNotes(ids: ids, in: backgroundContext)
                 
                 self.downloadNotes(with: ids) { result in
+                    
+                    
                     switch result {
                     case .success(let note):
+                        print("download finish \(note.title)")
                         backgroundContext.perform {
                             let _ = note.toManagedObject(context: backgroundContext)
                             backgroundContext.trySave()

@@ -27,6 +27,7 @@ class LoginViewController: UIViewController {
                 case .success(let token):
                     YandexDiskTokenProvider.shared.setAuthToken(token: token)
                     self.updateUI()
+                    NotificationCenter.default.post(name: NSNotification.Name("accessTokenGranted"), object: nil)
                 case .failure(let error):
                     print(error)
                 }

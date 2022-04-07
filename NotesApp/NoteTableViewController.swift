@@ -16,29 +16,18 @@ class NoteTableViewController: UITableViewController {
             NotesProvider(persistentContainer: persistentContainer, fetchedResultsControllerDelegate: self)
         return provider
     }()
-    
-    private let searchController = UISearchController()
-    
+
     // MARK: - Override methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupSearchController()
-        tableView.register(NoteTableViewCell.nib(), forCellReuseIdentifier: NoteTableViewCell.reuseId)
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(managedObjectContextDidSave(notification:)), name: NSNotification.Name.NSManagedObjectContextDidSave, object: nil)
+        setupViewController()
     }
-    
-    @objc func managedObjectContextDidSave(notification: Notification)
-    {
-        dataProvider.persistentContainer.viewContext.perform {
-            self.dataProvider.persistentContainer.viewContext.mergeChanges(fromContextDidSave: notification)
-        }
-    }
-    
-    // MARK: - IBActions
+}
+
+// MARK: - IBActions handling
+extension NoteTableViewController {
     @IBAction func addButtonPressed(_ sender: Any) {
         dataProvider.addNote(in: dataProvider.persistentContainer.viewContext) { newNote in
-//            YandexDiskManager.shared.saveNote(newNote)
             YandexDiskManagerGCD.shared.saveNote(newNote)
             
             let indexPath =
@@ -47,19 +36,59 @@ class NoteTableViewController: UITableViewController {
             self.performSegue(withIdentifier: "showNote", sender: self)
         }
     }
-    
-    @IBAction func performSync(_ sender: Any) {
-        YandexDiskManagerGCD.shared.syncData()
+}
+
+// MARK: - Controller setup
+extension NoteTableViewController {
+    private func setupViewController() {
+        registerCells()
+        setupRefreshControl()
+        setupSearchController()
+        setupNotificationsObservation()
     }
     
-    // MARK: - Private methods
+    private func registerCells() {
+        tableView.register(NoteTableViewCell.nib(), forCellReuseIdentifier: NoteTableViewCell.reuseId)
+    }
+    
     private func setupSearchController() {
+        let searchController = UISearchController()
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Поиск"
 
         navigationItem.searchController = searchController
         definesPresentationContext = true
+    }
+    
+    private func setupRefreshControl() {
+        refreshControl = UIRefreshControl()
+        refreshControl?.addTarget(self, action: #selector(syncData), for: .valueChanged)
+    }
+    
+    private func setupNotificationsObservation() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(managedObjectContextDidSave),
+                                               name: NSNotification.Name.NSManagedObjectContextDidSave, object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(accessTokenReceived),
+                                               name: NSNotification.Name("accessTokenGranted"), object: nil)
+    }
+}
+
+// MARK: - Refreshing state management
+extension NoteTableViewController {
+    private func beginRefreshing() {
+        guard let refreshControl = refreshControl else { return }
+        guard !refreshControl.isRefreshing else { return }
+        let verticalOffset = tableView.contentOffset.y - refreshControl.frame.size.height
+
+        refreshControl.beginRefreshing()
+        tableView.setContentOffset(CGPoint(x: 0, y: verticalOffset), animated: true)
+    }
+
+    private func endRefreshing() {
+        refreshControl?.endRefreshing()
     }
 }
 
@@ -112,7 +141,6 @@ extension NoteTableViewController {
         let note = self.dataProvider.fetchedResultsController.object(at: indexPath)
         
         let deleteAction = UIContextualAction(style: .destructive, title: nil) { _, _, _ in
-//            YandexDiskManager.shared.deleteNote(note)
             YandexDiskManagerGCD.shared.saveNote(note)
             self.dataProvider.delete(note: note)
         }
@@ -127,8 +155,6 @@ extension NoteTableViewController {
         
         let pinAction = UIContextualAction(style: .normal, title: nil) { _, _, completion in
             note.pinned.toggle()
-            
-//            YandexDiskManager.shared.saveNote(note)
             YandexDiskManagerGCD.shared.saveNote(note)
             self.dataProvider.save(note: note)
             completion(true)
@@ -157,11 +183,9 @@ extension NoteTableViewController: NoteViewControllerDelegate {
         let noteIsEmpty = (note.title?.isEmpty ?? true) && (note.content?.isEmpty ?? true)
         
         if noteIsEmpty {
-//            YandexDiskManager.shared.deleteNote(note)
             YandexDiskManagerGCD.shared.deleteNote(note)
             dataProvider.delete(note: note)
         } else {
-//            YandexDiskManager.shared.saveNote(note)
             YandexDiskManagerGCD.shared.saveNote(note)
             dataProvider.save(note: note)
         }
@@ -199,7 +223,6 @@ extension NoteTableViewController: NSFetchedResultsControllerDelegate {
 
 // MARK: - UISearchResultsUpdating
 extension NoteTableViewController: UISearchResultsUpdating {
-    
     func updateSearchResults(for searchController: UISearchController) {
         let searchText = searchController.searchBar.text ?? ""
         
@@ -215,6 +238,33 @@ extension NoteTableViewController: UISearchResultsUpdating {
             tableView.reloadData()
         } catch {
             print(error)
+        }
+    }
+}
+
+//  MARK: - Data synchronization
+extension NoteTableViewController {
+    @objc private func managedObjectContextDidSave(notification: Notification) {
+        let viewContext = dataProvider.persistentContainer.viewContext
+        
+        viewContext.perform {
+            viewContext.mergeChanges(fromContextDidSave: notification)
+        }
+    }
+    
+    @objc private func accessTokenReceived() {
+        beginRefreshing()
+        syncData()
+    }
+    
+    @objc private func syncData() {
+        tableView.isUserInteractionEnabled = false
+        YandexDiskManagerGCD.shared.syncData {
+            print("sync completion")
+            DispatchQueue.main.async {
+                self.endRefreshing()
+                self.tableView.isUserInteractionEnabled = true
+            }
         }
     }
 }
