@@ -8,14 +8,13 @@
 import CoreData
 import Alamofire
 
-
-
 class YandexDiskManagerGCD {
     static let shared = YandexDiskManagerGCD()
     
-    let baseUrl = "https://cloud-api.yandex.net/v1/disk/resources"
-    
-    private let backendSerialQueue = DispatchQueue(label: "myquwue", qos: .utility)
+    private let baseUrl = "https://cloud-api.yandex.net/v1/disk/resources"
+
+    private let backendSerialQueue =
+        DispatchQueue(label: (Bundle.main.bundleIdentifier ?? "ru.awesome.NotesApp").appending(".backendSeriaQueue"), qos: .utility)
     private let semaphore = DispatchSemaphore(value: 1)
     
     private var accessToken: String? {
@@ -23,17 +22,9 @@ class YandexDiskManagerGCD {
     }
     
     private init() {}
-
-    private func getUpdateContext() -> NSManagedObjectContext {
-        let backgroundContext =
-            CoreDataStackHolder.shared.persistentContainer.newBackgroundContext()
-        backgroundContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
-        
-        return backgroundContext
-    }
 }
 
-// MARK: delete note
+// MARK: - Delete
 extension YandexDiskManagerGCD {
     func deleteNote(_ noteMO: NoteMO) {
         guard accessToken != nil, let id = noteMO.id else {
@@ -74,17 +65,16 @@ extension YandexDiskManagerGCD {
     }
 }
 
-// MARK:  - save note to yandex disk
+// MARK:  - Save
 extension YandexDiskManagerGCD {
-    
-    func saveNote(_ noteMO: NoteMO) {
+    func uploadNote(_ noteMO: NoteMO) {
         guard accessToken != nil, let note = noteMO.toModel() else {
             return
         }
         
         backendSerialQueue.async {
             self.semaphore.wait()
-            self.saveNote(note: note) { result in
+            self.uploadNote(note: note) { result in
                 self.semaphore.signal()
                 print(result)
                 
@@ -92,7 +82,7 @@ extension YandexDiskManagerGCD {
         }
     }
     
-    private func saveNote(note: Note, completion: @escaping (Result<Data?, AFError>) -> Void) {
+    private func uploadNote(note: Note, completion: @escaping (Result<Data?, AFError>) -> Void) {
         guard accessToken != nil else {
             completion(.failure(.explicitlyCancelled))
             return
@@ -113,28 +103,9 @@ extension YandexDiskManagerGCD {
     }
     
     private func getUploadUrl(note: Note, completion: @escaping (Result<UrlResponse, AFError>) -> Void) {
-        guard let token = accessToken else {
-            completion(.failure(.explicitlyCancelled))
-            return
-        }
-        
-        let headers: HTTPHeaders = [
-            "Authorization": "OAuth \(token)",
-            "Accept": "application/json"
-        ]
-        
-        let parameters: Parameters = [
-            "path" : "app:/\(note.id).json",
-            "overwrite": true
-        ]
-        
-        AF.request("\(baseUrl)/upload", parameters: parameters, headers: headers)
-            .validate()
-            .responseDecodable(of: UrlResponse.self, queue: DispatchQueue.global()) { dataResponse in
-                completion(dataResponse.result)
-            }
+        getUrl(of: "\(note.id).json", for: .upload, completion: completion)
     }
-    
+
     private func uploadNote(note: Note, to url: URL, completion: @escaping (Result<Data?, AFError>) -> Void) {
         AF.request(url, method: .put, parameters: note, encoder: JSONParameterEncoder.default)
             .validate()
@@ -144,14 +115,23 @@ extension YandexDiskManagerGCD {
     }
 }
 
+// MARK: - Download
 extension YandexDiskManagerGCD {
+    func downloadNote(_ noteMO: NoteMO, completion: @escaping (Result<Note, AFError>) -> Void) {
+        guard accessToken != nil, let id = noteMO.id else {
+            return
+        }
+        
+        downloadNote(id: id, completion: completion)
+    }
+    
     private func downloadNote(id: UUID, completion: @escaping (Result<Note, AFError>) -> Void) {
         guard accessToken != nil else {
             completion(.failure(.explicitlyCancelled))
             return
         }
 
-        getDownloadUrl(id: id) { result in
+        getDownloadUrl(for: id) { result in
             switch result {
             case .success(let response):
                 guard let url = URL(string: response.href) else {
@@ -165,28 +145,10 @@ extension YandexDiskManagerGCD {
         }
     }
     
-    private func getDownloadUrl(id: UUID, completion: @escaping (Result<UrlResponse, AFError>) -> Void) {
-        guard let token = accessToken else {
-            completion(.failure(.explicitlyCancelled))
-            return
-        }
-        
-        let headers: HTTPHeaders = [
-            "Authorization": "OAuth \(token)",
-            "Accept": "application/json"
-        ]
-        
-        let parameters: Parameters = [
-            "path" : "app:/\(id).json"
-        ]
-        
-        AF.request("\(baseUrl)/download", parameters: parameters, headers: headers)
-            .validate()
-            .responseDecodable(of: UrlResponse.self, queue: DispatchQueue.global()) { dataResponse in
-                completion(dataResponse.result)
-            }
+    private func getDownloadUrl(for noteId: UUID, completion: @escaping (Result<UrlResponse, AFError>) -> Void) {
+        getUrl(of: "\(noteId).json", for: .download, completion: completion)
     }
-    
+
     private func downloadNote(from url: URL, completion: @escaping (Result<Note, AFError>) -> Void) {
         AF.request(url)
             .validate()
@@ -218,6 +180,15 @@ extension YandexDiskManagerGCD {
 
 
 extension YandexDiskManagerGCD {
+    private func getUpdateContext() -> NSManagedObjectContext {
+        let backgroundContext =
+            CoreDataStackHolder.shared.persistentContainer.newBackgroundContext()
+        backgroundContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
+        
+        return backgroundContext
+    }
+    
+    
     func syncData(completion: (() -> Void)? = nil) {
         guard accessToken != nil else {
             completion?()
@@ -288,10 +259,39 @@ extension YandexDiskManagerGCD {
             
             if let notes = try? context.fetch(fetchRequest) {
                 for note in notes {
-                    YandexDiskManagerGCD.shared.saveNote(note)
+                    YandexDiskManagerGCD.shared.uploadNote(note)
                 }
             }
         }
     }
+}
+
+// MARK: - Common code
+extension YandexDiskManagerGCD {
+    private enum NoteOperation: String {
+        case upload
+        case download
+    }
     
+    private func getUrl(of noteName: String, for operation: NoteOperation, completion: @escaping (Result<UrlResponse, AFError>) -> Void) {
+        guard let token = accessToken else {
+            completion(.failure(.explicitlyCancelled))
+            return
+        }
+        
+        let headers: HTTPHeaders = [
+            "Authorization": "OAuth \(token)",
+            "Accept": "application/json"
+        ]
+        
+        let parameters: Parameters = [
+            "path" : "app:/\(noteName)"
+        ]
+        
+        AF.request("\(baseUrl)/\(operation.rawValue)", parameters: parameters, headers: headers)
+            .validate()
+            .responseDecodable(of: UrlResponse.self, queue: DispatchQueue.global()) { dataResponse in
+                completion(dataResponse.result)
+            }
+    }
 }

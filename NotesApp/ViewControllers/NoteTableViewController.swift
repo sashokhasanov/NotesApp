@@ -28,7 +28,7 @@ class NoteTableViewController: UITableViewController {
 extension NoteTableViewController {
     @IBAction func addButtonPressed(_ sender: Any) {
         dataProvider.addNote(in: dataProvider.persistentContainer.viewContext) { newNote in
-            YandexDiskManagerGCD.shared.saveNote(newNote)
+            YandexDiskManagerGCD.shared.uploadNote(newNote)
             
             let indexPath =
                 self.dataProvider.fetchedResultsController.indexPath(forObject: newNote)
@@ -141,7 +141,7 @@ extension NoteTableViewController {
         let note = self.dataProvider.fetchedResultsController.object(at: indexPath)
         
         let deleteAction = UIContextualAction(style: .destructive, title: nil) { _, _, _ in
-            YandexDiskManagerGCD.shared.saveNote(note)
+            YandexDiskManagerGCD.shared.uploadNote(note)
             self.dataProvider.delete(note: note)
         }
         deleteAction.image = UIImage(systemName: "trash.fill")
@@ -155,7 +155,7 @@ extension NoteTableViewController {
         
         let pinAction = UIContextualAction(style: .normal, title: nil) { _, _, completion in
             note.pinned.toggle()
-            YandexDiskManagerGCD.shared.saveNote(note)
+            YandexDiskManagerGCD.shared.uploadNote(note)
             self.dataProvider.save(note: note)
             completion(true)
         }
@@ -187,7 +187,7 @@ extension NoteTableViewController: NoteViewControllerDelegate {
             YandexDiskManagerGCD.shared.deleteNote(note)
             dataProvider.delete(note: note)
         } else {
-            YandexDiskManagerGCD.shared.saveNote(note)
+            YandexDiskManagerGCD.shared.uploadNote(note)
             dataProvider.save(note: note)
         }
     }

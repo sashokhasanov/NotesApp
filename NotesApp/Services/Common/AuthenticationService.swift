@@ -25,7 +25,6 @@ class AuthenticationService {
             ASWebAuthenticationSession(url: tokenRequestUrl, callbackURLScheme: callbackURLScheme) { callbackURL, error in
             if let error = error {
                 completion(.failure(error))
-                return
             } else if let callbackURL = callbackURL {
                 completion(.success(callbackURL))
             }

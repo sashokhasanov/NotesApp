@@ -9,7 +9,7 @@ import Foundation
 
 class KeyChainService {
     static let shared = KeyChainService()
-    private let serviceId = Bundle.main.bundleIdentifier ?? "ru.awesome.NotesApp.KeychainService"
+    private let serviceId = Bundle.main.bundleIdentifier ?? "ru.awesome.NotesApp"
     
     private init() {}
     
