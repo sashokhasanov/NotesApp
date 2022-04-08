@@ -593,7 +593,7 @@
 				DEVELOPMENT_TEAM = HUN84826YQ;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NotesApp/SupportFiles/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "Просто заметки";
+				INFOPLIST_KEY_CFBundleDisplayName = "Заметки";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -625,7 +625,7 @@
 				DEVELOPMENT_TEAM = HUN84826YQ;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NotesApp/SupportFiles/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "Просто заметки";
+				INFOPLIST_KEY_CFBundleDisplayName = "Заметки";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
