@@ -28,6 +28,7 @@
 		2D971D9B27FF961000EFC6E9 /* NSNotification.Name+AccessTokenReceived.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D971D9A27FF961000EFC6E9 /* NSNotification.Name+AccessTokenReceived.swift */; };
 		2D971D9D27FF96FC00EFC6E9 /* UIButton+TapAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D971D9C27FF96FC00EFC6E9 /* UIButton+TapAnimation.swift */; };
 		2D971DA928002CBB00EFC6E9 /* Note+ManagedObjectConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D971DA828002CBB00EFC6E9 /* Note+ManagedObjectConvertible.swift */; };
+		2D971DAF2800436800EFC6E9 /* YandexDiskSynchronizatinManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D971DAE2800436800EFC6E9 /* YandexDiskSynchronizatinManager.swift */; };
 		2DDD10DC27F7B09E00B8DF98 /* YandexDiskTokenProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDD10DB27F7B09E00B8DF98 /* YandexDiskTokenProvider.swift */; };
 		2DDD10DE27FAE20700B8DF98 /* YandexDiskAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDD10DD27FAE20700B8DF98 /* YandexDiskAuthenticationService.swift */; };
 		2DE478E427ECBDF60088C0E5 /* CircleMarkerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE478E327ECBDF50088C0E5 /* CircleMarkerView.swift */; };
@@ -63,6 +64,7 @@
 		2D971D9A27FF961000EFC6E9 /* NSNotification.Name+AccessTokenReceived.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSNotification.Name+AccessTokenReceived.swift"; sourceTree = "<group>"; };
 		2D971D9C27FF96FC00EFC6E9 /* UIButton+TapAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+TapAnimation.swift"; sourceTree = "<group>"; };
 		2D971DA828002CBB00EFC6E9 /* Note+ManagedObjectConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Note+ManagedObjectConvertible.swift"; sourceTree = "<group>"; };
+		2D971DAE2800436800EFC6E9 /* YandexDiskSynchronizatinManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YandexDiskSynchronizatinManager.swift; sourceTree = "<group>"; };
 		2DDD10DB27F7B09E00B8DF98 /* YandexDiskTokenProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YandexDiskTokenProvider.swift; sourceTree = "<group>"; };
 		2DDD10DD27FAE20700B8DF98 /* YandexDiskAuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YandexDiskAuthenticationService.swift; sourceTree = "<group>"; };
 		2DE478E327ECBDF50088C0E5 /* CircleMarkerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleMarkerView.swift; sourceTree = "<group>"; };
@@ -216,6 +218,7 @@
 				2D971D9427FC6E2700EFC6E9 /* YandexDiskManager.swift */,
 				2DDD10DD27FAE20700B8DF98 /* YandexDiskAuthenticationService.swift */,
 				2DDD10DB27F7B09E00B8DF98 /* YandexDiskTokenProvider.swift */,
+				2D971DAE2800436800EFC6E9 /* YandexDiskSynchronizatinManager.swift */,
 			);
 			path = YandexDisk;
 			sourceTree = "<group>";
@@ -392,6 +395,7 @@
 				2D971D8727FC519500EFC6E9 /* NoteMO+ModelConvertible.swift in Sources */,
 				2DDD10DC27F7B09E00B8DF98 /* YandexDiskTokenProvider.swift in Sources */,
 				2DF8AB2327F0C313009D7A21 /* UIColor+Extension.swift in Sources */,
+				2D971DAF2800436800EFC6E9 /* YandexDiskSynchronizatinManager.swift in Sources */,
 				2D484FBE27F1B331004DA032 /* CoreDataStackHolder.swift in Sources */,
 				2D971DA928002CBB00EFC6E9 /* Note+ManagedObjectConvertible.swift in Sources */,
 				2DDD10DE27FAE20700B8DF98 /* YandexDiskAuthenticationService.swift in Sources */,

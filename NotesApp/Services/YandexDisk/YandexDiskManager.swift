@@ -117,15 +117,26 @@ extension YandexDiskManagerGCD {
 
 // MARK: - Download
 extension YandexDiskManagerGCD {
-    func downloadNote(_ noteMO: NoteMO, completion: @escaping (Result<Note, AFError>) -> Void) {
-        guard accessToken != nil, let id = noteMO.id else {
-            return
+    func downloadNotes(with ids: [UUID],
+                               noteDownloadConmpletion: @escaping (Result<Note, AFError>) -> Void,
+                               completion: (() -> Void)? = nil) {
+        
+        let group = DispatchGroup()
+        
+        for id in ids {
+            group.enter()
+            self.downloadNote(with: id) { result in
+                noteDownloadConmpletion(result)
+                group.leave()
+            }
         }
         
-        downloadNote(id: id, completion: completion)
+        group.notify(queue: DispatchQueue.global()) {
+            completion?()
+        }
     }
     
-    private func downloadNote(id: UUID, completion: @escaping (Result<Note, AFError>) -> Void) {
+    func downloadNote(with id: UUID, completion: @escaping (Result<Note, AFError>) -> Void) {
         guard accessToken != nil else {
             completion(.failure(.explicitlyCancelled))
             return
@@ -157,80 +168,10 @@ extension YandexDiskManagerGCD {
             }
     }
     
-    private func downloadNotes(with ids: [UUID],
-                               noteDownloadConmpletion: @escaping (Result<Note, AFError>) -> Void,
-                               completion: (() -> Void)? = nil) {
-        
-        let group = DispatchGroup()
-        
-        
-        for id in ids {
-            group.enter()
-            self.downloadNote(id: id) { result in
-                noteDownloadConmpletion(result)
-                group.leave()
-            }
-        }
-        
-        group.notify(queue: DispatchQueue.global()) {
-            completion?()
-        }
-    }
+    
 }
-
-
 extension YandexDiskManagerGCD {
-    private func getUpdateContext() -> NSManagedObjectContext {
-        let backgroundContext =
-            CoreDataStackHolder.shared.persistentContainer.newBackgroundContext()
-        backgroundContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
-        
-        return backgroundContext
-    }
-    
-    
-    func syncData(completion: (() -> Void)? = nil) {
-        guard accessToken != nil else {
-            completion?()
-            return
-        }
-        
-        getAppCatalogInfo { result in
-            switch result {
-            case .success(let response):
-                let backgroundContext = self.getUpdateContext()
-                
-                let ids =
-                    response._embedded?.items
-                        .map { UUID(uuidString: ($0.name as NSString).deletingPathExtension) }.compactMap { $0 } ?? []
-                
-                self.uploadMissingNotes(ids: ids, in: backgroundContext)
-                
-                self.downloadNotes(with: ids) { result in
-                    
-                    
-                    switch result {
-                    case .success(let note):
-                        backgroundContext.perform {
-                            let _ = note.toManagedObject(context: backgroundContext)
-                            backgroundContext.trySave()
-                        }
-                    case .failure(let error):
-                        print(error)
-                    }
-                } completion: {
-                    completion?()
-                }
-
-            case .failure(let error):
-                print(error)
-                completion?()
-            }
-        }
-    }
-    
-    
-    private func getAppCatalogInfo(completion: @escaping (Result<Resource, AFError>) -> Void) {
+    func getAppCatalogInfo(completion: @escaping (Result<Resource, AFError>) -> Void) {
         guard let token = accessToken else {
             return
         }
@@ -250,19 +191,6 @@ extension YandexDiskManagerGCD {
             .responseDecodable(of: Resource.self, queue: DispatchQueue.global()) { dataResponse in
                 completion(dataResponse.result)
             }
-    }
-    
-    private func uploadMissingNotes(ids: [UUID], in context: NSManagedObjectContext) {
-        context.perform {
-            let fetchRequest = NoteMO.fetchRequest()
-            fetchRequest.predicate = NSPredicate(format: "NOT(id IN %@)", ids)
-            
-            if let notes = try? context.fetch(fetchRequest) {
-                for note in notes {
-                    YandexDiskManagerGCD.shared.uploadNote(note)
-                }
-            }
-        }
     }
 }
 
@@ -294,4 +222,6 @@ extension YandexDiskManagerGCD {
                 completion(dataResponse.result)
             }
     }
+    
+    
 }

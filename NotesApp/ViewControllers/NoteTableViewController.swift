@@ -260,7 +260,7 @@ extension NoteTableViewController {
     
     @objc private func synchronizeData() {
         tableView.isUserInteractionEnabled = false
-        YandexDiskManagerGCD.shared.syncData {
+        YandexDiskSynchronizatinManager.shared.syncData {
             DispatchQueue.main.async {
                 self.endRefreshing()
                 self.tableView.isUserInteractionEnabled = true
