@@ -117,9 +117,8 @@
 				2D971DAB28002D8300EFC6E9 /* Helpers */,
 				2D971DA128002A8A00EFC6E9 /* Extensions */,
 				2D971DA028002A6700EFC6E9 /* Resources */,
-				2D864D0A27EC6C900001B06B /* AppDelegate.swift */,
-				2D864D0C27EC6C900001B06B /* SceneDelegate.swift */,
-				2D864D1827EC6C980001B06B /* Info.plist */,
+				2D971DAC2800309400EFC6E9 /* AppStartup */,
+				2D971DAD280030B700EFC6E9 /* SupportFiles */,
 			);
 			path = NotesApp;
 			sourceTree = "<group>";
@@ -237,6 +236,23 @@
 				2D484FBD27F1B331004DA032 /* CoreDataStackHolder.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		2D971DAC2800309400EFC6E9 /* AppStartup */ = {
+			isa = PBXGroup;
+			children = (
+				2D864D0C27EC6C900001B06B /* SceneDelegate.swift */,
+				2D864D0A27EC6C900001B06B /* AppDelegate.swift */,
+			);
+			path = AppStartup;
+			sourceTree = "<group>";
+		};
+		2D971DAD280030B700EFC6E9 /* SupportFiles */ = {
+			isa = PBXGroup;
+			children = (
+				2D864D1827EC6C980001B06B /* Info.plist */,
+			);
+			path = SupportFiles;
 			sourceTree = "<group>";
 		};
 		63FB9362A13FE5496F158C74 /* Pods */ = {
@@ -548,13 +564,14 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = HUN84826YQ;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = NotesApp/Info.plist;
+				INFOPLIST_FILE = NotesApp/SupportFiles/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Просто заметки";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -579,13 +596,14 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = HUN84826YQ;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = NotesApp/Info.plist;
+				INFOPLIST_FILE = NotesApp/SupportFiles/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Просто заметки";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
