@@ -1,20 +1,11 @@
 //
-//  Note.swift
+//  Note+ManagedObjectConvertible.swift
 //  NotesApp
 //
-//  Created by Сашок on 05.04.2022.
+//  Created by Сашок on 08.04.2022.
 //
 
 import CoreData
-
-struct Note: Codable {
-    let id: UUID
-    let title: String
-    let content: String
-    let color: Int64
-    let pinned: Bool
-    let date: Date
-}
 
 extension Note: MangedObjectConvertible{
     func toManagedObject(context: NSManagedObjectContext) -> NoteMO {

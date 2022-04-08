@@ -8,20 +8,7 @@
 import CoreData
 import Alamofire
 
-struct UrlResponse: Decodable {
-    let href: String
-    let method: String
-}
 
-struct Resource: Decodable {
-    let name: String
-    let path: String
-    let _embedded: ResourceList?
-}
-
-struct ResourceList: Decodable {
-    let items: [Resource]
-}
 
 class YandexDiskManagerGCD {
     static let shared = YandexDiskManagerGCD()

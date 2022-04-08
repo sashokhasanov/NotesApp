@@ -34,7 +34,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Название заметки" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="5t4-ZR-NVn" customClass="UnderlinedTextField" customModule="NotesApp" customModuleProvider="target">
-                                        <rect key="frame" x="65" y="0.0" width="309" height="40"/>
+                                        <rect key="frame" x="65" y="12" width="309" height="28"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
                                         <textInputTraits key="textInputTraits" returnKeyType="next"/>
                                     </textField>
@@ -354,7 +354,7 @@
     </scenes>
     <designables>
         <designable name="5t4-ZR-NVn">
-            <size key="intrinsicContentSize" width="200" height="40"/>
+            <size key="intrinsicContentSize" width="200" height="28"/>
         </designable>
     </designables>
     <resources>

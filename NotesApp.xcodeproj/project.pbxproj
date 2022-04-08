@@ -21,15 +21,15 @@
 		2D864D1227EC6C910001B06B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D864D1027EC6C910001B06B /* Main.storyboard */; };
 		2D864D1427EC6C980001B06B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2D864D1327EC6C980001B06B /* Assets.xcassets */; };
 		2D864D1727EC6C980001B06B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D864D1527EC6C980001B06B /* LaunchScreen.storyboard */; };
-		2D971D8327FC4EF800EFC6E9 /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D971D8227FC4EF800EFC6E9 /* Note.swift */; };
-		2D971D8527FC4FCC00EFC6E9 /* ModelConversion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D971D8427FC4FCC00EFC6E9 /* ModelConversion.swift */; };
+		2D971D8327FC4EF800EFC6E9 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D971D8227FC4EF800EFC6E9 /* Model.swift */; };
+		2D971D8527FC4FCC00EFC6E9 /* ModelConversionProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D971D8427FC4FCC00EFC6E9 /* ModelConversionProtocols.swift */; };
 		2D971D8727FC519500EFC6E9 /* NoteMO+ModelConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D971D8627FC519500EFC6E9 /* NoteMO+ModelConvertible.swift */; };
 		2D971D9527FC6E2700EFC6E9 /* YandexDiskManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D971D9427FC6E2700EFC6E9 /* YandexDiskManager.swift */; };
-		2D971D9B27FF961000EFC6E9 /* NSNotification.Name+AccessTokenReceived in Sources */ = {isa = PBXBuildFile; fileRef = 2D971D9A27FF961000EFC6E9 /* NSNotification.Name+AccessTokenReceived */; };
+		2D971D9B27FF961000EFC6E9 /* NSNotification.Name+AccessTokenReceived.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D971D9A27FF961000EFC6E9 /* NSNotification.Name+AccessTokenReceived.swift */; };
 		2D971D9D27FF96FC00EFC6E9 /* UIButton+TapAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D971D9C27FF96FC00EFC6E9 /* UIButton+TapAnimation.swift */; };
+		2D971DA928002CBB00EFC6E9 /* Note+ManagedObjectConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D971DA828002CBB00EFC6E9 /* Note+ManagedObjectConvertible.swift */; };
 		2DDD10DC27F7B09E00B8DF98 /* YandexDiskTokenProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDD10DB27F7B09E00B8DF98 /* YandexDiskTokenProvider.swift */; };
 		2DDD10DE27FAE20700B8DF98 /* YandexDiskAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDD10DD27FAE20700B8DF98 /* YandexDiskAuthenticationService.swift */; };
-		2DDD10E027FAE76200B8DF98 /* WebAuthenticationPresentationContextProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDD10DF27FAE76200B8DF98 /* WebAuthenticationPresentationContextProvider.swift */; };
 		2DE478E427ECBDF60088C0E5 /* CircleMarkerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE478E327ECBDF50088C0E5 /* CircleMarkerView.swift */; };
 		2DE478E627ED0DEB0088C0E5 /* GradientMarkerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE478E527ED0DEB0088C0E5 /* GradientMarkerView.swift */; };
 		2DF8AB1E27F0AFAE009D7A21 /* NoteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF8AB1C27F0AFAE009D7A21 /* NoteTableViewCell.swift */; };
@@ -56,15 +56,15 @@
 		2D864D1327EC6C980001B06B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2D864D1627EC6C980001B06B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2D864D1827EC6C980001B06B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2D971D8227FC4EF800EFC6E9 /* Note.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
-		2D971D8427FC4FCC00EFC6E9 /* ModelConversion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelConversion.swift; sourceTree = "<group>"; };
+		2D971D8227FC4EF800EFC6E9 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		2D971D8427FC4FCC00EFC6E9 /* ModelConversionProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelConversionProtocols.swift; sourceTree = "<group>"; };
 		2D971D8627FC519500EFC6E9 /* NoteMO+ModelConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NoteMO+ModelConvertible.swift"; sourceTree = "<group>"; };
 		2D971D9427FC6E2700EFC6E9 /* YandexDiskManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YandexDiskManager.swift; sourceTree = "<group>"; };
-		2D971D9A27FF961000EFC6E9 /* NSNotification.Name+AccessTokenReceived */ = {isa = PBXFileReference; lastKnownFileType = text; path = "NSNotification.Name+AccessTokenReceived"; sourceTree = "<group>"; };
+		2D971D9A27FF961000EFC6E9 /* NSNotification.Name+AccessTokenReceived.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSNotification.Name+AccessTokenReceived.swift"; sourceTree = "<group>"; };
 		2D971D9C27FF96FC00EFC6E9 /* UIButton+TapAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+TapAnimation.swift"; sourceTree = "<group>"; };
+		2D971DA828002CBB00EFC6E9 /* Note+ManagedObjectConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Note+ManagedObjectConvertible.swift"; sourceTree = "<group>"; };
 		2DDD10DB27F7B09E00B8DF98 /* YandexDiskTokenProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YandexDiskTokenProvider.swift; sourceTree = "<group>"; };
 		2DDD10DD27FAE20700B8DF98 /* YandexDiskAuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YandexDiskAuthenticationService.swift; sourceTree = "<group>"; };
-		2DDD10DF27FAE76200B8DF98 /* WebAuthenticationPresentationContextProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebAuthenticationPresentationContextProvider.swift; sourceTree = "<group>"; };
 		2DE478E327ECBDF50088C0E5 /* CircleMarkerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleMarkerView.swift; sourceTree = "<group>"; };
 		2DE478E527ED0DEB0088C0E5 /* GradientMarkerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientMarkerView.swift; sourceTree = "<group>"; };
 		2DF8AB1C27F0AFAE009D7A21 /* NoteTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteTableViewCell.swift; sourceTree = "<group>"; };
@@ -109,38 +109,134 @@
 		2D864D0927EC6C900001B06B /* NotesApp */ = {
 			isa = PBXGroup;
 			children = (
+				2D971D9E280029DA00EFC6E9 /* Storyboards */,
+				2D971DA228002ACF00EFC6E9 /* ViewControllers */,
+				2D971D9F28002A0000EFC6E9 /* Views */,
+				2D971DA328002BB800EFC6E9 /* Model */,
+				2D971DA628002C1200EFC6E9 /* Services */,
+				2D971DAB28002D8300EFC6E9 /* Helpers */,
+				2D971DA128002A8A00EFC6E9 /* Extensions */,
+				2D971DA028002A6700EFC6E9 /* Resources */,
 				2D864D0A27EC6C900001B06B /* AppDelegate.swift */,
 				2D864D0C27EC6C900001B06B /* SceneDelegate.swift */,
-				2D864D0E27EC6C910001B06B /* NoteViewController.swift */,
-				2DF8AB2227F0C313009D7A21 /* UIColor+Extension.swift */,
-				2DE478E327ECBDF50088C0E5 /* CircleMarkerView.swift */,
-				2D484FBA27F1B181004DA032 /* Model.xcdatamodeld */,
-				2D484FBD27F1B331004DA032 /* CoreDataStackHolder.swift */,
-				2D484FBF27F1DA9E004DA032 /* NotesProvider.swift */,
-				2D971D9427FC6E2700EFC6E9 /* YandexDiskManager.swift */,
-				2D864D1027EC6C910001B06B /* Main.storyboard */,
-				2D48501527F71D83004DA032 /* AuthenticationService.swift */,
-				2DDD10DF27FAE76200B8DF98 /* WebAuthenticationPresentationContextProvider.swift */,
-				2DDD10DD27FAE20700B8DF98 /* YandexDiskAuthenticationService.swift */,
-				2D48501327F7092C004DA032 /* SynchronizationViewController.swift */,
-				2DDD10DB27F7B09E00B8DF98 /* YandexDiskTokenProvider.swift */,
-				2D48501727F7381F004DA032 /* KeyChainService.swift */,
-				2D484FB827F0DA1E004DA032 /* UnderlinedTextField.swift */,
-				2DF8AB1C27F0AFAE009D7A21 /* NoteTableViewCell.swift */,
-				2DF8AB1D27F0AFAE009D7A21 /* NoteTableViewCell.xib */,
-				2DE478E527ED0DEB0088C0E5 /* GradientMarkerView.swift */,
-				2D864D1327EC6C980001B06B /* Assets.xcassets */,
-				2D864D1527EC6C980001B06B /* LaunchScreen.storyboard */,
 				2D864D1827EC6C980001B06B /* Info.plist */,
-				2DF8AB2027F0B96D009D7A21 /* NoteTableViewController.swift */,
-				2D971D9C27FF96FC00EFC6E9 /* UIButton+TapAnimation.swift */,
-				2D971D9A27FF961000EFC6E9 /* NSNotification.Name+AccessTokenReceived */,
-				2D971D8227FC4EF800EFC6E9 /* Note.swift */,
-				2D971D8627FC519500EFC6E9 /* NoteMO+ModelConvertible.swift */,
-				2D971D8427FC4FCC00EFC6E9 /* ModelConversion.swift */,
-				2D484FC327F24EE7004DA032 /* CoreData+Convenience.swift */,
 			);
 			path = NotesApp;
+			sourceTree = "<group>";
+		};
+		2D971D9E280029DA00EFC6E9 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				2D864D1027EC6C910001B06B /* Main.storyboard */,
+				2D864D1527EC6C980001B06B /* LaunchScreen.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		2D971D9F28002A0000EFC6E9 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				2DF8AB1C27F0AFAE009D7A21 /* NoteTableViewCell.swift */,
+				2DF8AB1D27F0AFAE009D7A21 /* NoteTableViewCell.xib */,
+				2DE478E327ECBDF50088C0E5 /* CircleMarkerView.swift */,
+				2DE478E527ED0DEB0088C0E5 /* GradientMarkerView.swift */,
+				2D484FB827F0DA1E004DA032 /* UnderlinedTextField.swift */,
+				2D971D9C27FF96FC00EFC6E9 /* UIButton+TapAnimation.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		2D971DA028002A6700EFC6E9 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				2D864D1327EC6C980001B06B /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		2D971DA128002A8A00EFC6E9 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				2DF8AB2227F0C313009D7A21 /* UIColor+Extension.swift */,
+				2D484FC327F24EE7004DA032 /* CoreData+Convenience.swift */,
+				2D971D9A27FF961000EFC6E9 /* NSNotification.Name+AccessTokenReceived.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		2D971DA228002ACF00EFC6E9 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				2D48501327F7092C004DA032 /* SynchronizationViewController.swift */,
+				2DF8AB2027F0B96D009D7A21 /* NoteTableViewController.swift */,
+				2D864D0E27EC6C910001B06B /* NoteViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		2D971DA328002BB800EFC6E9 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				2D971DA528002BDB00EFC6E9 /* Domain */,
+				2D971DA428002BCB00EFC6E9 /* CoreData */,
+				2D971D8427FC4FCC00EFC6E9 /* ModelConversionProtocols.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		2D971DA428002BCB00EFC6E9 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				2D971D8627FC519500EFC6E9 /* NoteMO+ModelConvertible.swift */,
+				2D484FBA27F1B181004DA032 /* Model.xcdatamodeld */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
+		2D971DA528002BDB00EFC6E9 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				2D971D8227FC4EF800EFC6E9 /* Model.swift */,
+				2D971DA828002CBB00EFC6E9 /* Note+ManagedObjectConvertible.swift */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		2D971DA628002C1200EFC6E9 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				2D971DAA28002D2600EFC6E9 /* Common */,
+				2D971DA728002C1D00EFC6E9 /* YandexDisk */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		2D971DA728002C1D00EFC6E9 /* YandexDisk */ = {
+			isa = PBXGroup;
+			children = (
+				2D971D9427FC6E2700EFC6E9 /* YandexDiskManager.swift */,
+				2DDD10DD27FAE20700B8DF98 /* YandexDiskAuthenticationService.swift */,
+				2DDD10DB27F7B09E00B8DF98 /* YandexDiskTokenProvider.swift */,
+			);
+			path = YandexDisk;
+			sourceTree = "<group>";
+		};
+		2D971DAA28002D2600EFC6E9 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				2D48501527F71D83004DA032 /* AuthenticationService.swift */,
+				2D48501727F7381F004DA032 /* KeyChainService.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		2D971DAB28002D8300EFC6E9 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				2D484FBF27F1DA9E004DA032 /* NotesProvider.swift */,
+				2D484FBD27F1B331004DA032 /* CoreDataStackHolder.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		63FB9362A13FE5496F158C74 /* Pods */ = {
@@ -279,14 +375,14 @@
 				2D48501427F7092D004DA032 /* SynchronizationViewController.swift in Sources */,
 				2D971D8727FC519500EFC6E9 /* NoteMO+ModelConvertible.swift in Sources */,
 				2DDD10DC27F7B09E00B8DF98 /* YandexDiskTokenProvider.swift in Sources */,
-				2DDD10E027FAE76200B8DF98 /* WebAuthenticationPresentationContextProvider.swift in Sources */,
 				2DF8AB2327F0C313009D7A21 /* UIColor+Extension.swift in Sources */,
 				2D484FBE27F1B331004DA032 /* CoreDataStackHolder.swift in Sources */,
+				2D971DA928002CBB00EFC6E9 /* Note+ManagedObjectConvertible.swift in Sources */,
 				2DDD10DE27FAE20700B8DF98 /* YandexDiskAuthenticationService.swift in Sources */,
 				2D864D0F27EC6C910001B06B /* NoteViewController.swift in Sources */,
 				2DF8AB2127F0B96D009D7A21 /* NoteTableViewController.swift in Sources */,
-				2D971D8527FC4FCC00EFC6E9 /* ModelConversion.swift in Sources */,
-				2D971D8327FC4EF800EFC6E9 /* Note.swift in Sources */,
+				2D971D8527FC4FCC00EFC6E9 /* ModelConversionProtocols.swift in Sources */,
+				2D971D8327FC4EF800EFC6E9 /* Model.swift in Sources */,
 				2D864D0B27EC6C900001B06B /* AppDelegate.swift in Sources */,
 				2D864D0D27EC6C900001B06B /* SceneDelegate.swift in Sources */,
 				2D484FB927F0DA1E004DA032 /* UnderlinedTextField.swift in Sources */,
@@ -298,7 +394,7 @@
 				2D48501827F73820004DA032 /* KeyChainService.swift in Sources */,
 				2DE478E627ED0DEB0088C0E5 /* GradientMarkerView.swift in Sources */,
 				2DF8AB1E27F0AFAE009D7A21 /* NoteTableViewCell.swift in Sources */,
-				2D971D9B27FF961000EFC6E9 /* NSNotification.Name+AccessTokenReceived in Sources */,
+				2D971D9B27FF961000EFC6E9 /* NSNotification.Name+AccessTokenReceived.swift in Sources */,
 				2D484FBC27F1B181004DA032 /* Model.xcdatamodeld in Sources */,
 				2D484FC427F24EE8004DA032 /* CoreData+Convenience.swift in Sources */,
 			);
