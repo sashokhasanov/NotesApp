@@ -226,7 +226,7 @@
         <!--Синхронизация-->
         <scene sceneID="5NN-qk-Z5X">
             <objects>
-                <viewController id="2f6-yb-XR9" customClass="LoginViewController" customModule="NotesApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="2f6-yb-XR9" customClass="SynchronizationViewController" customModule="NotesApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Nxj-gK-Hmn">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -273,7 +273,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <action selector="logoffButtonPressed:" destination="2f6-yb-XR9" eventType="touchUpInside" id="ujd-oS-vap"/>
+                                            <action selector="disableSynchronizationButtonTapped:" destination="2f6-yb-XR9" eventType="touchUpInside" id="QPy-AK-AVU"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -302,7 +302,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <action selector="syncButtonPressed:" destination="2f6-yb-XR9" eventType="touchUpInside" id="ntP-sq-I0R"/>
+                                            <action selector="enableSynchronizationButtonTapped:" destination="2f6-yb-XR9" eventType="touchUpInside" id="may-Yj-mZu"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -322,10 +322,10 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Синхронизация" image="arrow.triangle.2.circlepath" catalog="system" id="8LU-VQ-QYP"/>
                     <connections>
-                        <outlet property="loginElementsStackView" destination="EV8-gy-9sr" id="Bdq-H5-TJT"/>
-                        <outlet property="logoffElementsStackView" destination="iR1-Zo-W2t" id="kgq-TO-Nuz"/>
-                        <outlet property="syncStatusImageView" destination="dsb-Nx-lrS" id="UhS-N8-VP2"/>
-                        <outlet property="syncStatusLabel" destination="WNx-Qp-0ck" id="l2d-Zj-ZJr"/>
+                        <outlet property="disableSynchronizationElementsStackView" destination="iR1-Zo-W2t" id="kgq-TO-Nuz"/>
+                        <outlet property="enableSynchronizationElementsStackView" destination="EV8-gy-9sr" id="Bdq-H5-TJT"/>
+                        <outlet property="synchronizationStatusImageView" destination="dsb-Nx-lrS" id="UhS-N8-VP2"/>
+                        <outlet property="synchronizationStatusLabel" destination="WNx-Qp-0ck" id="l2d-Zj-ZJr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IhZ-1U-5iX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

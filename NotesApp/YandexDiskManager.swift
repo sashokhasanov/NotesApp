@@ -13,22 +13,27 @@ struct UrlResponse: Decodable {
     let method: String
 }
 
-struct GetCatlogMetaInfoResponse: Decodable {
+struct Resource: Decodable {
     let name: String
-    let _embedded: ResourceList
+    let path: String
+    let _embedded: ResourceList?
 }
 
 struct ResourceList: Decodable {
     let items: [Resource]
 }
 
-struct Resource: Decodable {
-    let name: String
-    let path: String
-}
-
 class YandexDiskManagerGCD {
     static let shared = YandexDiskManagerGCD()
+    
+    let baseUrl = "https://cloud-api.yandex.net/v1/disk/resources"
+    
+    private let backendSerialQueue = DispatchQueue(label: "myquwue", qos: .utility)
+    private let semaphore = DispatchSemaphore(value: 1)
+    
+    private var accessToken: String? {
+        YandexDiskTokenProvider.shared.getAuthToken()
+    }
     
     private init() {}
 
@@ -39,17 +44,6 @@ class YandexDiskManagerGCD {
         
         return backgroundContext
     }
-    
-    
-    private let backendSerialQueue = DispatchQueue(label: "myquwue", qos: .utility)
-//    private let backendConcurrentQueue = DispatchQueue(label: "concurrentQueue", qos: .utility, attributes: [.concurrent])
-    private let semaphore = DispatchSemaphore(value: 1)
-    
-    var accessToken: String? {
-        YandexDiskTokenProvider.shared.getAuthToken()
-    }
-    
-    let baseUrl = "https://cloud-api.yandex.net/v1/disk/resources"
 }
 
 // MARK: delete note
@@ -92,7 +86,6 @@ extension YandexDiskManagerGCD {
             }
     }
 }
-
 
 // MARK:  - save note to yandex disk
 extension YandexDiskManagerGCD {
@@ -165,7 +158,6 @@ extension YandexDiskManagerGCD {
 }
 
 extension YandexDiskManagerGCD {
-    
     private func downloadNote(id: UUID, completion: @escaping (Result<Note, AFError>) -> Void) {
         guard accessToken != nil else {
             completion(.failure(.explicitlyCancelled))
@@ -251,7 +243,8 @@ extension YandexDiskManagerGCD {
                 let backgroundContext = self.getUpdateContext()
                 
                 let ids =
-                    response._embedded.items.map { UUID(uuidString: ($0.name as NSString).deletingPathExtension) }.compactMap { $0 }
+                    response._embedded?.items
+                        .map { UUID(uuidString: ($0.name as NSString).deletingPathExtension) }.compactMap { $0 } ?? []
                 
                 self.uploadMissingNotes(ids: ids, in: backgroundContext)
                 
@@ -260,7 +253,6 @@ extension YandexDiskManagerGCD {
                     
                     switch result {
                     case .success(let note):
-                        print("download finish \(note.title)")
                         backgroundContext.perform {
                             let _ = note.toManagedObject(context: backgroundContext)
                             backgroundContext.trySave()
@@ -280,7 +272,7 @@ extension YandexDiskManagerGCD {
     }
     
     
-    private func getAppCatalogInfo(completion: @escaping (Result<GetCatlogMetaInfoResponse, AFError>) -> Void) {
+    private func getAppCatalogInfo(completion: @escaping (Result<Resource, AFError>) -> Void) {
         guard let token = accessToken else {
             return
         }
@@ -297,7 +289,7 @@ extension YandexDiskManagerGCD {
         
         AF.request("\(baseUrl)", parameters: parameters, headers: headers)
             .validate()
-            .responseDecodable(of: GetCatlogMetaInfoResponse.self, queue: DispatchQueue.global()) { dataResponse in
+            .responseDecodable(of: Resource.self, queue: DispatchQueue.global()) { dataResponse in
                 completion(dataResponse.result)
             }
     }

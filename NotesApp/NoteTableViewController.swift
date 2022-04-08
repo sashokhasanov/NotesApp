@@ -1,5 +1,5 @@
 //
-//  NotesTableViewController.swift
+//  NoteTableViewController.swift
 //  NotesApp
 //
 //  Created by Сашок on 27.03.2022.
@@ -63,16 +63,16 @@ extension NoteTableViewController {
     
     private func setupRefreshControl() {
         refreshControl = UIRefreshControl()
-        refreshControl?.addTarget(self, action: #selector(syncData), for: .valueChanged)
+        refreshControl?.addTarget(self, action: #selector(synchronizeData), for: .valueChanged)
     }
     
     private func setupNotificationsObservation() {
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(managedObjectContextDidSave),
-                                               name: NSNotification.Name.NSManagedObjectContextDidSave, object: nil)
+                                               name: .NSManagedObjectContextDidSave, object: nil)
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(accessTokenReceived),
-                                               name: NSNotification.Name("accessTokenGranted"), object: nil)
+                                               name: .accessTokenReceived, object: nil)
     }
 }
 
@@ -172,6 +172,7 @@ extension NoteTableViewController {
         guard segue.identifier == "showNote" else { return }
         guard let noteViewController = segue.destination as? NoteViewController else { return }
         guard let indexPath = tableView.indexPathsForSelectedRows?.first else { return }
+        noteViewController.hidesBottomBarWhenPushed = true
         noteViewController.note = dataProvider.fetchedResultsController.object(at: indexPath)
         noteViewController.delegate = self
     }
@@ -254,13 +255,12 @@ extension NoteTableViewController {
     
     @objc private func accessTokenReceived() {
         beginRefreshing()
-        syncData()
+        synchronizeData()
     }
     
-    @objc private func syncData() {
+    @objc private func synchronizeData() {
         tableView.isUserInteractionEnabled = false
         YandexDiskManagerGCD.shared.syncData {
-            print("sync completion")
             DispatchQueue.main.async {
                 self.endRefreshing()
                 self.tableView.isUserInteractionEnabled = true

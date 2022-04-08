@@ -11,8 +11,8 @@
 		2D484FBC27F1B181004DA032 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2D484FBA27F1B181004DA032 /* Model.xcdatamodeld */; };
 		2D484FBE27F1B331004DA032 /* CoreDataStackHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D484FBD27F1B331004DA032 /* CoreDataStackHolder.swift */; };
 		2D484FC027F1DA9E004DA032 /* NotesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D484FBF27F1DA9E004DA032 /* NotesProvider.swift */; };
-		2D484FC427F24EE8004DA032 /* CoreData+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D484FC327F24EE7004DA032 /* CoreData+Extension.swift */; };
-		2D48501427F7092D004DA032 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D48501327F7092C004DA032 /* LoginViewController.swift */; };
+		2D484FC427F24EE8004DA032 /* CoreData+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D484FC327F24EE7004DA032 /* CoreData+Convenience.swift */; };
+		2D48501427F7092D004DA032 /* SynchronizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D48501327F7092C004DA032 /* SynchronizationViewController.swift */; };
 		2D48501627F71D84004DA032 /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D48501527F71D83004DA032 /* AuthenticationService.swift */; };
 		2D48501827F73820004DA032 /* KeyChainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D48501727F7381F004DA032 /* KeyChainService.swift */; };
 		2D864D0B27EC6C900001B06B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D864D0A27EC6C900001B06B /* AppDelegate.swift */; };
@@ -25,6 +25,8 @@
 		2D971D8527FC4FCC00EFC6E9 /* ModelConversion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D971D8427FC4FCC00EFC6E9 /* ModelConversion.swift */; };
 		2D971D8727FC519500EFC6E9 /* NoteMO+ModelConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D971D8627FC519500EFC6E9 /* NoteMO+ModelConvertible.swift */; };
 		2D971D9527FC6E2700EFC6E9 /* YandexDiskManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D971D9427FC6E2700EFC6E9 /* YandexDiskManager.swift */; };
+		2D971D9B27FF961000EFC6E9 /* NSNotification.Name+AccessTokenReceived in Sources */ = {isa = PBXBuildFile; fileRef = 2D971D9A27FF961000EFC6E9 /* NSNotification.Name+AccessTokenReceived */; };
+		2D971D9D27FF96FC00EFC6E9 /* UIButton+TapAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D971D9C27FF96FC00EFC6E9 /* UIButton+TapAnimation.swift */; };
 		2DDD10DC27F7B09E00B8DF98 /* YandexDiskTokenProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDD10DB27F7B09E00B8DF98 /* YandexDiskTokenProvider.swift */; };
 		2DDD10DE27FAE20700B8DF98 /* YandexDiskAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDD10DD27FAE20700B8DF98 /* YandexDiskAuthenticationService.swift */; };
 		2DDD10E027FAE76200B8DF98 /* WebAuthenticationPresentationContextProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDD10DF27FAE76200B8DF98 /* WebAuthenticationPresentationContextProvider.swift */; };
@@ -42,8 +44,8 @@
 		2D484FBB27F1B181004DA032 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		2D484FBD27F1B331004DA032 /* CoreDataStackHolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStackHolder.swift; sourceTree = "<group>"; };
 		2D484FBF27F1DA9E004DA032 /* NotesProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesProvider.swift; sourceTree = "<group>"; };
-		2D484FC327F24EE7004DA032 /* CoreData+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CoreData+Extension.swift"; sourceTree = "<group>"; };
-		2D48501327F7092C004DA032 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		2D484FC327F24EE7004DA032 /* CoreData+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CoreData+Convenience.swift"; sourceTree = "<group>"; };
+		2D48501327F7092C004DA032 /* SynchronizationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SynchronizationViewController.swift; sourceTree = "<group>"; };
 		2D48501527F71D83004DA032 /* AuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationService.swift; sourceTree = "<group>"; };
 		2D48501727F7381F004DA032 /* KeyChainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyChainService.swift; sourceTree = "<group>"; };
 		2D864D0727EC6C900001B06B /* NotesApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NotesApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -58,6 +60,8 @@
 		2D971D8427FC4FCC00EFC6E9 /* ModelConversion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelConversion.swift; sourceTree = "<group>"; };
 		2D971D8627FC519500EFC6E9 /* NoteMO+ModelConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NoteMO+ModelConvertible.swift"; sourceTree = "<group>"; };
 		2D971D9427FC6E2700EFC6E9 /* YandexDiskManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YandexDiskManager.swift; sourceTree = "<group>"; };
+		2D971D9A27FF961000EFC6E9 /* NSNotification.Name+AccessTokenReceived */ = {isa = PBXFileReference; lastKnownFileType = text; path = "NSNotification.Name+AccessTokenReceived"; sourceTree = "<group>"; };
+		2D971D9C27FF96FC00EFC6E9 /* UIButton+TapAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+TapAnimation.swift"; sourceTree = "<group>"; };
 		2DDD10DB27F7B09E00B8DF98 /* YandexDiskTokenProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YandexDiskTokenProvider.swift; sourceTree = "<group>"; };
 		2DDD10DD27FAE20700B8DF98 /* YandexDiskAuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YandexDiskAuthenticationService.swift; sourceTree = "<group>"; };
 		2DDD10DF27FAE76200B8DF98 /* WebAuthenticationPresentationContextProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebAuthenticationPresentationContextProvider.swift; sourceTree = "<group>"; };
@@ -118,7 +122,7 @@
 				2D48501527F71D83004DA032 /* AuthenticationService.swift */,
 				2DDD10DF27FAE76200B8DF98 /* WebAuthenticationPresentationContextProvider.swift */,
 				2DDD10DD27FAE20700B8DF98 /* YandexDiskAuthenticationService.swift */,
-				2D48501327F7092C004DA032 /* LoginViewController.swift */,
+				2D48501327F7092C004DA032 /* SynchronizationViewController.swift */,
 				2DDD10DB27F7B09E00B8DF98 /* YandexDiskTokenProvider.swift */,
 				2D48501727F7381F004DA032 /* KeyChainService.swift */,
 				2D484FB827F0DA1E004DA032 /* UnderlinedTextField.swift */,
@@ -129,10 +133,12 @@
 				2D864D1527EC6C980001B06B /* LaunchScreen.storyboard */,
 				2D864D1827EC6C980001B06B /* Info.plist */,
 				2DF8AB2027F0B96D009D7A21 /* NoteTableViewController.swift */,
+				2D971D9C27FF96FC00EFC6E9 /* UIButton+TapAnimation.swift */,
+				2D971D9A27FF961000EFC6E9 /* NSNotification.Name+AccessTokenReceived */,
 				2D971D8227FC4EF800EFC6E9 /* Note.swift */,
 				2D971D8627FC519500EFC6E9 /* NoteMO+ModelConvertible.swift */,
 				2D971D8427FC4FCC00EFC6E9 /* ModelConversion.swift */,
-				2D484FC327F24EE7004DA032 /* CoreData+Extension.swift */,
+				2D484FC327F24EE7004DA032 /* CoreData+Convenience.swift */,
 			);
 			path = NotesApp;
 			sourceTree = "<group>";
@@ -270,7 +276,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2D48501427F7092D004DA032 /* LoginViewController.swift in Sources */,
+				2D48501427F7092D004DA032 /* SynchronizationViewController.swift in Sources */,
 				2D971D8727FC519500EFC6E9 /* NoteMO+ModelConvertible.swift in Sources */,
 				2DDD10DC27F7B09E00B8DF98 /* YandexDiskTokenProvider.swift in Sources */,
 				2DDD10E027FAE76200B8DF98 /* WebAuthenticationPresentationContextProvider.swift in Sources */,
@@ -284,6 +290,7 @@
 				2D864D0B27EC6C900001B06B /* AppDelegate.swift in Sources */,
 				2D864D0D27EC6C900001B06B /* SceneDelegate.swift in Sources */,
 				2D484FB927F0DA1E004DA032 /* UnderlinedTextField.swift in Sources */,
+				2D971D9D27FF96FC00EFC6E9 /* UIButton+TapAnimation.swift in Sources */,
 				2D48501627F71D84004DA032 /* AuthenticationService.swift in Sources */,
 				2DE478E427ECBDF60088C0E5 /* CircleMarkerView.swift in Sources */,
 				2D484FC027F1DA9E004DA032 /* NotesProvider.swift in Sources */,
@@ -291,8 +298,9 @@
 				2D48501827F73820004DA032 /* KeyChainService.swift in Sources */,
 				2DE478E627ED0DEB0088C0E5 /* GradientMarkerView.swift in Sources */,
 				2DF8AB1E27F0AFAE009D7A21 /* NoteTableViewCell.swift in Sources */,
+				2D971D9B27FF961000EFC6E9 /* NSNotification.Name+AccessTokenReceived in Sources */,
 				2D484FBC27F1B181004DA032 /* Model.xcdatamodeld in Sources */,
-				2D484FC427F24EE8004DA032 /* CoreData+Extension.swift in Sources */,
+				2D484FC427F24EE8004DA032 /* CoreData+Convenience.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
