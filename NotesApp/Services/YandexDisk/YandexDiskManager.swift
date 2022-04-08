@@ -8,8 +8,8 @@
 import CoreData
 import Alamofire
 
-class YandexDiskManagerGCD {
-    static let shared = YandexDiskManagerGCD()
+class YandexDiskManager {
+    static let shared = YandexDiskManager()
     
     private let baseUrl = "https://cloud-api.yandex.net/v1/disk/resources"
 
@@ -25,7 +25,7 @@ class YandexDiskManagerGCD {
 }
 
 // MARK: - Delete
-extension YandexDiskManagerGCD {
+extension YandexDiskManager {
     func deleteNote(_ noteMO: NoteMO) {
         guard accessToken != nil, let id = noteMO.id else {
             return
@@ -66,7 +66,7 @@ extension YandexDiskManagerGCD {
 }
 
 // MARK:  - Save
-extension YandexDiskManagerGCD {
+extension YandexDiskManager {
     func uploadNote(_ noteMO: NoteMO) {
         guard accessToken != nil, let note = noteMO.toModel() else {
             return
@@ -116,7 +116,7 @@ extension YandexDiskManagerGCD {
 }
 
 // MARK: - Download
-extension YandexDiskManagerGCD {
+extension YandexDiskManager {
     func downloadNotes(with ids: [UUID],
                                noteDownloadConmpletion: @escaping (Result<Note, AFError>) -> Void,
                                completion: (() -> Void)? = nil) {
@@ -170,7 +170,7 @@ extension YandexDiskManagerGCD {
     
     
 }
-extension YandexDiskManagerGCD {
+extension YandexDiskManager {
     func getAppCatalogInfo(completion: @escaping (Result<Resource, AFError>) -> Void) {
         guard let token = accessToken else {
             return
@@ -195,7 +195,7 @@ extension YandexDiskManagerGCD {
 }
 
 // MARK: - Common code
-extension YandexDiskManagerGCD {
+extension YandexDiskManager {
     private enum NoteOperation: String {
         case upload
         case download
@@ -222,6 +222,4 @@ extension YandexDiskManagerGCD {
                 completion(dataResponse.result)
             }
     }
-    
-    
 }

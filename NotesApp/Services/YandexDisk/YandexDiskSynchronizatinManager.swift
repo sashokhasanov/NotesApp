@@ -22,7 +22,7 @@ class YandexDiskSynchronizatinManager {
             return
         }
         
-        YandexDiskManagerGCD.shared.getAppCatalogInfo { result in
+        YandexDiskManager.shared.getAppCatalogInfo { result in
             switch result {
             case .success(let response):
                 let backgroundContext = self.getUpdateContext()
@@ -33,7 +33,7 @@ class YandexDiskSynchronizatinManager {
                 
                 self.scheduleUploadMissingNotes(ids: ids, in: backgroundContext)
                 
-                YandexDiskManagerGCD.shared.downloadNotes(with: ids) { result in
+                YandexDiskManager.shared.downloadNotes(with: ids) { result in
                     switch result {
                     case .success(let note):
                         backgroundContext.perform {
@@ -61,7 +61,7 @@ class YandexDiskSynchronizatinManager {
             
             if let notes = try? context.fetch(fetchRequest) {
                 for note in notes {
-                    YandexDiskManagerGCD.shared.uploadNote(note)
+                    YandexDiskManager.shared.uploadNote(note)
                 }
             }
         }

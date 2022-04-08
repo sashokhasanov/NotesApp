@@ -11,7 +11,24 @@ class YandexDiskAuthenticationService {
     static let shared = YandexDiskAuthenticationService()
     
     private let authorizationUrl = "https://oauth.yandex.ru/authorize"
-    private let clientId = "25e2a8a4c06141abbff41d2ce258343d"
+
+    private lazy var clientId: String = {
+        
+        guard let filePath = Bundle.main.path(forResource: "YandexDiskApp-Info", ofType: "plist") else {
+            fatalError("Couldn't find file 'YandexDiskApp-Info.plist'.")
+        }
+        
+        let plist = NSDictionary(contentsOfFile: filePath)
+        guard let value = plist?.object(forKey: "CLIENT_ID") as? String else {
+            fatalError("Couldn't find key 'CLIENT_ID' in 'YandexDiskApp-Info.plist'.")
+        }
+        
+        if (value.starts(with: "_")) {
+            fatalError("Provide client id for App registered at https://oauth.yandex.ru/")
+        }
+            
+        return value
+    }()
     
     private var tokenRequestUrl: URL? {
         guard var urlComponents = URLComponents(string: authorizationUrl) else {
