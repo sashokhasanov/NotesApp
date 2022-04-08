@@ -10,11 +10,49 @@ import CoreData
 class YandexDiskSynchronizatinManager {
     static let shared = YandexDiskSynchronizatinManager()
     
+    private let backendSerialQueue =
+        DispatchQueue(label: (Bundle.main.bundleIdentifier ?? "ru.awesome.NotesApp").appending(".backendSeriaQueue"), qos: .utility)
+    private let semaphore = DispatchSemaphore(value: 1)
+    
     private var accessToken: String? {
         YandexDiskTokenProvider.shared.getAuthToken()
     }
     
     private init() {}
+}
+
+// MARK: - Data synchronization
+extension YandexDiskSynchronizatinManager {
+    
+    func deleteNote(_ noteMO: NoteMO) {
+        guard accessToken != nil, let id = noteMO.id else {
+            return
+        }
+        
+        backendSerialQueue.async {
+            self.semaphore.wait()
+            YandexDiskManager.shared.deleteNote(id: id) { result in
+                print("delete end")
+                self.semaphore.signal()
+                print(result)
+            }
+        }
+    }
+    
+    func uploadNote(_ noteMO: NoteMO) {
+        guard accessToken != nil, let note = noteMO.toModel() else {
+            return
+        }
+        
+        backendSerialQueue.async {
+            self.semaphore.wait()
+            YandexDiskManager.shared.uploadNote(note: note) { result in
+                self.semaphore.signal()
+                print(result)
+                
+            }
+        }
+    }
     
     func syncData(completion: (() -> Void)? = nil) {
         guard accessToken != nil else {
@@ -61,7 +99,7 @@ class YandexDiskSynchronizatinManager {
             
             if let notes = try? context.fetch(fetchRequest) {
                 for note in notes {
-                    YandexDiskManager.shared.uploadNote(note)
+                    self.uploadNote(note)
                 }
             }
         }

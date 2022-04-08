@@ -13,10 +13,6 @@ class YandexDiskManager {
     
     private let baseUrl = "https://cloud-api.yandex.net/v1/disk/resources"
 
-    private let backendSerialQueue =
-        DispatchQueue(label: (Bundle.main.bundleIdentifier ?? "ru.awesome.NotesApp").appending(".backendSeriaQueue"), qos: .utility)
-    private let semaphore = DispatchSemaphore(value: 1)
-    
     private var accessToken: String? {
         YandexDiskTokenProvider.shared.getAuthToken()
     }
@@ -26,22 +22,7 @@ class YandexDiskManager {
 
 // MARK: - Delete
 extension YandexDiskManager {
-    func deleteNote(_ noteMO: NoteMO) {
-        guard accessToken != nil, let id = noteMO.id else {
-            return
-        }
-        
-        backendSerialQueue.async {
-            self.semaphore.wait()
-            self.deleteNote(id: id) { result in
-                print("delete end")
-                self.semaphore.signal()
-                print(result)
-            }
-        }
-    }
-    
-    private func deleteNote(id: UUID, completion: @escaping (Result<Data?, AFError>) -> Void) {
+    func deleteNote(id: UUID, completion: @escaping (Result<Data?, AFError>) -> Void) {
         guard let token = accessToken else {
             completion(.failure(.explicitlyCancelled))
             return
@@ -67,22 +48,7 @@ extension YandexDiskManager {
 
 // MARK:  - Save
 extension YandexDiskManager {
-    func uploadNote(_ noteMO: NoteMO) {
-        guard accessToken != nil, let note = noteMO.toModel() else {
-            return
-        }
-        
-        backendSerialQueue.async {
-            self.semaphore.wait()
-            self.uploadNote(note: note) { result in
-                self.semaphore.signal()
-                print(result)
-                
-            }
-        }
-    }
-    
-    private func uploadNote(note: Note, completion: @escaping (Result<Data?, AFError>) -> Void) {
+    func uploadNote(note: Note, completion: @escaping (Result<Data?, AFError>) -> Void) {
         guard accessToken != nil else {
             completion(.failure(.explicitlyCancelled))
             return
@@ -167,9 +133,9 @@ extension YandexDiskManager {
                 completion(response.result)
             }
     }
-    
-    
 }
+
+// MARK: - App catalog info
 extension YandexDiskManager {
     func getAppCatalogInfo(completion: @escaping (Result<Resource, AFError>) -> Void) {
         guard let token = accessToken else {
