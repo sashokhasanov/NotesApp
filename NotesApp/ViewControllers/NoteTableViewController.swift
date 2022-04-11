@@ -32,7 +32,7 @@ extension NoteTableViewController {
             
             let indexPath =
                 self.dataProvider.fetchedResultsController.indexPath(forObject: newNote)
-            self.tableView.selectRow(at: indexPath, animated: false, scrollPosition: .top)
+            self.tableView.selectRow(at: indexPath, animated: true, scrollPosition: .top)
             self.performSegue(withIdentifier: "showNote", sender: self)
         }
     }
