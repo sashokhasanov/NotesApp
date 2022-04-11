@@ -1,6 +1,6 @@
 # NotesApp
 
-Простое приложение для создания и рдактирования заметок.
+Простое приложение для создания и редактирования заметок.
 
 Key features:
 - Возможность закрепить заметку вверху списка
@@ -29,12 +29,15 @@ Key features:
 
 Экран синхронизации:
 
-![Simulator Screen Shot - iPhone 12 - 2022-04-11 at 22 50 15](https://user-images.githubusercontent.com/3172532/162827412-7ab4beaa-c399-480c-a2f2-0dd0dfb4a28b.png)
+![Simulator Screen Shot - iPhone 12 - 2022-04-11 at 23 44 59](https://user-images.githubusercontent.com/3172532/162829056-87b4440c-79c2-4801-b2a0-d3a434b1617c.png)
+
 
 ![Simulator Screen Shot - iPhone 12 - 2022-04-11 at 23 34 54](https://user-images.githubusercontent.com/3172532/162827458-9459f949-f494-4559-a001-37d05d4711bb.png)
 
 
 ## Сборка проекта
 Для корректной работы приложения нужно зарегистировать приложение на https://oauth.yandex.ru/
+
 Для приложения указать любой callback URL со схемой awesomenotes. Например, awesomenotes://token
+
 После регистрации приложения прописать полученный client id в поле с ключом CLIENT_ID в файл YandexDiskApp-Info.plist, который будет сгенирирован при первой сборке приложения.
