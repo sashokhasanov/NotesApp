@@ -14,7 +14,7 @@ class NoteTableViewCell: UITableViewCell {
     @IBOutlet weak var pinImageView: UIImageView!
     
     static let reuseId = "NoteTableViewCell"
-    static let height: CGFloat = 65
+    static let height: CGFloat = 70
     
     static func nib() -> UINib {
         UINib(nibName: reuseId, bundle: nil)
