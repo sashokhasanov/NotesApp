@@ -11,14 +11,14 @@
 //
 
 enum Synchronization {
-    enum UpdateSynchronizationStatus {
+    enum UpdateStatus {
         struct Response {
             let synchronizationEnabled: Bool
         }
         
         struct ViewModel {
             let synchronizationEnabled: Bool
-            let synchronizationStatus: String
+            let statusText: String
             let imageName: String
         }
     }

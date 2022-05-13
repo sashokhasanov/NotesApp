@@ -11,16 +11,16 @@
 //
 
 protocol SynchronizationPresentationLogic {
-    func presentSynchronizationStatus(response: Synchronization.UpdateSynchronizationStatus.Response)
+    func presentSynchronizationStatus(response: Synchronization.UpdateStatus.Response)
 }
 
 class SynchronizationPresenter: SynchronizationPresentationLogic {
     weak var viewController: SynchronizationDisplayLogic?
     
-    func presentSynchronizationStatus(response: Synchronization.UpdateSynchronizationStatus.Response) {
-        let viewModel = Synchronization.UpdateSynchronizationStatus.ViewModel(
+    func presentSynchronizationStatus(response: Synchronization.UpdateStatus.Response) {
+        let viewModel = Synchronization.UpdateStatus.ViewModel(
             synchronizationEnabled: response.synchronizationEnabled,
-            synchronizationStatus: response.synchronizationEnabled ? "Синхронизация включена" : "Синхронизация выключена",
+            statusText: response.synchronizationEnabled ? "Синхронизация включена" : "Синхронизация выключена",
             imageName: response.synchronizationEnabled ? "checkmark.icloud" : "xmark.icloud"
         )
         

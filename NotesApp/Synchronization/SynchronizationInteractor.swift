@@ -18,25 +18,20 @@ protocol SynchronizationBusinessLogic {
 
 class SynchronizationInteractor: SynchronizationBusinessLogic {
     var presenter: SynchronizationPresentationLogic?
-    var worker: SynchronizationWorker?
+    var worker = SynchronizationWorker()
     
     func enableSynchronization() {
-        worker = SynchronizationWorker()
-        worker?.enableSynchronization(completion: updateSynchronizationStatus)
+        worker.enableSynchronization(completion: updateSynchronizationStatus)
     }
     
     func disableSynchronization() {
-        worker = SynchronizationWorker()
-        worker?.disableSynchronization()
-        
+        worker.disableSynchronization()
         updateSynchronizationStatus()
     }
     
     func updateSynchronizationStatus() {
-        worker = SynchronizationWorker()
-
-        let isAuthenticated = worker?.isSynchronizationEnabled() ?? false
-        let response = Synchronization.UpdateSynchronizationStatus.Response(synchronizationEnabled: isAuthenticated)
+        let synchronizationEnabled = worker.isSynchronizationEnabled()
+        let response = Synchronization.UpdateStatus.Response(synchronizationEnabled: synchronizationEnabled)
         
         presenter?.presentSynchronizationStatus(response: response)
     }

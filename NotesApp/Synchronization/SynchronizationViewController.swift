@@ -13,7 +13,7 @@
 import UIKit
 
 protocol SynchronizationDisplayLogic: AnyObject {
-    func displaySynchronizationStatus(viewModel: Synchronization.UpdateSynchronizationStatus.ViewModel)
+    func displaySynchronizationStatus(viewModel: Synchronization.UpdateStatus.ViewModel)
 }
 
 class SynchronizationViewController: UIViewController {
@@ -61,11 +61,11 @@ extension SynchronizationViewController {
 
 // MARK: - SyncDisplayLogic
 extension SynchronizationViewController: SynchronizationDisplayLogic {
-    func displaySynchronizationStatus(viewModel: Synchronization.UpdateSynchronizationStatus.ViewModel) {
+    func displaySynchronizationStatus(viewModel: Synchronization.UpdateStatus.ViewModel) {
         updateButtonsVisibility(isAuthenticated: viewModel.synchronizationEnabled)
         
         synchronizationStatusImageView.image = UIImage(systemName: viewModel.imageName)
-        synchronizationStatusLabel.text = viewModel.synchronizationStatus
+        synchronizationStatusLabel.text = viewModel.statusText
     }
 }
 
