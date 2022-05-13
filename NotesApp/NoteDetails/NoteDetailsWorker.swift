@@ -25,7 +25,5 @@ class NoteDetailsWorker {
             YandexDiskSynchronizatinManager.shared.uploadNote(note)
             StorageService.shared.save(note: note)
         }
-        
-        
     }
 }

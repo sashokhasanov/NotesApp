@@ -25,6 +25,7 @@ enum NoteDetails {
             let title: String
             let content: String
             let color: Int64
+            let navigationTitle: String
         }
     }
     
@@ -37,7 +38,7 @@ enum NoteDetails {
     
     enum SetNoteColor {
         struct Request {
-            let color: Int64?
+            let color: Int64
         }
         
         struct Response {

@@ -12,13 +12,10 @@
 
 protocol NoteDetailsBusinessLogic {
     func provideNote()
-    
-    func saveNote(request: NoteDetails.SaveNote.Request)
-    
+    func saveNote()
     func updateNoteColor(request: NoteDetails.SetNoteColor.Request)
-    
-    func updateNoteTitle()
-    func updatenoteContent()
+    func updateNoteTitle(request: NoteDetails.SetNoteTitle.Request)
+    func updatenoteContent(request: NoteDetails.SetNoteContent.Request)
 }
 
 protocol NoteDetailsDataStore: AnyObject {
@@ -26,9 +23,9 @@ protocol NoteDetailsDataStore: AnyObject {
 }
 
 class NoteDetailsInteractor: NoteDetailsBusinessLogic, NoteDetailsDataStore {
+    var worker: NoteDetailsWorker = NoteDetailsWorker()
     
     var presenter: NoteDetailsPresentationLogic?
-    var worker: NoteDetailsWorker?
     var note: NoteMO?
 
     func provideNote() {
@@ -41,26 +38,22 @@ class NoteDetailsInteractor: NoteDetailsBusinessLogic, NoteDetailsDataStore {
         presenter?.presentNote(response: response)
     }
     
-    func saveNote(request: NoteDetails.SaveNote.Request) {
-        note?.title = request.title
-        note?.content = request.content
-
-        worker = NoteDetailsWorker()
-        worker?.saveNote(note: note)
+    func saveNote() {
+        worker.saveNote(note: note)
     }
     
     func updateNoteColor(request: NoteDetails.SetNoteColor.Request) {
-        note?.color = request.color ?? 4294901811
+        note?.color = request.color
         
-        let response = NoteDetails.SetNoteColor.Response(color: request.color ?? 4294901811)
+        let response = NoteDetails.SetNoteColor.Response(color: request.color)
         presenter?.presentNoteColor(response: response)
     }
     
-    func updateNoteTitle() {
-        
+    func updateNoteTitle(request: NoteDetails.SetNoteTitle.Request) {
+        note?.title = request.title
     }
     
-    func updatenoteContent() {
-        
+    func updatenoteContent(request: NoteDetails.SetNoteContent.Request) {
+        note?.content = request.content
     }
 }

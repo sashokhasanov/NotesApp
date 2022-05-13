@@ -18,7 +18,7 @@ protocol NoteDetailsDisplayLogic: AnyObject {
 }
 
 class NoteDetailsViewController: UIViewController {
-    
+    // MARK: - IBOutlets
     @IBOutlet weak var noteMarkerView: UIView!
     @IBOutlet weak var noteTitleTextField: UITextField!
     @IBOutlet weak var noteContentTextView: UITextView!
@@ -29,7 +29,7 @@ class NoteDetailsViewController: UIViewController {
     var interactor: NoteDetailsBusinessLogic?
     var router: (NSObjectProtocol & NoteDetailsRoutingLogic & NoteDetailsDataPassing)?
     
-    // MARK: Object lifecycle
+    // MARK: - Object lifecycle
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         setup()
@@ -40,7 +40,7 @@ class NoteDetailsViewController: UIViewController {
         setup()
     }
     
-    // MARK: View lifecycle
+    // MARK: - View lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViewController()
@@ -48,31 +48,22 @@ class NoteDetailsViewController: UIViewController {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        let request = NoteDetails.SaveNote.Request(
-            title: noteTitleTextField.text ?? "",
-            content: noteContentTextView.text ?? ""
-        )
-        
-        interactor?.saveNote(request: request)
+        interactor?.saveNote()
     }
-    
-    
-    // MARK: - IBActions
+}
+
+// MARK: - User actions handling
+extension NoteDetailsViewController {
     @IBAction func predefinedColorTapped(_ sender: UITapGestureRecognizer) {
         guard let currentView = sender.view as? CircleMarkerView else {
             return
         }
         
-        selectColorView(colorView: currentView)
-        
         if let color = currentView.backgroundColor {
-            
-//            updateNoteMarker(with: color)
             let request = NoteDetails.SetNoteColor.Request(color: color.hexValue)
             interactor?.updateNoteColor(request: request)
-            
         } else if currentView is GradientMarkerView {
-            showColorPicker(with: nil)
+            router?.routeToColorPicker(with: nil)
         }
     }
     
@@ -80,112 +71,71 @@ class NoteDetailsViewController: UIViewController {
         guard sender.state == .began else {
             return
         }
-        showColorPicker(with: customColorView.backgroundColor)
-    }
-    
-    private func showColorPicker(with selectedColor: UIColor?) {
-        let colorPickerController = UIColorPickerViewController()
-        if let selectedColor = selectedColor {
-            colorPickerController.selectedColor = selectedColor
-        }
-        colorPickerController.delegate = self
-        present(colorPickerController, animated: true)
-    }
-    
-    // MARK: Routing
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if let scene = segue.identifier {
-//            let selector = NSSelectorFromString("routeTo\(scene)WithSegue:")
-//            if let router = router, router.responds(to: selector) {
-//                router.perform(selector, with: segue)
-//            }
-//        }
-//    }
-    
-    private func getNote() {
-        interactor?.provideNote()
-    }
-    
-    // MARK: Setup
-    private func setup() {
-        let viewController = self
-        let interactor = NoteDetailsInteractor()
-        let presenter = NoteDetailsPresenter()
-        let router = NoteDetailsRouter()
-        viewController.interactor = interactor
-        viewController.router = router
-        interactor.presenter = presenter
-        presenter.viewController = viewController
-        router.viewController = viewController
-        router.dataStore = interactor
+        
+        router?.routeToColorPicker(with: customColorView.backgroundColor)
     }
 }
-
+    
+// MARK: - Display logic
 extension NoteDetailsViewController: NoteDetailsDisplayLogic {
     func displayNote(viewModel: NoteDetails.ShowNote.ViewModel) {
+        navigationItem.title = viewModel.navigationTitle
         noteTitleTextField.text = viewModel.title
         noteContentTextView.text = viewModel.content
-        setupNoteMarkerColor(color: viewModel.color)
-        updateNavigationTitle(isNewNote: viewModel.title.isEmpty && viewModel.content.isEmpty)
+
+        updateNoteColor(color: viewModel.color)
     }
     
     func updateNoteColor(viewModel: NoteDetails.SetNoteColor.ViewModel) {
-        let color = UIColor(hexValue: viewModel.color)
-        updateNoteMarker(with: color)
+        updateNoteColor(color: viewModel.color)
     }
 }
-    
-extension NoteDetailsViewController {
-    
-    private func setupNoteMarkerColor(color: Int64) {
-        for colorView in colorViews {
-            if colorView is GradientMarkerView {
-                customColorView.backgroundColor = UIColor(hexValue: color)
-            }
 
-            if checkNeedSelectColorView(view: colorView, color: color) {
-                selectColorView(colorView: colorView)
-                if let color = colorView.backgroundColor {
-                    updateNoteMarker(with: color)
-                }
-                break
-            }
+// MARK: - Text field delegate
+extension NoteDetailsViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField === noteTitleTextField {
+            noteContentTextView.becomeFirstResponder()
         }
+        return true
     }
     
-    private func checkNeedSelectColorView(view: CircleMarkerView, color: Int64) -> Bool {
-        guard !(view is GradientMarkerView) else { return true }
-        guard let viewColor = view.backgroundColor else { return false }
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        guard textField === noteTitleTextField else {
+            return
+        }
         
-        return color == viewColor.hexValue
-    }
-    
-    private func selectColorView(colorView: CircleMarkerView) {
-        for view in colorViews {
-            view.showMarker = view === colorView
-        }
-    }
-    
-    private func updateNoteMarker(with color: UIColor) {
-        UIView.animate(withDuration: 0.3) {
-            self.noteMarkerView.backgroundColor = color
-        }
-    }
-    
-    private func updateNavigationTitle(isNewNote: Bool) {
-//        if (note.title?.isEmpty ?? true) && (note.content?.isEmpty ?? true) {
-        if isNewNote {
-            navigationItem.title = "Новая заметка"
-        } else {
-            navigationItem.title = "Редактирование"
-        }
+        let request = NoteDetails.SetNoteTitle.Request(title: textField.text)
+        interactor?.updateNoteTitle(request: request)
     }
 }
 
+// MARK: - Text view delegate
+extension NoteDetailsViewController: UITextViewDelegate {
+    func textViewDidEndEditing(_ textView: UITextView) {
+        guard textView === noteContentTextView else {
+            return
+        }
+        
+        let request = NoteDetails.SetNoteContent.Request(content: textView.text)
+        interactor?.updatenoteContent(request: request)
+    }
+}
+
+// MARK: - Color picker view controller delegate
+extension NoteDetailsViewController: UIColorPickerViewControllerDelegate {
+    func colorPickerViewControllerDidFinish(_ viewController: UIColorPickerViewController) {
+        let request = NoteDetails.SetNoteColor.Request(color: viewController.selectedColor.hexValue)
+        interactor?.updateNoteColor(request: request)
+    }
+}
+
+// MARK: - ViewController setup
 extension NoteDetailsViewController {
-    
     private func setupViewController() {
         noteTitleTextField.delegate = self
+        noteContentTextView.delegate = self
+        
         setupNoteContentAccessoryView()
         setupNavigationBar()
     }
@@ -217,24 +167,64 @@ extension NoteDetailsViewController {
     }
 }
 
-// MARK: - Text field delegate
-extension NoteDetailsViewController: UITextFieldDelegate {
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if textField === noteTitleTextField {
-            noteContentTextView.becomeFirstResponder()
+// MARK: - Display Logic (private part)
+extension NoteDetailsViewController {
+    
+    private func updateNoteColor(color: Int64) {
+        updateNoteMarker(with: color)
+        setSelectedColorView(color: color)
+    }
+    
+    private func updateNoteMarker(with color: Int64) {
+        UIView.animate(withDuration: 0.3) {
+            self.noteMarkerView.backgroundColor = UIColor(hexValue: color)
         }
-        return true
+    }
+    
+    private func setSelectedColorView(color: Int64) {
+        for colorView in colorViews {
+            if colorView === customColorView {
+                customColorView.backgroundColor = UIColor(hexValue: color)
+            }
+
+            if checkNeedSelectColorView(view: colorView, color: color) {
+                selectColorView(colorView: colorView)
+                break
+            }
+        }
+    }
+    
+    private func checkNeedSelectColorView(view: CircleMarkerView, color: Int64) -> Bool {
+        guard let viewColor = view.backgroundColor else {
+            return false
+        }
+        
+        return color == viewColor.hexValue
+    }
+    
+    private func selectColorView(colorView: CircleMarkerView) {
+        for view in colorViews {
+            view.showMarker = view === colorView
+        }
     }
 }
 
-// MARK: Color picker view controller delegate
-extension NoteDetailsViewController: UIColorPickerViewControllerDelegate {
-    func colorPickerViewControllerDidFinish(_ viewController: UIColorPickerViewController) {
-//        customColorView.backgroundColor = viewController.selectedColor
-        
-        let request = NoteDetails.SetNoteColor.Request(color: viewController.selectedColor.hexValue)
-        interactor?.updateNoteColor(request: request)
-        
-//        updateNoteMarker(with: viewController.selectedColor)
+extension NoteDetailsViewController {
+
+    private func getNote() {
+        interactor?.provideNote()
+    }
+    
+    private func setup() {
+        let viewController = self
+        let interactor = NoteDetailsInteractor()
+        let presenter = NoteDetailsPresenter()
+        let router = NoteDetailsRouter()
+        viewController.interactor = interactor
+        viewController.router = router
+        interactor.presenter = presenter
+        presenter.viewController = viewController
+        router.viewController = viewController
+        router.dataStore = interactor
     }
 }

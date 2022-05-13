@@ -12,20 +12,24 @@
 
 protocol NoteDetailsPresentationLogic {
     func presentNote(response: NoteDetails.ShowNote.Response)
-    
     func presentNoteColor(response: NoteDetails.SetNoteColor.Response)
 }
 
 class NoteDetailsPresenter: NoteDetailsPresentationLogic {
-    
     weak var viewController: NoteDetailsDisplayLogic?
+    private let defaultNoteColor: Int64 = 0xFFFF0033
     
     func presentNote(response: NoteDetails.ShowNote.Response) {
+        let title = response.title ?? ""
+        let content = response.content ?? ""
+        let navigationTitle = (title.isEmpty && content.isEmpty) ? "Новая заметка" : "Редактирование"
+        let color = response.color ?? defaultNoteColor
         
         let viewModel = NoteDetails.ShowNote.ViewModel(
-            title: response.title ?? "",
-            content: response.content ?? "",
-            color: response.color ?? 4294901811
+            title: title,
+            content: content,
+            color: color,
+            navigationTitle: navigationTitle
         )
         
         viewController?.displayNote(viewModel: viewModel)
@@ -33,7 +37,6 @@ class NoteDetailsPresenter: NoteDetailsPresentationLogic {
     
     func presentNoteColor(response: NoteDetails.SetNoteColor.Response) {
         let viewModel = NoteDetails.SetNoteColor.ViewModel(color: response.color)
-        
         viewController?.updateNoteColor(viewModel: viewModel)
     }
 }
