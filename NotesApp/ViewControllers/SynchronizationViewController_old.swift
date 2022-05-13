@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SynchronizationViewController: UIViewController {
+class SynchronizationViewController_old: UIViewController {
 
     // MARK: - IBOutlets
     @IBOutlet weak var synchronizationStatusLabel: UILabel!

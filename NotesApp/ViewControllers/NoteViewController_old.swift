@@ -11,7 +11,7 @@ protocol NoteViewControllerDelegate: AnyObject {
     func updateNote(_ note: NoteMO)
 }
 
-class NoteViewController: UIViewController {
+class NoteViewController_old: UIViewController {
     // MARK: - IBOutlets
     @IBOutlet weak var noteMarkerView: UIView!
     @IBOutlet weak var noteTitleTextField: UITextField!
@@ -64,7 +64,7 @@ class NoteViewController: UIViewController {
 }
 
 // MARK: - Text field delegate
-extension NoteViewController: UITextFieldDelegate {
+extension NoteViewController_old: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField === noteTitleTextField {
             noteContentTextView.becomeFirstResponder()
@@ -74,7 +74,7 @@ extension NoteViewController: UITextFieldDelegate {
 }
 
 // MARK: Color picker view controller delegate
-extension NoteViewController: UIColorPickerViewControllerDelegate {
+extension NoteViewController_old: UIColorPickerViewControllerDelegate {
     func colorPickerViewControllerDidFinish(_ viewController: UIColorPickerViewController) {
         customColorView.backgroundColor = viewController.selectedColor
         updateNoteMarker(with: viewController.selectedColor)
@@ -82,7 +82,7 @@ extension NoteViewController: UIColorPickerViewControllerDelegate {
 }
 
 // MARK: - Private methods
-extension NoteViewController {
+extension NoteViewController_old {
     private func setupViewController() {
         noteTitleTextField.delegate = self
         setupNoteContentAccessoryView()
