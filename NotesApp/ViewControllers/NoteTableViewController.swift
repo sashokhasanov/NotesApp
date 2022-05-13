@@ -170,11 +170,14 @@ extension NoteTableViewController {
 extension NoteTableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard segue.identifier == "showNote" else { return }
-        guard let noteViewController = segue.destination as? NoteViewController else { return }
+        guard let noteViewController = segue.destination as? NoteDetailsViewController else { return }
         guard let indexPath = tableView.indexPathsForSelectedRows?.first else { return }
         noteViewController.hidesBottomBarWhenPushed = true
-        noteViewController.note = dataProvider.fetchedResultsController.object(at: indexPath)
-        noteViewController.delegate = self
+        
+        if let ds = noteViewController.interactor as? NoteDetailsDataStore {
+            ds.note = dataProvider.fetchedResultsController.object(at: indexPath)
+        }
+//        noteViewController.delegate = self
     }
 }
 
