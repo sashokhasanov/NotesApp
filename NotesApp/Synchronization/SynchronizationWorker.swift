@@ -12,12 +12,13 @@
 
 import Foundation
 
-class SyncWorker {
-    func getAuthToken() -> String? {
-        return YandexDiskTokenProvider.shared.getAuthToken()
+class SynchronizationWorker {
+
+    func isSynchronizationEnabled() -> Bool {
+        return YandexDiskTokenProvider.shared.getAuthToken() != nil
     }
     
-    func enableAuthentication(completion: @escaping () -> Void) {
+    func enableSynchronization(completion: @escaping () -> Void) {
         YandexDiskAuthenticationService.shared.processAuthentication { result in
             switch result {
             case .success(let token):

@@ -12,11 +12,11 @@
 
 import UIKit
 
-protocol SyncDisplayLogic: AnyObject {
-    func displayAuthenticationStatus(viewModel: Sync.UpdateAuthenticationStatus.ViewModel)
+protocol SynchronizationDisplayLogic: AnyObject {
+    func displaySynchronizationStatus(viewModel: Synchronization.UpdateSynchronizationStatus.ViewModel)
 }
 
-class SyncViewController: UIViewController {
+class SynchronizationViewController: UIViewController {
         
     // MARK: - IBOutlets
     @IBOutlet weak var synchronizationStatusLabel: UILabel!
@@ -24,7 +24,7 @@ class SyncViewController: UIViewController {
     @IBOutlet weak var enableSynchronizationElementsStackView: UIStackView!
     @IBOutlet weak var disableSynchronizationElementsStackView: UIStackView!
     
-    var interactor: SyncBusinessLogic?
+    var interactor: SynchronizationBusinessLogic?
     
     // MARK: - Object lifecycle
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -44,31 +44,37 @@ class SyncViewController: UIViewController {
     }
 }
 
-// MARK: - User actions processing
-extension SyncViewController {
-
-    
-    
+// MARK: - User actions handling
+extension SynchronizationViewController {
     @IBAction func enableSynchronizationButtonTapped(_ sender: UIButton) {
         sender.tapAnimation {
-            self.interactor?.enableSync()
+            self.interactor?.enableSynchronization()
         }
     }
     
     @IBAction func disableSynchronizationButtonTapped(_ sender: UIButton) {
         sender.tapAnimation {
-            self.interactor?.disableSync()
+            self.interactor?.disableSynchronization()
         }
     }
 }
 
+// MARK: - SyncDisplayLogic
+extension SynchronizationViewController: SynchronizationDisplayLogic {
+    func displaySynchronizationStatus(viewModel: Synchronization.UpdateSynchronizationStatus.ViewModel) {
+        updateButtonsVisibility(isAuthenticated: viewModel.synchronizationEnabled)
+        
+        synchronizationStatusImageView.image = UIImage(systemName: viewModel.imageName)
+        synchronizationStatusLabel.text = viewModel.synchronizationStatus
+    }
+}
+
 // MARK: - Private methods
-extension SyncViewController {
-    
+extension SynchronizationViewController {
     private func makeAssembly() {
         let viewController = self
-        let interactor = SyncInteractor()
-        let presenter = SyncPresenter()
+        let interactor = SynchronizationInteractor()
+        let presenter = SynchronizationPresenter()
 
         viewController.interactor = interactor
         interactor.presenter = presenter
@@ -76,20 +82,10 @@ extension SyncViewController {
     }
     
     private func updateSyncStatus() {
-        interactor?.updateAuthenticationStatus()
-    }
-}
-
-// MARK: - SyncDisplayLogic
-extension SyncViewController: SyncDisplayLogic {
-    func displayAuthenticationStatus(viewModel: Sync.UpdateAuthenticationStatus.ViewModel) {
-        updateButtonsVisibility(isAuthenticated: viewModel.isAuthenticated)
-        
-        synchronizationStatusImageView.image = UIImage(systemName: viewModel.imageName)
-        synchronizationStatusLabel.text = viewModel.syncStatus
+        interactor?.updateSynchronizationStatus()
     }
     
-    func updateButtonsVisibility(isAuthenticated: Bool) {
+    private func updateButtonsVisibility(isAuthenticated: Bool) {
         if isAuthenticated {
             enableSynchronizationElementsStackView.isHidden = true
             disableSynchronizationElementsStackView.isHidden = false
@@ -99,3 +95,5 @@ extension SyncViewController: SyncDisplayLogic {
         }
     }
 }
+
+

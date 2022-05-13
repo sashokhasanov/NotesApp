@@ -10,17 +10,16 @@
 //  see http://clean-swift.com
 //
 
-enum Sync {
- 
-    enum UpdateAuthenticationStatus {
+enum Synchronization {
+    enum UpdateSynchronizationStatus {
         struct Response {
-            let isAuthenticated: Bool
+            let synchronizationEnabled: Bool
         }
         
         struct ViewModel {
-            let isAuthenticated: Bool
+            let synchronizationEnabled: Bool
+            let synchronizationStatus: String
             let imageName: String
-            let syncStatus: String
         }
     }
 }
