@@ -48,7 +48,7 @@
 		2DE478E627ED0DEB0088C0E5 /* GradientMarkerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE478E527ED0DEB0088C0E5 /* GradientMarkerView.swift */; };
 		2DF8AB1E27F0AFAE009D7A21 /* NoteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF8AB1C27F0AFAE009D7A21 /* NoteTableViewCell.swift */; };
 		2DF8AB1F27F0AFAE009D7A21 /* NoteTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2DF8AB1D27F0AFAE009D7A21 /* NoteTableViewCell.xib */; };
-		2DF8AB2127F0B96D009D7A21 /* NoteTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF8AB2027F0B96D009D7A21 /* NoteTableViewController.swift */; };
+		2DF8AB2127F0B96D009D7A21 /* NoteTableViewController_old.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF8AB2027F0B96D009D7A21 /* NoteTableViewController_old.swift */; };
 		2DF8AB2327F0C313009D7A21 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF8AB2227F0C313009D7A21 /* UIColor+Extension.swift */; };
 		AC84F921BC23777731A22E2D /* Pods_NotesApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D0DC3747FD358ABE83F64D9 /* Pods_NotesApp.framework */; };
 /* End PBXBuildFile section */
@@ -98,7 +98,7 @@
 		2DE478E527ED0DEB0088C0E5 /* GradientMarkerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientMarkerView.swift; sourceTree = "<group>"; };
 		2DF8AB1C27F0AFAE009D7A21 /* NoteTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteTableViewCell.swift; sourceTree = "<group>"; };
 		2DF8AB1D27F0AFAE009D7A21 /* NoteTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoteTableViewCell.xib; sourceTree = "<group>"; };
-		2DF8AB2027F0B96D009D7A21 /* NoteTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteTableViewController.swift; sourceTree = "<group>"; };
+		2DF8AB2027F0B96D009D7A21 /* NoteTableViewController_old.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteTableViewController_old.swift; sourceTree = "<group>"; };
 		2DF8AB2227F0C313009D7A21 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		2E3E1ED44C92125DF8397591 /* Pods-NotesApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NotesApp.debug.xcconfig"; path = "Target Support Files/Pods-NotesApp/Pods-NotesApp.debug.xcconfig"; sourceTree = "<group>"; };
 		783D77EB0732C37762026783 /* Pods-NotesApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NotesApp.release.xcconfig"; path = "Target Support Files/Pods-NotesApp/Pods-NotesApp.release.xcconfig"; sourceTree = "<group>"; };
@@ -129,14 +129,14 @@
 			path = Synchronization;
 			sourceTree = "<group>";
 		};
-		2D2D8D86282D9C0900475EA7 /* NoteList */ = {
+		2D2D8D86282D9C0900475EA7 /* NoteTable */ = {
 			isa = PBXGroup;
 			children = (
 			);
-			path = NoteList;
+			path = NoteTable;
 			sourceTree = "<group>";
 		};
-		2D2D8D87282E596D00475EA7 /* Note */ = {
+		2D2D8D87282E596D00475EA7 /* NoteDetails */ = {
 			isa = PBXGroup;
 			children = (
 				2D2D8D94282E5BA700475EA7 /* NoteDetailsPresenter.swift */,
@@ -146,7 +146,7 @@
 				2D2D8D98282E5BA700475EA7 /* NoteDetailsViewController.swift */,
 				2D2D8D99282E5BA700475EA7 /* NoteDetailsInteractor.swift */,
 			);
-			path = Note;
+			path = NoteDetails;
 			sourceTree = "<group>";
 		};
 		2D864CFE27EC6C900001B06B = {
@@ -171,8 +171,8 @@
 			isa = PBXGroup;
 			children = (
 				2D066FFD282E9457001319D0 /* Synchronization */,
-				2D2D8D87282E596D00475EA7 /* Note */,
-				2D2D8D86282D9C0900475EA7 /* NoteList */,
+				2D2D8D87282E596D00475EA7 /* NoteDetails */,
+				2D2D8D86282D9C0900475EA7 /* NoteTable */,
 				2D971D9E280029DA00EFC6E9 /* Storyboards */,
 				2D971DA228002ACF00EFC6E9 /* ViewControllers */,
 				2D971D9F28002A0000EFC6E9 /* Views */,
@@ -231,7 +231,7 @@
 			isa = PBXGroup;
 			children = (
 				2D48501327F7092C004DA032 /* SynchronizationViewController_old.swift */,
-				2DF8AB2027F0B96D009D7A21 /* NoteTableViewController.swift */,
+				2DF8AB2027F0B96D009D7A21 /* NoteTableViewController_old.swift */,
 				2D864D0E27EC6C910001B06B /* NoteViewController_old.swift */,
 			);
 			path = ViewControllers;
@@ -485,7 +485,7 @@
 				2D971DA928002CBB00EFC6E9 /* Note+ManagedObjectConvertible.swift in Sources */,
 				2DDD10DE27FAE20700B8DF98 /* YandexDiskAuthenticationService.swift in Sources */,
 				2D864D0F27EC6C910001B06B /* NoteViewController_old.swift in Sources */,
-				2DF8AB2127F0B96D009D7A21 /* NoteTableViewController.swift in Sources */,
+				2DF8AB2127F0B96D009D7A21 /* NoteTableViewController_old.swift in Sources */,
 				2D067005282E947A001319D0 /* SynchronizationWorker.swift in Sources */,
 				2D971D8527FC4FCC00EFC6E9 /* ModelConversionProtocols.swift in Sources */,
 				2D971D8327FC4EF800EFC6E9 /* Model.swift in Sources */,

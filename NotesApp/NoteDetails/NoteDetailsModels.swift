@@ -13,8 +13,7 @@
 import Foundation
 
 enum NoteDetails {
- 
-    // MARK: Use cases
+    
     enum ShowNote {
         struct Response {
             let title: String?

@@ -8,7 +8,7 @@
 import UIKit
 import CoreData
 
-class NoteTableViewController: UITableViewController {
+class NoteTableViewController_old: UITableViewController {
     // MARK: - Data provider
     private lazy var dataProvider: NotesProvider = {
         let persistentContainer = CoreDataStackHolder.shared.persistentContainer
@@ -25,7 +25,7 @@ class NoteTableViewController: UITableViewController {
 }
 
 // MARK: - IBActions handling
-extension NoteTableViewController {
+extension NoteTableViewController_old {
     @IBAction func addButtonPressed(_ sender: Any) {
         dataProvider.addNote(in: dataProvider.persistentContainer.viewContext) { newNote in
             YandexDiskSynchronizatinManager.shared.uploadNote(newNote)
@@ -39,7 +39,7 @@ extension NoteTableViewController {
 }
 
 // MARK: - Controller setup
-extension NoteTableViewController {
+extension NoteTableViewController_old {
     private func setupViewController() {
         registerCells()
         setupRefreshControl()
@@ -77,7 +77,7 @@ extension NoteTableViewController {
 }
 
 // MARK: - Refreshing state management
-extension NoteTableViewController {
+extension NoteTableViewController_old {
     private func beginRefreshing() {
         guard let refreshControl = refreshControl else { return }
         guard !refreshControl.isRefreshing else { return }
@@ -93,7 +93,7 @@ extension NoteTableViewController {
 }
 
 // MARK: - Table view data source
-extension NoteTableViewController {
+extension NoteTableViewController_old {
     override func numberOfSections(in tableView: UITableView) -> Int {
         guard let sections = dataProvider.fetchedResultsController.sections else {
             return 0
@@ -123,7 +123,7 @@ extension NoteTableViewController {
 }
 
 // MARK: - Table view delegate
-extension NoteTableViewController {
+extension NoteTableViewController_old {
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         NoteTableViewCell.height
     }
@@ -167,7 +167,7 @@ extension NoteTableViewController {
 }
 
 // MARK: - Navigation
-extension NoteTableViewController {
+extension NoteTableViewController_old {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard segue.identifier == "showNote" else { return }
         guard let noteViewController = segue.destination as? NoteDetailsViewController else { return }
@@ -182,7 +182,7 @@ extension NoteTableViewController {
 }
 
 // MARK: - NoteViewControllerDelegate
-extension NoteTableViewController: NoteViewControllerDelegate {
+extension NoteTableViewController_old: NoteViewControllerDelegate {
     func updateNote(_ note: NoteMO) {
         let noteIsEmpty = (note.title?.isEmpty ?? true) && (note.content?.isEmpty ?? true)
         
@@ -197,7 +197,7 @@ extension NoteTableViewController: NoteViewControllerDelegate {
 }
 
 // MARK: - NSFetchedResultsControllerDelegate
-extension NoteTableViewController: NSFetchedResultsControllerDelegate {
+extension NoteTableViewController_old: NSFetchedResultsControllerDelegate {
     func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         tableView.beginUpdates()
     }
@@ -226,7 +226,7 @@ extension NoteTableViewController: NSFetchedResultsControllerDelegate {
 }
 
 // MARK: - UISearchResultsUpdating
-extension NoteTableViewController: UISearchResultsUpdating {
+extension NoteTableViewController_old: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         let searchText = searchController.searchBar.text ?? ""
         
@@ -247,7 +247,7 @@ extension NoteTableViewController: UISearchResultsUpdating {
 }
 
 //  MARK: - Data synchronization
-extension NoteTableViewController {
+extension NoteTableViewController_old {
     @objc private func managedObjectContextDidSave(notification: Notification) {
         let viewContext = dataProvider.persistentContainer.viewContext
         

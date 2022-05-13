@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="RZH-cp-8AM">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
@@ -14,11 +13,11 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="NoteDetailsViewController" customModule="NotesApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" alignment="bottom" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="AQD-lB-J9U">
-                                <rect key="frame" x="20" y="113" width="374" height="40"/>
+                                <rect key="frame" x="20" y="69" width="560" height="40"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P7m-8s-hXE">
                                         <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
@@ -34,20 +33,20 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Название заметки" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="5t4-ZR-NVn" customClass="UnderlinedTextField" customModule="NotesApp" customModuleProvider="target">
-                                        <rect key="frame" x="65" y="12" width="309" height="28"/>
+                                        <rect key="frame" x="65" y="12" width="495" height="28"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
                                         <textInputTraits key="textInputTraits" returnKeyType="next"/>
                                     </textField>
                                 </subviews>
                             </stackView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="5Hc-23-zXf">
-                                <rect key="frame" x="20" y="178" width="374" height="545"/>
+                                <rect key="frame" x="20" y="134" width="560" height="327"/>
                                 <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="dYD-n4-LZb">
-                                <rect key="frame" x="62" y="743" width="290" height="50"/>
+                                <rect key="frame" x="155" y="481" width="290" height="50"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KFE-YG-RyF" customClass="CircleMarkerView" customModule="NotesApp" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
@@ -179,9 +178,9 @@
         <!--Заметки-->
         <scene sceneID="6D0-Dp-Bc6">
             <objects>
-                <tableViewController id="Fq8-kS-NT5" customClass="NoteTableViewController" customModule="NotesApp" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="Fq8-kS-NT5" customClass="NoteTableViewController_old" customModule="NotesApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" id="3z2-HY-uG6">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemGray6Color"/>
                         <connections>
@@ -228,21 +227,21 @@
             <objects>
                 <viewController id="2f6-yb-XR9" customClass="SynchronizationViewController" customModule="NotesApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Nxj-gK-Hmn">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="8og-oA-QM3">
-                                <rect key="frame" x="69" y="211" width="276" height="205.5"/>
+                                <rect key="frame" x="162" y="137" width="276" height="146.5"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="xmark.icloud" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="dsb-Nx-lrS">
-                                        <rect key="frame" x="48.5" y="1" width="179" height="175.5"/>
+                                        <rect key="frame" x="78" y="1" width="120" height="116.5"/>
                                         <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="dsb-Nx-lrS" secondAttribute="height" multiplier="1:1" id="GRr-IA-4Ry"/>
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Синхронизация выключена" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WNx-Qp-0ck">
-                                        <rect key="frame" x="0.0" y="179" width="276" height="26.5"/>
+                                        <rect key="frame" x="0.0" y="120" width="276" height="26.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -250,7 +249,7 @@
                                 </subviews>
                             </stackView>
                             <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="iR1-Zo-W2t">
-                                <rect key="frame" x="60.5" y="581.5" width="293.5" height="91.5"/>
+                                <rect key="frame" x="153.5" y="374.5" width="293.5" height="91.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Отключить синхронизацию:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="akT-ky-RIa">
                                         <rect key="frame" x="0.0" y="0.0" width="293.5" height="27.5"/>
@@ -279,7 +278,7 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="EV8-gy-9sr">
-                                <rect key="frame" x="66.5" y="581.5" width="281" height="91.5"/>
+                                <rect key="frame" x="159.5" y="374.5" width="281" height="91.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Включите синхронизацию:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="La3-gB-bNT">
                                         <rect key="frame" x="0.0" y="0.0" width="281" height="27.5"/>
@@ -351,11 +350,6 @@
             <point key="canvasLocation" x="-63" y="493"/>
         </scene>
     </scenes>
-    <designables>
-        <designable name="5t4-ZR-NVn">
-            <size key="intrinsicContentSize" width="200" height="28"/>
-        </designable>
-    </designables>
     <resources>
         <image name="YandexDisk" width="36" height="36"/>
         <image name="arrow.triangle.2.circlepath" catalog="system" width="128" height="101"/>

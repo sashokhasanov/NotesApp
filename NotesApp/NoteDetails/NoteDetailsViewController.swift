@@ -14,7 +14,6 @@ import UIKit
 
 protocol NoteDetailsDisplayLogic: AnyObject {
     func displayNote(viewModel: NoteDetails.ShowNote.ViewModel)
-    
     func updateNoteColor(viewModel: NoteDetails.SetNoteColor.ViewModel)
 }
 
