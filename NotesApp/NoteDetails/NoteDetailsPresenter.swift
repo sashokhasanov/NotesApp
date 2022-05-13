@@ -32,11 +32,11 @@ class NoteDetailsPresenter: NoteDetailsPresentationLogic {
             navigationTitle: navigationTitle
         )
         
-        viewController?.displayNote(viewModel: viewModel)
+        viewController?.displayNoteDetails(viewModel: viewModel)
     }
     
     func presentNoteColor(response: NoteDetails.SetNoteColor.Response) {
         let viewModel = NoteDetails.SetNoteColor.ViewModel(color: response.color)
-        viewController?.updateNoteColor(viewModel: viewModel)
+        viewController?.displayNoteColor(viewModel: viewModel)
     }
 }

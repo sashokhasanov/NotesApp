@@ -13,7 +13,6 @@
 import Foundation
 
 enum NoteDetails {
-    
     enum ShowNote {
         struct Response {
             let title: String?
@@ -26,13 +25,6 @@ enum NoteDetails {
             let content: String
             let color: Int64
             let navigationTitle: String
-        }
-    }
-    
-    enum SaveNote {
-        struct Request {
-            let title: String
-            let content: String
         }
     }
     

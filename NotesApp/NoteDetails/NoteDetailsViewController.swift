@@ -13,8 +13,8 @@
 import UIKit
 
 protocol NoteDetailsDisplayLogic: AnyObject {
-    func displayNote(viewModel: NoteDetails.ShowNote.ViewModel)
-    func updateNoteColor(viewModel: NoteDetails.SetNoteColor.ViewModel)
+    func displayNoteDetails(viewModel: NoteDetails.ShowNote.ViewModel)
+    func displayNoteColor(viewModel: NoteDetails.SetNoteColor.ViewModel)
 }
 
 class NoteDetailsViewController: UIViewController {
@@ -22,10 +22,9 @@ class NoteDetailsViewController: UIViewController {
     @IBOutlet weak var noteMarkerView: UIView!
     @IBOutlet weak var noteTitleTextField: UITextField!
     @IBOutlet weak var noteContentTextView: UITextView!
-    
-    @IBOutlet var colorViews: [CircleMarkerView]!
     @IBOutlet weak var customColorView: GradientMarkerView!
-        
+    @IBOutlet var colorViews: [CircleMarkerView]!
+
     var interactor: NoteDetailsBusinessLogic?
     var router: (NSObjectProtocol & NoteDetailsRoutingLogic & NoteDetailsDataPassing)?
     
@@ -44,7 +43,7 @@ class NoteDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViewController()
-        getNote()
+        interactor?.provideNote()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -78,7 +77,7 @@ extension NoteDetailsViewController {
     
 // MARK: - Display logic
 extension NoteDetailsViewController: NoteDetailsDisplayLogic {
-    func displayNote(viewModel: NoteDetails.ShowNote.ViewModel) {
+    func displayNoteDetails(viewModel: NoteDetails.ShowNote.ViewModel) {
         navigationItem.title = viewModel.navigationTitle
         noteTitleTextField.text = viewModel.title
         noteContentTextView.text = viewModel.content
@@ -86,7 +85,7 @@ extension NoteDetailsViewController: NoteDetailsDisplayLogic {
         updateNoteColor(color: viewModel.color)
     }
     
-    func updateNoteColor(viewModel: NoteDetails.SetNoteColor.ViewModel) {
+    func displayNoteColor(viewModel: NoteDetails.SetNoteColor.ViewModel) {
         updateNoteColor(color: viewModel.color)
     }
 }
@@ -165,23 +164,36 @@ extension NoteDetailsViewController {
             topItem.backButtonTitle = ""
         }
     }
+    
+    private func setup() {
+        let viewController = self
+        let interactor = NoteDetailsInteractor()
+        let presenter = NoteDetailsPresenter()
+        let router = NoteDetailsRouter()
+        viewController.interactor = interactor
+        viewController.router = router
+        interactor.presenter = presenter
+        presenter.viewController = viewController
+        router.viewController = viewController
+        router.dataStore = interactor
+    }
 }
 
-// MARK: - Display Logic (private part)
+// MARK: - Private methods
 extension NoteDetailsViewController {
     
     private func updateNoteColor(color: Int64) {
-        updateNoteMarker(with: color)
-        setSelectedColorView(color: color)
+        updateMarkerColor(with: color)
+        selectColorView(with: color)
     }
     
-    private func updateNoteMarker(with color: Int64) {
+    private func updateMarkerColor(with color: Int64) {
         UIView.animate(withDuration: 0.3) {
             self.noteMarkerView.backgroundColor = UIColor(hexValue: color)
         }
     }
     
-    private func setSelectedColorView(color: Int64) {
+    private func selectColorView(with color: Int64) {
         for colorView in colorViews {
             if colorView === customColorView {
                 customColorView.backgroundColor = UIColor(hexValue: color)
@@ -206,25 +218,5 @@ extension NoteDetailsViewController {
         for view in colorViews {
             view.showMarker = view === colorView
         }
-    }
-}
-
-extension NoteDetailsViewController {
-
-    private func getNote() {
-        interactor?.provideNote()
-    }
-    
-    private func setup() {
-        let viewController = self
-        let interactor = NoteDetailsInteractor()
-        let presenter = NoteDetailsPresenter()
-        let router = NoteDetailsRouter()
-        viewController.interactor = interactor
-        viewController.router = router
-        interactor.presenter = presenter
-        presenter.viewController = viewController
-        router.viewController = viewController
-        router.dataStore = interactor
     }
 }

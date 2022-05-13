@@ -16,9 +16,7 @@ class NoteDetailsWorker {
             return
         }
         
-        let noteIsEmpty = (note.title?.isEmpty ?? true) && (note.content?.isEmpty ?? true)
-        
-        if noteIsEmpty {
+        if (note.title?.isEmpty ?? true) && (note.content?.isEmpty ?? true) {
             YandexDiskSynchronizatinManager.shared.deleteNote(note)
             StorageService.shared.delete(note: note)
         } else {
