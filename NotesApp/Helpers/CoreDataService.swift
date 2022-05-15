@@ -1,16 +1,14 @@
 //
-//  StorageService.swift
+//  CoreDataService.swift
 //  NotesApp
 //
 //  Created by Сашок on 13.05.2022.
 //
 
-import Foundation
 import CoreData
 
-class StorageService {
-    
-    static let shared = StorageService()
+class CoreDataService {
+    static let shared = CoreDataService()
     
     func addNote(in context: NSManagedObjectContext, completionHandler: ((_ newNote: NoteMO) -> Void)? = nil) {
         context.perform {
@@ -41,7 +39,6 @@ class StorageService {
             completionHandler?()
         }
     }
-    
     
     private func createEmptyNote(in context: NSManagedObjectContext) -> NoteMO {
         let note = NoteMO(context: context)

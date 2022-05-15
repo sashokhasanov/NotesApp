@@ -174,9 +174,9 @@ extension NoteTableViewController_old {
         guard let indexPath = tableView.indexPathsForSelectedRows?.first else { return }
         noteViewController.hidesBottomBarWhenPushed = true
         
-        if let ds = noteViewController.interactor as? NoteDetailsDataStore {
-            ds.note = dataProvider.fetchedResultsController.object(at: indexPath)
-        }
+//        if let ds = noteViewController.interactor as? NoteDetailsDataStore {
+//            ds.note = dataProvider.fetchedResultsController.object(at: indexPath)
+//        }
 //        noteViewController.delegate = self
     }
 }
