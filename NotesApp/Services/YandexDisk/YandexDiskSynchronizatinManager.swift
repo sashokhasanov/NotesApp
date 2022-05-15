@@ -32,9 +32,7 @@ extension YandexDiskSynchronizatinManager {
         backendSerialQueue.async {
             self.semaphore.wait()
             YandexDiskManager.shared.deleteNote(id: id) { result in
-                print("delete end")
                 self.semaphore.signal()
-                print(result)
             }
         }
     }
@@ -48,8 +46,6 @@ extension YandexDiskSynchronizatinManager {
             self.semaphore.wait()
             YandexDiskManager.shared.uploadNote(note: note) { result in
                 self.semaphore.signal()
-                print(result)
-                
             }
         }
     }
