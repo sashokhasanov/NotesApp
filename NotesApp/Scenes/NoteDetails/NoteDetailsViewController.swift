@@ -30,12 +30,12 @@ class NoteDetailsViewController: UIViewController {
     // MARK: - Object lifecycle
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-        setup()
+        makeAssembly()
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        setup()
+        makeAssembly()
     }
     
     // MARK: - View lifecycle
@@ -129,7 +129,7 @@ extension NoteDetailsViewController: UIColorPickerViewControllerDelegate {
 
 // MARK: - CleanSwift assembly
 extension NoteDetailsViewController {
-    private func setup() {
+    private func makeAssembly() {
         let viewController = self
         let interactor = NoteDetailsInteractor()
         let presenter = NoteDetailsPresenter()

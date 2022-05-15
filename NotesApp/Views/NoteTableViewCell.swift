@@ -20,14 +20,6 @@ class NoteTableViewCell: UITableViewCell {
         UINib(nibName: reuseId, bundle: nil)
     }
     
-    func configure(with note: NoteMO) {
-        titleLabel.text = note.title
-        contentLabel.text = note.content
-        markerView.backgroundColor = UIColor(hexValue: note.color)
-        pinImageView.isHidden = !note.pinned
-        pinImageView.transform = CGAffineTransform(rotationAngle: .pi / 4)
-    }
-    
     func configure(with viewModel: NoteTable.CellViewModel) {
         titleLabel.text = viewModel.title
         contentLabel.text = viewModel.content

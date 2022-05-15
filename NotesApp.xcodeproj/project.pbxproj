@@ -143,6 +143,25 @@
 			path = Synchronization;
 			sourceTree = "<group>";
 		};
+		2D0670182831919A001319D0 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				2D484FBD27F1B331004DA032 /* CoreDataStackHolder.swift */,
+				2D2D8DA0282E82FD00475EA7 /* CoreDataService.swift */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
+		2D067019283192CF001319D0 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				2D2D8D86282D9C0900475EA7 /* NoteTable */,
+				2D2D8D87282E596D00475EA7 /* NoteDetails */,
+				2D066FFD282E9457001319D0 /* Synchronization */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
 		2D2D8D86282D9C0900475EA7 /* NoteTable */ = {
 			isa = PBXGroup;
 			children = (
@@ -191,9 +210,7 @@
 		2D864D0927EC6C900001B06B /* NotesApp */ = {
 			isa = PBXGroup;
 			children = (
-				2D066FFD282E9457001319D0 /* Synchronization */,
-				2D2D8D87282E596D00475EA7 /* NoteDetails */,
-				2D2D8D86282D9C0900475EA7 /* NoteTable */,
+				2D067019283192CF001319D0 /* Scenes */,
 				2D971D9E280029DA00EFC6E9 /* Storyboards */,
 				2D971DA228002ACF00EFC6E9 /* ViewControllers */,
 				2D971D9F28002A0000EFC6E9 /* Views */,
@@ -289,6 +306,7 @@
 		2D971DA628002C1200EFC6E9 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				2D0670182831919A001319D0 /* CoreData */,
 				2D971DAA28002D2600EFC6E9 /* Common */,
 				2D971DA728002C1D00EFC6E9 /* YandexDisk */,
 			);
@@ -319,8 +337,6 @@
 			isa = PBXGroup;
 			children = (
 				2D484FBF27F1DA9E004DA032 /* NotesProvider.swift */,
-				2D484FBD27F1B331004DA032 /* CoreDataStackHolder.swift */,
-				2D2D8DA0282E82FD00475EA7 /* CoreDataService.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";

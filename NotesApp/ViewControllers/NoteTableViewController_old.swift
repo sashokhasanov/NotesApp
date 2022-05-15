@@ -115,7 +115,7 @@ extension NoteTableViewController_old {
 
         if let noteCell = cell as? NoteTableViewCell {
             let note = dataProvider.fetchedResultsController.object(at: indexPath)
-            noteCell.configure(with: note)
+//            noteCell.configure(with: note)
         }
 
         return cell
