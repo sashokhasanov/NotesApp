@@ -27,4 +27,12 @@ class NoteTableViewCell: UITableViewCell {
         pinImageView.isHidden = !note.pinned
         pinImageView.transform = CGAffineTransform(rotationAngle: .pi / 4)
     }
+    
+    func configure(with viewModel: NoteTable.CellViewModel) {
+        titleLabel.text = viewModel.title
+        contentLabel.text = viewModel.content
+        markerView.backgroundColor = UIColor(hexValue: viewModel.color)
+        pinImageView.isHidden = !viewModel.pinned
+        pinImageView.transform = CGAffineTransform(rotationAngle: .pi / 4)
+    }
 }

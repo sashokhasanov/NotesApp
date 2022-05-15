@@ -12,6 +12,12 @@
 		2D067007282E947A001319D0 /* SynchronizationModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D067001282E947A001319D0 /* SynchronizationModels.swift */; };
 		2D067008282E947A001319D0 /* SynchronizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D067002282E947A001319D0 /* SynchronizationViewController.swift */; };
 		2D067009282E947A001319D0 /* SynchronizationInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D067003282E947A001319D0 /* SynchronizationInteractor.swift */; };
+		2D067010282FFE0A001319D0 /* NoteTablePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D06700A282FFE0A001319D0 /* NoteTablePresenter.swift */; };
+		2D067011282FFE0A001319D0 /* NoteTableWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D06700B282FFE0A001319D0 /* NoteTableWorker.swift */; };
+		2D067012282FFE0A001319D0 /* NoteTableRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D06700C282FFE0A001319D0 /* NoteTableRouter.swift */; };
+		2D067013282FFE0A001319D0 /* NoteTableModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D06700D282FFE0A001319D0 /* NoteTableModels.swift */; };
+		2D067014282FFE0A001319D0 /* NoteTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D06700E282FFE0A001319D0 /* NoteTableViewController.swift */; };
+		2D067015282FFE0A001319D0 /* NoteTableInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D06700F282FFE0A001319D0 /* NoteTableInteractor.swift */; };
 		2D2D8D9A282E5BA700475EA7 /* NoteDetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2D8D94282E5BA700475EA7 /* NoteDetailsPresenter.swift */; };
 		2D2D8D9B282E5BA700475EA7 /* NoteDetailsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2D8D95282E5BA700475EA7 /* NoteDetailsWorker.swift */; };
 		2D2D8D9C282E5BA700475EA7 /* NoteDetailsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2D8D96282E5BA700475EA7 /* NoteDetailsRouter.swift */; };
@@ -59,6 +65,12 @@
 		2D067001282E947A001319D0 /* SynchronizationModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SynchronizationModels.swift; sourceTree = "<group>"; };
 		2D067002282E947A001319D0 /* SynchronizationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SynchronizationViewController.swift; sourceTree = "<group>"; };
 		2D067003282E947A001319D0 /* SynchronizationInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SynchronizationInteractor.swift; sourceTree = "<group>"; };
+		2D06700A282FFE0A001319D0 /* NoteTablePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteTablePresenter.swift; sourceTree = "<group>"; };
+		2D06700B282FFE0A001319D0 /* NoteTableWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteTableWorker.swift; sourceTree = "<group>"; };
+		2D06700C282FFE0A001319D0 /* NoteTableRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteTableRouter.swift; sourceTree = "<group>"; };
+		2D06700D282FFE0A001319D0 /* NoteTableModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteTableModels.swift; sourceTree = "<group>"; };
+		2D06700E282FFE0A001319D0 /* NoteTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteTableViewController.swift; sourceTree = "<group>"; };
+		2D06700F282FFE0A001319D0 /* NoteTableInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteTableInteractor.swift; sourceTree = "<group>"; };
 		2D2D8D94282E5BA700475EA7 /* NoteDetailsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteDetailsPresenter.swift; sourceTree = "<group>"; };
 		2D2D8D95282E5BA700475EA7 /* NoteDetailsWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteDetailsWorker.swift; sourceTree = "<group>"; };
 		2D2D8D96282E5BA700475EA7 /* NoteDetailsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteDetailsRouter.swift; sourceTree = "<group>"; };
@@ -132,6 +144,12 @@
 		2D2D8D86282D9C0900475EA7 /* NoteTable */ = {
 			isa = PBXGroup;
 			children = (
+				2D06700A282FFE0A001319D0 /* NoteTablePresenter.swift */,
+				2D06700B282FFE0A001319D0 /* NoteTableWorker.swift */,
+				2D06700C282FFE0A001319D0 /* NoteTableRouter.swift */,
+				2D06700D282FFE0A001319D0 /* NoteTableModels.swift */,
+				2D06700E282FFE0A001319D0 /* NoteTableViewController.swift */,
+				2D06700F282FFE0A001319D0 /* NoteTableInteractor.swift */,
 			);
 			path = NoteTable;
 			sourceTree = "<group>";
@@ -475,10 +493,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2D067011282FFE0A001319D0 /* NoteTableWorker.swift in Sources */,
 				2D48501427F7092D004DA032 /* SynchronizationViewController_old.swift in Sources */,
 				2D971D8727FC519500EFC6E9 /* NoteMO+ModelConvertible.swift in Sources */,
+				2D067010282FFE0A001319D0 /* NoteTablePresenter.swift in Sources */,
 				2DDD10DC27F7B09E00B8DF98 /* YandexDiskTokenProvider.swift in Sources */,
+				2D067015282FFE0A001319D0 /* NoteTableInteractor.swift in Sources */,
 				2D067007282E947A001319D0 /* SynchronizationModels.swift in Sources */,
+				2D067014282FFE0A001319D0 /* NoteTableViewController.swift in Sources */,
 				2DF8AB2327F0C313009D7A21 /* UIColor+Extension.swift in Sources */,
 				2D971DAF2800436800EFC6E9 /* YandexDiskSynchronizatinManager.swift in Sources */,
 				2D484FBE27F1B331004DA032 /* CoreDataStackHolder.swift in Sources */,
@@ -488,12 +510,14 @@
 				2DF8AB2127F0B96D009D7A21 /* NoteTableViewController_old.swift in Sources */,
 				2D067005282E947A001319D0 /* SynchronizationWorker.swift in Sources */,
 				2D971D8527FC4FCC00EFC6E9 /* ModelConversionProtocols.swift in Sources */,
+				2D067012282FFE0A001319D0 /* NoteTableRouter.swift in Sources */,
 				2D971D8327FC4EF800EFC6E9 /* Model.swift in Sources */,
 				2D864D0B27EC6C900001B06B /* AppDelegate.swift in Sources */,
 				2D2D8D9F282E5BA700475EA7 /* NoteDetailsInteractor.swift in Sources */,
 				2D864D0D27EC6C900001B06B /* SceneDelegate.swift in Sources */,
 				2D484FB927F0DA1E004DA032 /* UnderlinedTextField.swift in Sources */,
 				2D971D9D27FF96FC00EFC6E9 /* UIButton+TapAnimation.swift in Sources */,
+				2D067013282FFE0A001319D0 /* NoteTableModels.swift in Sources */,
 				2D48501627F71D84004DA032 /* AuthenticationService.swift in Sources */,
 				2D2D8D9E282E5BA700475EA7 /* NoteDetailsViewController.swift in Sources */,
 				2D067009282E947A001319D0 /* SynchronizationInteractor.swift in Sources */,

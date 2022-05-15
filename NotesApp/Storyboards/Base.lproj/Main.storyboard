@@ -179,7 +179,7 @@
         <!--Заметки-->
         <scene sceneID="6D0-Dp-Bc6">
             <objects>
-                <tableViewController id="Fq8-kS-NT5" customClass="NoteTableViewController_old" customModule="NotesApp" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="Fq8-kS-NT5" customClass="NoteTableViewController" customModule="NotesApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" id="3z2-HY-uG6">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -192,12 +192,12 @@
                     <navigationItem key="navigationItem" title="Заметки" id="jYL-rv-5eF">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="cyc-KJ-gtP">
                             <connections>
-                                <action selector="addButtonPressed:" destination="Fq8-kS-NT5" id="E6U-5z-IIm"/>
+                                <action selector="addButtonPressed:" destination="Fq8-kS-NT5" id="ARU-AB-nmz"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="show" identifier="showNote" id="yNS-92-k7H"/>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="NoteDetails" id="yNS-92-k7H"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YMH-bC-hWR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

@@ -13,7 +13,6 @@
 import Foundation
 
 class SynchronizationWorker {
-
     func isSynchronizationEnabled() -> Bool {
         return YandexDiskTokenProvider.shared.getAuthToken() != nil
     }

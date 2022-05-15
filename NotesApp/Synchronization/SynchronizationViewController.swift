@@ -17,13 +17,13 @@ protocol SynchronizationDisplayLogic: AnyObject {
 }
 
 class SynchronizationViewController: UIViewController {
-        
     // MARK: - IBOutlets
     @IBOutlet weak var synchronizationStatusLabel: UILabel!
     @IBOutlet weak var synchronizationStatusImageView: UIImageView!
     @IBOutlet weak var enableSynchronizationElementsStackView: UIStackView!
     @IBOutlet weak var disableSynchronizationElementsStackView: UIStackView!
     
+    // MARK: - 
     var interactor: SynchronizationBusinessLogic?
     
     // MARK: - Object lifecycle

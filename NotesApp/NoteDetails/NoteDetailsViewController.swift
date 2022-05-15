@@ -46,9 +46,13 @@ class NoteDetailsViewController: UIViewController {
         interactor?.provideNote()
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
+    override func viewDidDisappear(_ animated: Bool) {
         interactor?.saveNote()
     }
+    
+//    override func viewWillDisappear(_ animated: Bool) {
+//        interactor?.saveNote()
+//    }
 }
 
 // MARK: - User actions handling
