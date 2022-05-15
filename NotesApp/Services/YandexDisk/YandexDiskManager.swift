@@ -148,8 +148,7 @@ extension YandexDiskManager {
         ]
         
         let parameters: Parameters = [
-            "path" : "app:/",
-            "overwrite": true
+            "path" : "app:/"
         ]
         
         AF.request("\(baseUrl)", parameters: parameters, headers: headers)
@@ -178,9 +177,13 @@ extension YandexDiskManager {
             "Accept": "application/json"
         ]
         
-        let parameters: Parameters = [
+        var parameters: Parameters = [
             "path" : "app:/\(noteName)"
         ]
+        
+        if operation == .upload {
+            parameters["overwrite"] = true
+        }
         
         AF.request("\(baseUrl)/\(operation.rawValue)", parameters: parameters, headers: headers)
             .validate()
