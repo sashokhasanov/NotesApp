@@ -59,18 +59,16 @@ class NoteTableWorker {
     func deleteNote(at indexPath: IndexPath) {
         let note = fetchedResultsController.object(at: indexPath)
         
-        CoreDataService.shared.delete(note: note) {
-            YandexDiskSynchronizatinManager.shared.deleteNote(note)
-        }
+        YandexDiskSynchronizatinManager.shared.deleteNote(note)
+        CoreDataService.shared.delete(note: note)
     }
     
     func pinNote(at indexPath: IndexPath) {
         let note = fetchedResultsController.object(at: indexPath)
         note.pinned.toggle()
         
-        CoreDataService.shared.save(note: note) {
-            YandexDiskSynchronizatinManager.shared.uploadNote(note)
-        }
+        YandexDiskSynchronizatinManager.shared.uploadNote(note)
+        CoreDataService.shared.save(note: note)
     }
     
     func filterNotes(searchText: String) {

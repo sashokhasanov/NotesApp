@@ -208,6 +208,7 @@ extension NoteTableViewController {
         let dataSource = NoteTableDataSource()
         
         dataSource.dataStore = interactor
+        dataSource.presenter = presenter
         
         viewController.interactor = interactor
         viewController.router = router
