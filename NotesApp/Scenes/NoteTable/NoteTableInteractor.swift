@@ -9,7 +9,7 @@
 //  see http://clean-swift.com
 //
 
-import CoreData
+import Foundation
 
 protocol NoteTableBusinessLogic {
     func fetchNotes()
@@ -26,13 +26,12 @@ protocol NoteTableDataStore {
     func getNote(at indexPath: IndexPath) -> NoteMO
 }
 
-class NoteTableInteractor: NSObject {
+class NoteTableInteractor {
     var presenter: NoteTablePresentationLogic?
     
     private lazy var worker: NoteTableWorker = {
-        let persistentContainer = CoreDataStackHolder.shared.persistentContainer
-        let worker =
-            NoteTableWorker(persistentContainer: persistentContainer, fetchedResultsControllerDelegate: self)
+        let worker = NoteTableWorker()
+        worker.delegate = self
         return worker
     }()
 }
@@ -85,37 +84,20 @@ extension NoteTableInteractor: NoteTableDataStore {
     }
 }
 
-// MARK: - NSFetchedResultsControllerDelegate protocol conformance
-extension NoteTableInteractor: NSFetchedResultsControllerDelegate {
-    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+// MARK: - NoteTableWorkerDelegate protocol conformance
+extension NoteTableInteractor: NoteTableWorkerDelegate {
+    func workerDidBeginDataUpdate() {
         presenter?.interactorDidBeginDataUpdate()
     }
     
-    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>,
-                    didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
-        
-        var updateKind: NoteTable.UpdateData.UpdateKind?
-        
-        switch type {
-        case .insert:
-            updateKind = .insert
-        case .update:
-            updateKind = .update
-        case .move:
-            updateKind = .move
-        case .delete:
-            updateKind = .delete
-        @unknown default:
-            break
-        }
-        
+    func workerDidEndDataUpdate() {
+        presenter?.interactorDidEndDataUpdate()
+    }
+    
+    func workerDidUpdateData(indexPath: IndexPath?, newIndexPath: IndexPath?, updateKind: NoteTable.UpdateData.UpdateKind?) {
         let response = NoteTable.UpdateData.Response(updatekind: updateKind,
                                                      indexPath: indexPath,
                                                      newIndexPath: newIndexPath)
         presenter?.presentDataUpdate(response: response)
-    }
-
-    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        presenter?.interactorDidEndDataUpdate()
     }
 }

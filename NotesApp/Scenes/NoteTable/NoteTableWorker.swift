@@ -11,9 +11,17 @@
 
 import CoreData
 
-class NoteTableWorker {
-    private(set) var persistentContainer: NSPersistentContainer
-    private weak var fetchedResultsControllerDelegate: NSFetchedResultsControllerDelegate?
+protocol NoteTableWorkerDelegate: AnyObject {
+    func workerDidBeginDataUpdate()
+    func workerDidEndDataUpdate()
+    func workerDidUpdateData(indexPath: IndexPath?,
+                             newIndexPath: IndexPath?,
+                             updateKind: NoteTable.UpdateData.UpdateKind?)
+}
+
+class NoteTableWorker: NSObject {
+    private let persistentContainer: NSPersistentContainer = CoreDataStackHolder.shared.persistentContainer
+    weak var delegate: NoteTableWorkerDelegate?
     
     private(set) lazy var fetchedResultsController: NSFetchedResultsController<NoteMO> = {
         let fetchRequest = NoteMO.fetchRequest()
@@ -24,19 +32,20 @@ class NoteTableWorker {
                                                     managedObjectContext: persistentContainer.viewContext,
                                                     sectionNameKeyPath: nil,
                                                     cacheName: nil)
-        controller.delegate = fetchedResultsControllerDelegate
+        controller.delegate = self
         
         return controller
     }()
     
-    init(persistentContainer: NSPersistentContainer,
-         fetchedResultsControllerDelegate: NSFetchedResultsControllerDelegate?) {
-        self.persistentContainer = persistentContainer
-        self.fetchedResultsControllerDelegate = fetchedResultsControllerDelegate
-        
+    override init() {
+        super.init()
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(managedObjectContextDidSave),
                                                name: .NSManagedObjectContextDidSave, object: nil)
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: .NSManagedObjectContextDidSave, object: nil)
     }
     
     func fetchNotes() {
@@ -117,5 +126,36 @@ class NoteTableWorker {
         viewContext.perform {
             viewContext.mergeChanges(fromContextDidSave: notification)
         }
+    }
+}
+
+// MARK: - NSFetchedResultsControllerDelegate protocol conformance
+extension NoteTableWorker: NSFetchedResultsControllerDelegate {
+    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        delegate?.workerDidBeginDataUpdate()
+    }
+    
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>,
+                    didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+        var updateKind: NoteTable.UpdateData.UpdateKind?
+        
+        switch type {
+        case .insert:
+            updateKind = .insert
+        case .update:
+            updateKind = .update
+        case .move:
+            updateKind = .move
+        case .delete:
+            updateKind = .delete
+        @unknown default:
+            break
+        }
+
+        delegate?.workerDidUpdateData(indexPath: indexPath, newIndexPath: newIndexPath, updateKind: updateKind)
+    }
+
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        delegate?.workerDidEndDataUpdate()
     }
 }
