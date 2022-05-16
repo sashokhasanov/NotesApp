@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Note View Controller-->
+        <!--Note Details View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="NoteViewController" customModule="NotesApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="NoteDetailsViewController" customModule="NotesApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -34,7 +34,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Название заметки" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="5t4-ZR-NVn" customClass="UnderlinedTextField" customModule="NotesApp" customModuleProvider="target">
-                                        <rect key="frame" x="65" y="12" width="309" height="28"/>
+                                        <rect key="frame" x="65" y="0.0" width="309" height="40"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
                                         <textInputTraits key="textInputTraits" returnKeyType="next"/>
                                     </textField>
@@ -81,7 +81,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <outletCollection property="gestureRecognizers" destination="YI2-T3-FAH" appends="YES" id="DBd-lR-Kr6"/>
+                                            <outletCollection property="gestureRecognizers" destination="YI2-T3-FAH" appends="YES" id="mDm-Rg-MGY"/>
                                         </connections>
                                     </view>
                                     <view tag="2" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eJi-yp-6Lt" customClass="CircleMarkerView" customModule="NotesApp" customModuleProvider="target">
@@ -98,7 +98,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <outletCollection property="gestureRecognizers" destination="hVc-Kw-L6T" appends="YES" id="VKk-qE-xog"/>
+                                            <outletCollection property="gestureRecognizers" destination="hVc-Kw-L6T" appends="YES" id="WwS-0I-v7g"/>
                                         </connections>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="41E-SH-zYC" customClass="GradientMarkerView" customModule="NotesApp" customModuleProvider="target">
@@ -137,44 +137,44 @@
                     </view>
                     <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="Jo2-jX-nhJ"/>
                     <connections>
-                        <outlet property="customColorView" destination="41E-SH-zYC" id="1n0-Za-wXW"/>
-                        <outlet property="noteContentTextView" destination="5Hc-23-zXf" id="cF4-yt-UJB"/>
-                        <outlet property="noteMarkerView" destination="P7m-8s-hXE" id="aZ5-cb-fln"/>
-                        <outlet property="noteTitleTextField" destination="5t4-ZR-NVn" id="It6-KC-W8D"/>
-                        <outletCollection property="colorViews" destination="KFE-YG-RyF" collectionClass="NSMutableArray" id="MdH-m5-qeu"/>
-                        <outletCollection property="colorViews" destination="DGB-Yv-zof" collectionClass="NSMutableArray" id="d9y-EE-uaL"/>
-                        <outletCollection property="colorViews" destination="eJi-yp-6Lt" collectionClass="NSMutableArray" id="KUp-xj-dE1"/>
-                        <outletCollection property="colorViews" destination="41E-SH-zYC" collectionClass="NSMutableArray" id="QyD-B8-eui"/>
+                        <outlet property="customColorView" destination="41E-SH-zYC" id="c0j-Ye-Uci"/>
+                        <outlet property="noteContentTextView" destination="5Hc-23-zXf" id="4JA-cK-HQA"/>
+                        <outlet property="noteMarkerView" destination="P7m-8s-hXE" id="hUF-Qz-4tI"/>
+                        <outlet property="noteTitleTextField" destination="5t4-ZR-NVn" id="rW0-pJ-353"/>
+                        <outletCollection property="colorViews" destination="KFE-YG-RyF" collectionClass="NSMutableArray" id="P44-ha-aI8"/>
+                        <outletCollection property="colorViews" destination="DGB-Yv-zof" collectionClass="NSMutableArray" id="Pqo-yD-LXu"/>
+                        <outletCollection property="colorViews" destination="eJi-yp-6Lt" collectionClass="NSMutableArray" id="Pd3-x6-pFK"/>
+                        <outletCollection property="colorViews" destination="41E-SH-zYC" collectionClass="NSMutableArray" id="0fa-wJ-3nT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <tapGestureRecognizer id="6bR-Lp-4a0">
                     <connections>
-                        <action selector="predefinedColorTapped:" destination="BYZ-38-t0r" id="6AT-lk-iQu"/>
+                        <action selector="predefinedColorTapped:" destination="BYZ-38-t0r" id="2pM-Nc-MEV"/>
                     </connections>
                 </tapGestureRecognizer>
                 <tapGestureRecognizer id="YI2-T3-FAH">
                     <connections>
-                        <action selector="predefinedColorTapped:" destination="BYZ-38-t0r" id="rTV-Fh-8Lp"/>
+                        <action selector="predefinedColorTapped:" destination="BYZ-38-t0r" id="yfT-Sc-Pko"/>
                     </connections>
                 </tapGestureRecognizer>
                 <tapGestureRecognizer id="hVc-Kw-L6T">
                     <connections>
-                        <action selector="predefinedColorTapped:" destination="BYZ-38-t0r" id="oiI-R2-wM9"/>
+                        <action selector="predefinedColorTapped:" destination="BYZ-38-t0r" id="fnZ-RY-sPn"/>
                     </connections>
                 </tapGestureRecognizer>
                 <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="zlT-o3-K99">
                     <connections>
-                        <action selector="customColorLongPressed:" destination="BYZ-38-t0r" id="rfY-kQ-La6"/>
+                        <action selector="customColorLongPressed:" destination="BYZ-38-t0r" id="34U-dO-XZn"/>
                     </connections>
                 </pongPressGestureRecognizer>
                 <tapGestureRecognizer id="oa6-Ka-yCH">
                     <connections>
-                        <action selector="predefinedColorTapped:" destination="BYZ-38-t0r" id="VMp-Tk-qWJ"/>
+                        <action selector="predefinedColorTapped:" destination="BYZ-38-t0r" id="7C7-p5-o3L"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="2919.1999999999998" y="113.79310344827587"/>
+            <point key="canvasLocation" x="3041" y="113"/>
         </scene>
         <!--Заметки-->
         <scene sceneID="6D0-Dp-Bc6">
@@ -192,12 +192,12 @@
                     <navigationItem key="navigationItem" title="Заметки" id="jYL-rv-5eF">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="cyc-KJ-gtP">
                             <connections>
-                                <action selector="addButtonPressed:" destination="Fq8-kS-NT5" id="E6U-5z-IIm"/>
+                                <action selector="addButtonPressed:" destination="Fq8-kS-NT5" id="ARU-AB-nmz"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="show" identifier="showNote" id="hkd-g0-7mP"/>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="NoteDetails" id="yNS-92-k7H"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YMH-bC-hWR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -273,7 +273,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <action selector="disableSynchronizationButtonTapped:" destination="2f6-yb-XR9" eventType="touchUpInside" id="QPy-AK-AVU"/>
+                                            <action selector="disableSynchronizationButtonTapped:" destination="2f6-yb-XR9" eventType="touchUpInside" id="eNJ-3M-4Iq"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -302,7 +302,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <action selector="enableSynchronizationButtonTapped:" destination="2f6-yb-XR9" eventType="touchUpInside" id="may-Yj-mZu"/>
+                                            <action selector="enableSynchronizationButtonTapped:" destination="2f6-yb-XR9" eventType="touchUpInside" id="Xpu-FO-tXo"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -322,10 +322,10 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Синхронизация" image="arrow.triangle.2.circlepath" catalog="system" id="8LU-VQ-QYP"/>
                     <connections>
-                        <outlet property="disableSynchronizationElementsStackView" destination="iR1-Zo-W2t" id="kgq-TO-Nuz"/>
-                        <outlet property="enableSynchronizationElementsStackView" destination="EV8-gy-9sr" id="Bdq-H5-TJT"/>
-                        <outlet property="synchronizationStatusImageView" destination="dsb-Nx-lrS" id="UhS-N8-VP2"/>
-                        <outlet property="synchronizationStatusLabel" destination="WNx-Qp-0ck" id="l2d-Zj-ZJr"/>
+                        <outlet property="disableSynchronizationElementsStackView" destination="iR1-Zo-W2t" id="29w-PW-RDh"/>
+                        <outlet property="enableSynchronizationElementsStackView" destination="EV8-gy-9sr" id="7mw-dT-v7M"/>
+                        <outlet property="synchronizationStatusImageView" destination="dsb-Nx-lrS" id="VXE-dN-Ibs"/>
+                        <outlet property="synchronizationStatusLabel" destination="WNx-Qp-0ck" id="Olu-ob-ceH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IhZ-1U-5iX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -353,7 +353,7 @@
     </scenes>
     <designables>
         <designable name="5t4-ZR-NVn">
-            <size key="intrinsicContentSize" width="200" height="28"/>
+            <size key="intrinsicContentSize" width="200" height="40"/>
         </designable>
     </designables>
     <resources>
