@@ -16,9 +16,10 @@ enum Synchronization {
         }
         
         struct ViewModel {
-            let synchronizationEnabled: Bool
             let statusText: String
             let systemImageName: String
+            let actionsText: String
+            let buttonText: String
         }
     }
 }

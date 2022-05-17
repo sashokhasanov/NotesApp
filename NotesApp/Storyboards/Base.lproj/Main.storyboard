@@ -34,7 +34,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Название заметки" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="5t4-ZR-NVn" customClass="UnderlinedTextField" customModule="NotesApp" customModuleProvider="target">
-                                        <rect key="frame" x="65" y="0.0" width="309" height="40"/>
+                                        <rect key="frame" x="65" y="12" width="309" height="28"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
                                         <textInputTraits key="textInputTraits" returnKeyType="next"/>
                                     </textField>
@@ -249,35 +249,6 @@
                                     </label>
                                 </subviews>
                             </stackView>
-                            <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="iR1-Zo-W2t">
-                                <rect key="frame" x="60.5" y="581.5" width="293.5" height="91.5"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Отключить синхронизацию:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="akT-ky-RIa">
-                                        <rect key="frame" x="0.0" y="0.0" width="293.5" height="27.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="23"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KxC-gM-poz">
-                                        <rect key="frame" x="30.5" y="45.5" width="232" height="46"/>
-                                        <color key="backgroundColor" name="CellColor"/>
-                                        <color key="tintColor" systemColor="labelColor"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" image="YandexDisk" title="Отключить" imagePadding="10">
-                                            <fontDescription key="titleFontDescription" type="system" pointSize="25"/>
-                                            <directionalEdgeInsets key="contentInsets" top="5" leading="30" bottom="5" trailing="30"/>
-                                        </buttonConfiguration>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                <integer key="value" value="23"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <action selector="disableSynchronizationButtonTapped:" destination="2f6-yb-XR9" eventType="touchUpInside" id="eNJ-3M-4Iq"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                            </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="EV8-gy-9sr">
                                 <rect key="frame" x="66.5" y="581.5" width="281" height="91.5"/>
                                 <subviews>
@@ -302,7 +273,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <action selector="enableSynchronizationButtonTapped:" destination="2f6-yb-XR9" eventType="touchUpInside" id="Xpu-FO-tXo"/>
+                                            <action selector="synchronizationButtonTapped:" destination="2f6-yb-XR9" eventType="touchUpInside" id="TpN-i8-7Xe"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -311,19 +282,17 @@
                         <viewLayoutGuide key="safeArea" id="2Cl-rC-LzI"/>
                         <color key="backgroundColor" systemColor="systemGray6Color"/>
                         <constraints>
-                            <constraint firstItem="iR1-Zo-W2t" firstAttribute="centerX" secondItem="Nxj-gK-Hmn" secondAttribute="centerX" id="2CX-Ag-Oil"/>
                             <constraint firstItem="EV8-gy-9sr" firstAttribute="centerY" secondItem="Nxj-gK-Hmn" secondAttribute="centerY" multiplier="1.4" id="3MH-AR-Sj1"/>
                             <constraint firstItem="EV8-gy-9sr" firstAttribute="centerX" secondItem="Nxj-gK-Hmn" secondAttribute="centerX" id="I0p-2N-Lq8"/>
                             <constraint firstItem="dsb-Nx-lrS" firstAttribute="width" secondItem="Nxj-gK-Hmn" secondAttribute="height" multiplier="1:5" id="K2L-KB-nYs"/>
                             <constraint firstItem="8og-oA-QM3" firstAttribute="centerX" secondItem="Nxj-gK-Hmn" secondAttribute="centerX" id="QrB-rh-A9R"/>
                             <constraint firstItem="8og-oA-QM3" firstAttribute="centerY" secondItem="Nxj-gK-Hmn" secondAttribute="centerY" multiplier="0.7" id="aWM-iw-Q3L"/>
-                            <constraint firstItem="iR1-Zo-W2t" firstAttribute="centerY" secondItem="Nxj-gK-Hmn" secondAttribute="centerY" multiplier="1.4" id="oVp-Ot-PoD"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Синхронизация" image="arrow.triangle.2.circlepath" catalog="system" id="8LU-VQ-QYP"/>
                     <connections>
-                        <outlet property="disableSynchronizationElementsStackView" destination="iR1-Zo-W2t" id="29w-PW-RDh"/>
-                        <outlet property="enableSynchronizationElementsStackView" destination="EV8-gy-9sr" id="7mw-dT-v7M"/>
+                        <outlet property="availableActionsLabel" destination="La3-gB-bNT" id="c9D-mV-9tk"/>
+                        <outlet property="synchronizationButton" destination="1Yo-Wg-wnc" id="DQZ-km-o36"/>
                         <outlet property="synchronizationStatusImageView" destination="dsb-Nx-lrS" id="VXE-dN-Ibs"/>
                         <outlet property="synchronizationStatusLabel" destination="WNx-Qp-0ck" id="Olu-ob-ceH"/>
                     </connections>
@@ -353,7 +322,7 @@
     </scenes>
     <designables>
         <designable name="5t4-ZR-NVn">
-            <size key="intrinsicContentSize" width="200" height="40"/>
+            <size key="intrinsicContentSize" width="200" height="28"/>
         </designable>
     </designables>
     <resources>

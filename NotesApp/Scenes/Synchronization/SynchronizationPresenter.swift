@@ -18,9 +18,10 @@ class SynchronizationPresenter: SynchronizationPresentationLogic {
     
     func presentSynchronizationStatus(response: Synchronization.UpdateStatus.Response) {
         let viewModel = Synchronization.UpdateStatus.ViewModel(
-            synchronizationEnabled: response.synchronizationEnabled,
             statusText: response.synchronizationEnabled ? "Синхронизация включена" : "Синхронизация выключена",
-            systemImageName: response.synchronizationEnabled ? "checkmark.icloud" : "xmark.icloud"
+            systemImageName: response.synchronizationEnabled ? "checkmark.icloud" : "xmark.icloud",
+            actionsText: response.synchronizationEnabled ? "Отключите синхронизацию:" : "Включите синхронизацию:",
+            buttonText: response.synchronizationEnabled ? "Отключить" : "Яндекс.Диск"
         )
         
         viewController?.displaySynchronizationStatus(viewModel: viewModel)

@@ -19,10 +19,10 @@ class SynchronizationViewController: UIViewController {
     // MARK: - IBOutlets
     @IBOutlet weak var synchronizationStatusLabel: UILabel!
     @IBOutlet weak var synchronizationStatusImageView: UIImageView!
-    @IBOutlet weak var enableSynchronizationElementsStackView: UIStackView!
-    @IBOutlet weak var disableSynchronizationElementsStackView: UIStackView!
+    @IBOutlet weak var availableActionsLabel: UILabel!
+    @IBOutlet weak var synchronizationButton: UIButton!
     
-    // MARK: - 
+    // MARK: - CleanSwift scene components
     var interactor: SynchronizationBusinessLogic?
     
     // MARK: - Object lifecycle
@@ -45,15 +45,9 @@ class SynchronizationViewController: UIViewController {
 
 // MARK: - IBActions handling
 extension SynchronizationViewController {
-    @IBAction func enableSynchronizationButtonTapped(_ sender: UIButton) {
+    @IBAction func synchronizationButtonTapped(_ sender: UIButton) {
         sender.tapAnimation {
-            self.interactor?.enableSynchronization()
-        }
-    }
-    
-    @IBAction func disableSynchronizationButtonTapped(_ sender: UIButton) {
-        sender.tapAnimation {
-            self.interactor?.disableSynchronization()
+            self.interactor?.toggleSynchronization()
         }
     }
 }
@@ -61,10 +55,10 @@ extension SynchronizationViewController {
 // MARK: - SynchronizationDisplayLogic protocol conformance
 extension SynchronizationViewController: SynchronizationDisplayLogic {
     func displaySynchronizationStatus(viewModel: Synchronization.UpdateStatus.ViewModel) {
-        updateButtonsVisibility(isAuthenticated: viewModel.synchronizationEnabled)
-        
         synchronizationStatusImageView.image = UIImage(systemName: viewModel.systemImageName)
         synchronizationStatusLabel.text = viewModel.statusText
+        availableActionsLabel.text = viewModel.actionsText
+        synchronizationButton.setTitle(viewModel.buttonText, for: .normal)
     }
 }
 
@@ -79,16 +73,4 @@ extension SynchronizationViewController {
         interactor.presenter = presenter
         presenter.viewController = viewController
     }
-    
-    private func updateButtonsVisibility(isAuthenticated: Bool) {
-        if isAuthenticated {
-            enableSynchronizationElementsStackView.isHidden = true
-            disableSynchronizationElementsStackView.isHidden = false
-        } else {
-            enableSynchronizationElementsStackView.isHidden = false
-            disableSynchronizationElementsStackView.isHidden = true
-        }
-    }
 }
-
-

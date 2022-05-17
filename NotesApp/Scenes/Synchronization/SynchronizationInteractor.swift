@@ -10,8 +10,7 @@
 //
 
 protocol SynchronizationBusinessLogic {
-    func enableSynchronization()
-    func disableSynchronization()
+    func toggleSynchronization()
     func updateSynchronizationStatus()
 }
 
@@ -19,13 +18,13 @@ class SynchronizationInteractor: SynchronizationBusinessLogic {
     var presenter: SynchronizationPresentationLogic?
     var worker = SynchronizationWorker()
     
-    func enableSynchronization() {
-        worker.enableSynchronization(completion: updateSynchronizationStatus)
-    }
-    
-    func disableSynchronization() {
-        worker.disableSynchronization()
-        updateSynchronizationStatus()
+    func toggleSynchronization() {
+        if worker.isSynchronizationEnabled() {
+            worker.disableSynchronization()
+            updateSynchronizationStatus()
+        } else {
+            worker.enableSynchronization(completion: updateSynchronizationStatus)
+        }
     }
     
     func updateSynchronizationStatus() {
