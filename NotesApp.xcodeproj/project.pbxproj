@@ -232,7 +232,6 @@
 				2DE478E327ECBDF50088C0E5 /* CircleMarkerView.swift */,
 				2DE478E527ED0DEB0088C0E5 /* GradientMarkerView.swift */,
 				2D484FB827F0DA1E004DA032 /* UnderlinedTextField.swift */,
-				2D971D9C27FF96FC00EFC6E9 /* UIButton+TapAnimation.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -248,6 +247,7 @@
 		2D971DA128002A8A00EFC6E9 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				2D971D9C27FF96FC00EFC6E9 /* UIButton+TapAnimation.swift */,
 				2DF8AB2227F0C313009D7A21 /* UIColor+Extension.swift */,
 				2D484FC327F24EE7004DA032 /* CoreData+Convenience.swift */,
 				2D971D9A27FF961000EFC6E9 /* NSNotification.Name+AccessTokenReceived.swift */,
