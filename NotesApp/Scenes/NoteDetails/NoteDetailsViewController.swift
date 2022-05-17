@@ -24,6 +24,7 @@ class NoteDetailsViewController: UIViewController {
     @IBOutlet weak var customColorView: GradientMarkerView!
     @IBOutlet var colorViews: [CircleMarkerView]!
 
+    // MARK: - CleanSwift scene components
     var interactor: NoteDetailsBusinessLogic?
     var router: (NSObjectProtocol & NoteDetailsRoutingLogic & NoteDetailsDataPassing)?
     

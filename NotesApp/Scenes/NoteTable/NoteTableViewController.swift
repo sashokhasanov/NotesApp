@@ -23,6 +23,7 @@ protocol NoteTableDisplayLogic: AnyObject {
 }
 
 class NoteTableViewController: UITableViewController {
+    // MARK: - CleanSwift scene components
     var interactor: NoteTableBusinessLogic?
     var dataSource: NoteTableDataSourceProtocol?
     var router: (NSObjectProtocol & NoteTableRoutingLogic & NoteTableDataPassing)?
